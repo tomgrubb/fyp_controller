@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/debug/FYP_controller.X.debug.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>32752</length>
+      <used>5094</used>
+      <free>27658</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>3578</length>
+      <used>123</used>
+      <free>3455</free>
+    </memory>
+  </executable>
+</project>
