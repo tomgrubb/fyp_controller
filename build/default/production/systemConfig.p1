@@ -609,6 +609,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S909 . . ]
 "20921
 [v _IOCNbits `VS909 ~T0 @X0 0 e@3925 ]
+"33658
+[v _LATE1 `Vb ~T0 @X0 0 e@31849 ]
+"33696
+[v _LATH1 `Vb ~T0 @X0 0 e@31873 ]
+"33644
+[v _LATD2 `Vb ~T0 @X0 0 e@31842 ]
 "58 global.h
 [v _killLEDs `(v ~T0 @X0 0 ef ]
 "66
@@ -13227,29 +13233,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 70: int readToggle(int target);
 [; ;global.h: 71: int absVal(int val);
 "73 global.h
-[v _intA `uc ~T0 @X0 1 e ]
+[v _intA `i ~T0 @X0 1 e ]
 [i _intA
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 73: char intA = 0;
+[; ;global.h: 73: int intA = 0;
 "74
-[v _intB `uc ~T0 @X0 1 e ]
+[v _intB `i ~T0 @X0 1 e ]
 [i _intB
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 74: char intB = 0;
+[; ;global.h: 74: int intB = 0;
 "75
-[v _intC `uc ~T0 @X0 1 e ]
+[v _intC `i ~T0 @X0 1 e ]
 [i _intC
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 75: char intC = 0;
+[; ;global.h: 75: int intC = 0;
 "76
-[v _swX `uc ~T0 @X0 1 e ]
+[v _swX `i ~T0 @X0 1 e ]
 [i _swX
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 76: char swX = 0;
+[; ;global.h: 76: int swX = 0;
 "79
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
@@ -13299,110 +13305,128 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;global.h: 87: int muxADC = 0;
 "89
-[v _bypass `uc ~T0 @X0 1 e ]
+[v _bypass `i ~T0 @X0 1 e ]
 [i _bypass
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 89: char bypass = 0;
+[; ;global.h: 89: int bypass = 0;
 "90
-[v _preset `uc ~T0 @X0 1 e ]
+[v _preset `i ~T0 @X0 1 e ]
 [i _preset
--> -> 0 `i `uc
+-> 0 `i
 ]
-[; ;global.h: 90: char preset = 0;
-"93
+[; ;global.h: 90: int preset = 0;
+"91
+[v _bypMode `i ~T0 @X0 1 e ]
+[i _bypMode
+-> 1 `i
+]
+[; ;global.h: 91: int bypMode = 1;
+"94
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 93: int tapFlash = 0;
-"94
+[; ;global.h: 94: int tapFlash = 0;
+"95
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 94: int tapOnTime = 5;
-"95
+[; ;global.h: 95: int tapOnTime = 5;
+"96
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 95: int tapDispCount = 0;
-"96
+[; ;global.h: 96: int tapDispCount = 0;
+"97
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 96: int currentTapTime = 500;
-"99
+[; ;global.h: 97: int currentTapTime = 500;
+"100
+[v _hiLo `i ~T0 @X0 1 e ]
+[i _hiLo
+-> 0 `i
+]
+[; ;global.h: 100: int hiLo = 0;
+"101
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 99: int dataTarget = 0;
-"100
+[; ;global.h: 101: int dataTarget = 0;
+"102
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 100: int *dataPtr;
-"101
+[; ;global.h: 102: int *dataPtr;
+"103
 [v _feedbackValue `i ~T0 @X0 1 e ]
 [i _feedbackValue
 -> 0 `i
 ]
-[; ;global.h: 101: int feedbackValue = 0;
-"102
+[; ;global.h: 103: int feedbackValue = 0;
+"104
 [v _levelValue `i ~T0 @X0 1 e ]
 [i _levelValue
 -> 0 `i
 ]
-[; ;global.h: 102: int levelValue = 0;
-"103
+[; ;global.h: 104: int levelValue = 0;
+"105
 [v _timeValue `i ~T0 @X0 1 e ]
 [i _timeValue
 -> 0 `i
 ]
-[; ;global.h: 103: int timeValue = 0;
-"106
+[; ;global.h: 105: int timeValue = 0;
+"108
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 106: int tapTimeCount = 0;
-"107
+[; ;global.h: 108: int tapTimeCount = 0;
+"109
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 107: int tapPrev = 0;
-"108
+[; ;global.h: 109: int tapPrev = 0;
+"110
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 108: long int tapAccum = 0;
-"109
+[; ;global.h: 110: long int tapAccum = 0;
+"111
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 109: int tap = 0;
-"110
+[; ;global.h: 111: int tap = 0;
+"112
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 110: int tapTime = 0;
-"111
+[; ;global.h: 112: int tapTime = 0;
+"113
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 111: int newTempo = 0;
-"112
+[; ;global.h: 113: int newTempo = 0;
+"114
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 112: int timeoutCount = 0;
+[; ;global.h: 114: int timeoutCount = 0;
+"116
+[v _setupComplete `i ~T0 @X0 1 e ]
+[i _setupComplete
+-> 0 `i
+]
+[; ;global.h: 116: int setupComplete = 0;
 "16 systemConfig.c
 [v _setupTMR0 `(v ~T0 @X0 1 ef ]
 "17
@@ -13584,12 +13608,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 78: SSP1CON1bits.SSPEN = 0x0;
 "78
 [e = . . _SSP1CON1bits 0 2 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 80: TRISCbits.TRISC3 = 0x0;
+[; ;systemConfig.c: 80: TRISCbits.TRISC3 = 0x1;
 "80
-[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 81: TRISCbits.TRISC4 = 0x0;
+[e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 81: TRISCbits.TRISC4 = 0x1;
 "81
-[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 84: SSP1ADD = 0x4F;
 "84
 [e = _SSP1ADD -> -> 79 `i `uc ]
@@ -13668,9 +13692,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 118: ADCON1Hbits.ADON = 0;
 "118
 [e = . . _ADCON1Hbits 0 3 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 119: ADCON1Hbits.MODE12 = 0;
+[; ;systemConfig.c: 119: ADCON1Hbits.MODE12 = 1;
 "119
-[e = . . _ADCON1Hbits 0 1 -> -> 0 `i `uc ]
+[e = . . _ADCON1Hbits 0 1 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 120: ADCON1Hbits.FORM = 0;
 "120
 [e = . . _ADCON1Hbits 0 0 -> -> 0 `i `uc ]
@@ -13869,9 +13893,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 194: {
 [e :U _interfaceInit ]
 [f ]
-[; ;systemConfig.c: 195: disableLCD();
-"195
-[e ( _disableLCD ..  ]
 [; ;systemConfig.c: 196: MEMCONbits.EBDIS = 1;
 "196
 [e = . . _MEMCONbits 0 4 -> -> 1 `i `uc ]
@@ -14108,47 +14129,89 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 1438 ]
 }
 "311
-[v _systemInit `(v ~T0 @X0 1 ef ]
+[v _bypassSetup `(v ~T0 @X0 1 ef ]
 "312
 {
-[; ;systemConfig.c: 311: void systemInit(void)
+[; ;systemConfig.c: 311: void bypassSetup(void)
 [; ;systemConfig.c: 312: {
+[e :U _bypassSetup ]
+[f ]
+[; ;systemConfig.c: 313: LATB5 = 1;
+"313
+[e = _LATB5 -> -> 1 `i `b ]
+[; ;systemConfig.c: 314: LATD3 = 1;
+"314
+[e = _LATD3 -> -> 1 `i `b ]
+[; ;systemConfig.c: 315: LATE1 = 1;
+"315
+[e = _LATE1 -> -> 1 `i `b ]
+[; ;systemConfig.c: 316: LATH1 = 0;
+"316
+[e = _LATH1 -> -> 0 `i `b ]
+[; ;systemConfig.c: 317: LATD2 = 0;
+"317
+[e = _LATD2 -> -> 0 `i `b ]
+[; ;systemConfig.c: 318: }
+"318
+[e :UE 1439 ]
+}
+"320
+[v _systemInit `(v ~T0 @X0 1 ef ]
+"321
+{
+[; ;systemConfig.c: 320: void systemInit(void)
+[; ;systemConfig.c: 321: {
 [e :U _systemInit ]
 [f ]
-[; ;systemConfig.c: 313: clockSwitch();
-"313
+[; ;systemConfig.c: 322: clockSwitch();
+"322
 [e ( _clockSwitch ..  ]
-[; ;systemConfig.c: 315: setupTMR0();
-"315
+[; ;systemConfig.c: 324: setupTMR0();
+"324
 [e ( _setupTMR0 ..  ]
-[; ;systemConfig.c: 316: setupTMR1();
-"316
+[; ;systemConfig.c: 325: setupTMR1();
+"325
 [e ( _setupTMR1 ..  ]
-[; ;systemConfig.c: 317: setupTMR2();
-"317
-[e ( _setupTMR2 ..  ]
-[; ;systemConfig.c: 318: setupTMR4();
-"318
-[e ( _setupTMR4 ..  ]
-[; ;systemConfig.c: 323: setupADC();
-"323
-[e ( _setupADC ..  ]
-[; ;systemConfig.c: 326: mapPeripheralPins();
+[; ;systemConfig.c: 326: setupTMR2();
 "326
-[e ( _mapPeripheralPins ..  ]
-[; ;systemConfig.c: 327: interfaceInit();
+[e ( _setupTMR2 ..  ]
+[; ;systemConfig.c: 327: setupTMR4();
 "327
-[e ( _interfaceInit ..  ]
-[; ;systemConfig.c: 329: killLEDs();
+[e ( _setupTMR4 ..  ]
+[; ;systemConfig.c: 329: setupI2C1();
 "329
-[e ( _killLEDs ..  ]
-[; ;systemConfig.c: 330: startupSequence();
+[e ( _setupI2C1 ..  ]
+[; ;systemConfig.c: 330: setupI2C2();
 "330
-[e ( _startupSequence ..  ]
-[; ;systemConfig.c: 331: killLEDs();
-"331
-[e ( _killLEDs ..  ]
-[; ;systemConfig.c: 332: }
+[e ( _setupI2C2 ..  ]
+[; ;systemConfig.c: 332: setupADC();
 "332
-[e :UE 1439 ]
+[e ( _setupADC ..  ]
+[; ;systemConfig.c: 335: mapPeripheralPins();
+"335
+[e ( _mapPeripheralPins ..  ]
+[; ;systemConfig.c: 336: interfaceInit();
+"336
+[e ( _interfaceInit ..  ]
+[; ;systemConfig.c: 337: bypassSetup();
+"337
+[e ( _bypassSetup ..  ]
+[; ;systemConfig.c: 338: killLEDs();
+"338
+[e ( _killLEDs ..  ]
+[; ;systemConfig.c: 339: startupSequence();
+"339
+[e ( _startupSequence ..  ]
+[; ;systemConfig.c: 340: killLEDs();
+"340
+[e ( _killLEDs ..  ]
+[; ;systemConfig.c: 342: bypassSetup();
+"342
+[e ( _bypassSetup ..  ]
+[; ;systemConfig.c: 344: interruptInit();
+"344
+[e ( _interruptInit ..  ]
+[; ;systemConfig.c: 345: }
+"345
+[e :UE 1440 ]
 }

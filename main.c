@@ -41,11 +41,11 @@
 
 
 // CONFIG1L
-#pragma config STVREN = ON      // Stack Overflow/Underflow Reset (Enabled)
+#pragma config STVREN = OFF      // Stack Overflow/Underflow Reset (Enabled)
 #pragma config XINST = OFF      // Extended Instruction Set (Disabled)
 
 // CONFIG1H
-#pragma config BOREN = ON       // Brown-Out Reset Enable (Controlled with SBOREN bit, disabled in Deep Sleep)
+#pragma config BOREN = OFF       // Brown-Out Reset Enable (Controlled with SBOREN bit, disabled in Deep Sleep)
 #pragma config BORV = 1         // Brown-out Reset Voltage (1.8V)
 #pragma config CP0 = OFF        // Code Protect (Program memory is not code-protected)
 
@@ -92,7 +92,7 @@
 #pragma config WDTPS = 32768    // Watchdog Timer Postscale (1:32768)
 
 // CONFIG6H
-#pragma config WDTEN = SWDTDIS  // Watchdog Timer Enable (WDT enabled in hardware; SWDTEN bit disabled)
+#pragma config WDTEN = OFF  // Watchdog Timer Enable (WDT enabled in hardware; SWDTEN bit disabled)
 #pragma config WINDIS = WDTSTD  // Windowed Watchdog Timer Disable (Standard WDT selected; windowed WDT disabled)
 #pragma config WPSA = 128       // WDT Prescaler (WDT prescaler ratio of 1:128)
 
@@ -115,6 +115,7 @@
 #include <xc.h>
 #include <pic18f85j94.h>
 #include "global.h"
+#include "factorySettings.h"
 //#include <pic18f85j94.h>
 
 // Interrupt Handler
@@ -168,8 +169,8 @@ void main(void)
     int result = 0;
     int i = 0;
     int byte = 0;
-    int dryLevel = 100;
-    int prevDry = 0;
+    int dryLevel = 50;
+    int prevDry = 50;
     int diff = 0;
     int dir = 1;
    
@@ -180,89 +181,45 @@ void main(void)
     int bitC = 1;
     
     systemInit();
-    interruptInit();
 
-    T4CONbits.TMR4ON = 1;
-      
-    while(1)
-    {
-        temp++;
-        // do nothing
-    }
+    //T4CONbits.TMR4ON = 1;
+    
+    I2C1_Write_DigiPot(127);
     
     while(1)
     {
-        temp = ADC_Read(14);
+        if (preset == 1)
+        {
+            timeValue = presetParams[0];
+            feedbackValue = presetParams[1];
+            levelValue = presetParams[2];
+        }
+        else
+        {
+            feedbackValue = ADC_Read(4);
+            feedbackValue = feedbackValue>>4;
+
+            levelValue = ADC_Read(3);
+            levelValue = levelValue>>4;
+
+            timeValue = ADC_Read(14);
+
+            dryLevel = ADC_Read(8);
+            dryLevel = dryLevel>>5;
+            diff = dryLevel - prevDry;
+            diff = absVal(diff);
+
+            if (diff >= 2)
+            {
+               I2C1_Write_DigiPot(dryLevel);
+               prevDry = dryLevel;
+            } 
+        }
         
-        if (temp >= 1000)
+        // signal that we're ready to go
+        if (!setupComplete)
         {
-            temp = 1;
-        }
-        else if (temp >= 800)
-        {
-            temp = 2;
-        }
-        else if (temp >= 600)
-        {
-            temp = 3;
-        }
-        else if (temp >= 400)
-        {
-            temp = 4;
-        }
-        else if (temp >= 200)
-        {
-            temp = 5;
-        }
-        else temp = 0;
-        
-        updatePresetLEDs(temp);
-    }
-    
-    while(1)
-    {
-       I2C1_Write_DigiPot(dryLevel);
-       dryLevel += dir;
-       if (dryLevel >= 127 | dryLevel <= 20)
-       {
-           dir *= -1;
-       }
-       __delay_us(1500);
-    }
-    
-    while(1)
-    {
-        dryLevel = ADC_Read(3);
-        dryLevel = dryLevel>>3;
-        diff = dryLevel - prevDry;
-        if (diff >= 3 | diff <= -3)
-        {
-            I2C1_Write_DigiPot(dryLevel);
-            prevDry = dryLevel;
-        }
-        __delay_ms(5);
-    }
-    
-    while(1)
-    {
-        __delay_ms(10);
-        I2C1_Write_EEPROM(0xA0, 0x00, 0xAA);
-        __delay_us(50);
-        byte = I2C1_Read_EEPROM(0xA0, 0x00);
-        __delay_ms(10);
-    }
-    
-    while(1)
-    {
-        feedbackValue = ADC_Read(6);
-        feedbackValue = feedbackValue>>2;
-        
-        levelValue = ADC_Read(5);
-        levelValue = levelValue>>2;
-        
-        timeValue = ADC_Read(4);
-        timeValue = timeValue>>2;
-        
-        __delay_ms(5);
-    }
+            setupComplete = 1;
+        }        
+    }      
 }

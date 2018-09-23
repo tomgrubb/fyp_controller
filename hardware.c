@@ -170,7 +170,16 @@ void serviceSwitches(void)
         if (!BypassFSW)
         {
             bypass ^= 1;           // toggle bypass state
-            CTRL = bypass;         // switch relay
+            if (bypMode)
+            {
+                CTRL = !bypass;         // switch relay
+                TAILS = bypass;
+            }
+            else
+            {
+                CTRL = 0;
+                TAILS = bypass;
+            }
             BypassLED = bypass;    // switch LED
         }
     }
@@ -290,6 +299,8 @@ void serviceSwitches(void)
         switch5 = 0;
         if (!SW5)
         {
+            swX ^= 1;
+            bypMode = swX;
             if (swX)
             {
                 LEDB = 1;
@@ -300,7 +311,6 @@ void serviceSwitches(void)
                 LEDB = 0;
                 LEDR = 1;
             }
-            swX ^= 1;
         }
     }
 }

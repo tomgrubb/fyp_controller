@@ -17163,6 +17163,7 @@ void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
 int readToggle(int target);
+int absVal(int val);
 
 char intA = 0;
 char intB = 0;
@@ -17182,6 +17183,7 @@ int muxADC = 0;
 
 char bypass = 0;
 char preset = 0;
+char bypMode = 0;
 
 
 int tapFlash = 0;
@@ -17270,8 +17272,8 @@ void setupI2C1(void)
 {
 SSP1CON1bits.SSPEN = 0x0;
 
-TRISCbits.TRISC3 = 0x0;
-TRISCbits.TRISC4 = 0x0;
+TRISCbits.TRISC3 = 0x1;
+TRISCbits.TRISC4 = 0x1;
 
 
 SSP1ADD = 0x4F;
@@ -17385,7 +17387,7 @@ LCDSE7 = 0x00;
 
 void interfaceInit(void)
 {
-disableLCD();
+
 MEMCONbits.EBDIS = 1;
 UCONbits.USBEN = 0;
 
@@ -17510,8 +17512,8 @@ setupTMR1();
 setupTMR2();
 setupTMR4();
 
-
-
+setupI2C1();
+setupI2C2();
 
 setupADC();
 
@@ -17522,4 +17524,6 @@ interfaceInit();
 killLEDs();
 startupSequence();
 killLEDs();
+
+interruptInit();
 }

@@ -3,11 +3,11 @@
 
 
 # 44
-#pragma config STVREN = ON
+#pragma config STVREN = OFF
 #pragma config XINST = OFF
 
 
-#pragma config BOREN = ON
+#pragma config BOREN = OFF
 #pragma config BORV = 1
 #pragma config CP0 = OFF
 
@@ -54,7 +54,7 @@
 #pragma config WDTPS = 32768
 
 
-#pragma config WDTEN = SWDTDIS
+#pragma config WDTEN = OFF
 #pragma config WINDIS = WDTSTD
 #pragma config WPSA = 128
 
@@ -17235,6 +17235,7 @@ void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
 int readToggle(int target);
+int absVal(int val);
 
 char intA = 0;
 char intB = 0;
@@ -17254,6 +17255,7 @@ int muxADC = 0;
 
 char bypass = 0;
 char preset = 0;
+char bypMode = 0;
 
 
 int tapFlash = 0;
@@ -17316,13 +17318,20 @@ T0CONbits.TMR0ON = 0x0;
 }
 }
 
+int absVal(int val)
+{
+if (val < 0)
+return -val;
+else return val;
+}
+
 void main(void)
 {
 int result = 0;
 int i = 0;
 int byte = 0;
-int dryLevel = 100;
-int prevDry = 0;
+int dryLevel = 50;
+int prevDry = 50;
 int diff = 0;
 int dir = 1;
 
@@ -17333,14 +17342,37 @@ int bitB = 1;
 int bitC = 1;
 
 systemInit();
-interruptInit();
 
 T4CONbits.TMR4ON = 1;
 
+LATB5 = 1;
+LATD3 = 1;
+
+I2C1_Write_DigiPot(127);
+
+# 204
 while(1)
 {
-temp++;
+feedbackValue = ADC_Read(4);
+feedbackValue = feedbackValue>>2;
 
+levelValue = ADC_Read(3);
+levelValue = levelValue>>2;
+
+timeValue = ADC_Read(14);
+timeValue = timeValue>>2;
+}
+
+# 225
+while(1)
+{
+I2C1_Write_DigiPot(dryLevel);
+dryLevel += dir;
+if (dryLevel >= 127 | dryLevel <= 20)
+{
+dir *= -1;
+}
+_delay((unsigned long)((50)*(32000000/4000.0)));
 }
 
 while(1)
@@ -17393,29 +17425,6 @@ if (diff >= 3 | diff <= -3)
 I2C1_Write_DigiPot(dryLevel);
 prevDry = dryLevel;
 }
-_delay((unsigned long)((5)*(32000000/4000.0)));
-}
-
-while(1)
-{
-_delay((unsigned long)((10)*(32000000/4000.0)));
-I2C1_Write_EEPROM(0xA0, 0x00, 0xAA);
-_delay((unsigned long)((50)*(32000000/4000000.0)));
-byte = I2C1_Read_EEPROM(0xA0, 0x00);
-_delay((unsigned long)((10)*(32000000/4000.0)));
-}
-
-while(1)
-{
-feedbackValue = ADC_Read(6);
-feedbackValue = feedbackValue>>2;
-
-levelValue = ADC_Read(5);
-levelValue = levelValue>>2;
-
-timeValue = ADC_Read(4);
-timeValue = timeValue>>2;
-
 _delay((unsigned long)((5)*(32000000/4000.0)));
 }
 }

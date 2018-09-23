@@ -17145,6 +17145,96 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+# 13 "/Applications/microchip/xc8/v1.43/include/stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
 # 54 "global.h"
 void interruptInit(void);
 void systemInit(void);
@@ -17165,10 +17255,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 0;
 
 
 int switch1 = 0;
@@ -17181,8 +17271,9 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
+int bypass = 0;
+int preset = 0;
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17191,6 +17282,7 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+int hiLo = 0;
 int dataTarget = 0;
 int *dataPtr;
 int feedbackValue = 0;
@@ -17206,7 +17298,9 @@ int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
 
-# 15 "serial.c"
+int setupComplete = 0;
+
+# 16 "serial.c"
 void I2C1_Write_EEPROM(char devAddr, char memValue, char value)
 {
 char wrDevAddr = devAddr;
@@ -17322,11 +17416,17 @@ SSP1CON1bits.SSPEN = 0x1;
 
 void sendParam(void)
 {
+int byte = 0;
+
 dataTarget = SSP2BUF;
 while(SSP2STATbits.BF);
 
 
-if (dataTarget == 0xA1)
+if (dataTarget == 0xAC)
+{
+dataPtr = setupComplete;
+}
+else if (dataTarget == 0xA1)
 {
 dataPtr = feedbackValue;
 }
@@ -17336,7 +17436,17 @@ dataPtr = levelValue;
 }
 else if (dataTarget == 0xA9)
 {
-dataPtr = timeValue;
+if (!hiLo)
+{
+byte = (timeValue & 0xFF);
+dataPtr = byte;
+}
+else
+{
+byte = timeValue>>8;
+dataPtr = byte;
+}
+hiLo ^= 1;
 }
 
 SSP2BUF = dataPtr;

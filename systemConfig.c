@@ -77,8 +77,8 @@ void setupI2C1(void)
 {
     SSP1CON1bits.SSPEN = 0x0;       // DISABLE I2C Module
     
-    TRISCbits.TRISC3 = 0x0;         // RC3 in an OUTPUT (SCL1)
-    TRISCbits.TRISC4 = 0x0;         // RC4 is an INPUT (SDA1)
+    TRISCbits.TRISC3 = 0x1;         // RC3 in an OUTPUT (SCL1)
+    TRISCbits.TRISC4 = 0x1;         // RC4 is an INPUT (SDA1)
     
     // Master Mode, Clock = Fosc / (4*(SSP1ADD + 1))
     SSP1ADD = 0x4F;                 // Clock speed is 100 kHz
@@ -116,7 +116,7 @@ void setupI2C2(void)
 void setupADC(void)
 {
     ADCON1Hbits.ADON = 0;           // turn off ADC
-    ADCON1Hbits.MODE12 = 0;         // 10-bit mode
+    ADCON1Hbits.MODE12 = 1;         // 12-bit mode
     ADCON1Hbits.FORM = 0;           // abs dec result, unsigned, right-justified    
     ADCON1Lbits.SSRC = 0;           // SAMP must be cleared by software
     ADCON1Lbits.ASAM = 0;           // sampling starts when SAMP is set
@@ -192,7 +192,7 @@ void disableLCD(void)
 
 void interfaceInit(void)
 {
-    disableLCD();
+    //disableLCD();
     MEMCONbits.EBDIS = 1; 
     UCONbits.USBEN = 0;
     
@@ -308,6 +308,15 @@ void interruptInit(void)
     INTCONbits.GIE = 0x1;             // ENABLE global interrupts
 }
 
+void bypassSetup(void)
+{
+    TAILS = 1;
+    CTRL = 1;
+    LEDB = 1;
+    LEDR = 0;
+    BypassLED = 0;
+}
+
 void systemInit(void)
 {
     clockSwitch();
@@ -317,16 +326,20 @@ void systemInit(void)
     setupTMR2();
     setupTMR4();
     
-    //setupI2C1();
-    //setupI2C2();
+    setupI2C1();
+    setupI2C2();
     
     setupADC();
     //setupPWM();
     
     mapPeripheralPins();
     interfaceInit();
-    
+    bypassSetup();
     killLEDs();
     startupSequence();
     killLEDs();
+    
+    bypassSetup();
+    
+    interruptInit();
 }

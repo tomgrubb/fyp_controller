@@ -17165,10 +17165,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 0;
 
 
 int switch1 = 0;
@@ -17181,8 +17181,9 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
+int bypass = 0;
+int preset = 0;
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17191,6 +17192,7 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+int hiLo = 0;
 int dataTarget = 0;
 int *dataPtr;
 int feedbackValue = 0;
@@ -17205,6 +17207,8 @@ int tap = 0;
 int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
+
+int setupComplete = 0;
 
 # 16 "systemConfig.c"
 void setupTMR0(void)
@@ -17271,8 +17275,8 @@ void setupI2C1(void)
 {
 SSP1CON1bits.SSPEN = 0x0;
 
-TRISCbits.TRISC3 = 0x0;
-TRISCbits.TRISC4 = 0x0;
+TRISCbits.TRISC3 = 0x1;
+TRISCbits.TRISC4 = 0x1;
 
 
 SSP1ADD = 0x4F;
@@ -17310,7 +17314,7 @@ SSP2CON1bits.SSPEN = 0x1;
 void setupADC(void)
 {
 ADCON1Hbits.ADON = 0;
-ADCON1Hbits.MODE12 = 0;
+ADCON1Hbits.MODE12 = 1;
 ADCON1Hbits.FORM = 0;
 ADCON1Lbits.SSRC = 0;
 ADCON1Lbits.ASAM = 0;
@@ -17386,7 +17390,7 @@ LCDSE7 = 0x00;
 
 void interfaceInit(void)
 {
-disableLCD();
+
 MEMCONbits.EBDIS = 1;
 UCONbits.USBEN = 0;
 
@@ -17502,6 +17506,15 @@ INTCONbits.PEIE = 0x1;
 INTCONbits.GIE = 0x1;
 }
 
+void bypassSetup(void)
+{
+LATB5 = 1;
+LATD3 = 1;
+LATE1 = 1;
+LATH1 = 0;
+LATD2 = 0;
+}
+
 void systemInit(void)
 {
 clockSwitch();
@@ -17511,16 +17524,20 @@ setupTMR1();
 setupTMR2();
 setupTMR4();
 
-
-
+setupI2C1();
+setupI2C2();
 
 setupADC();
 
 
 mapPeripheralPins();
 interfaceInit();
-
+bypassSetup();
 killLEDs();
 startupSequence();
 killLEDs();
+
+bypassSetup();
+
+interruptInit();
 }

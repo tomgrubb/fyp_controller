@@ -70,10 +70,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val); 
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 0;
 
 // Switch Flags
 int switch1 = 0;
@@ -86,8 +86,9 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
+int bypass = 0;
+int preset = 0;
+int bypMode = 1;
 
 // Tap Tempo LED variables
 int tapFlash = 0;
@@ -96,6 +97,7 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 // Parameter variables
+int hiLo = 0;
 int dataTarget = 0;
 int *dataPtr;
 int feedbackValue = 0;
@@ -110,5 +112,7 @@ int tap = 0;
 int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
+
+int setupComplete = 0;
 
 #endif /* GLOBAL_H */

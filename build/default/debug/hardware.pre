@@ -17163,6 +17163,7 @@ void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
 int readToggle(int target);
+int absVal(int val);
 
 char intA = 0;
 char intB = 0;
@@ -17182,6 +17183,7 @@ int muxADC = 0;
 
 char bypass = 0;
 char preset = 0;
+char bypMode = 0;
 
 
 int tapFlash = 0;
@@ -17206,18 +17208,8 @@ int newTempo = 0;
 int timeoutCount = 0;
 
 # 15 "hardware.c"
-void processTaps(void)
+void maxTapCheck(void)
 {
-if (tap < 1)
-{
-T2CONbits.TMR2ON = 0x1;
-tapAccum = 0;
-tapPrev = 0;
-tap++;
-}
-else
-{
-T2CONbits.TMR2ON = 0;
 if (tapTimeCount > 3000)
 {
 tapTimeCount = 0;
@@ -17229,51 +17221,64 @@ newTempo = 1;
 tap = 0;
 currentTapTime = 1500;
 }
+}
+
+void processTaps(void)
+{
+int tapDiff = 0;
+
+if (tap < 1)
+{
+T2CONbits.TMR2ON = 0x1;
+tapAccum = 0;
+tapPrev = 0;
+tap++;
+}
 else
 {
+T2CONbits.TMR2ON = 0;
+tapFlash = 1;
+tapDispCount = 0;
+LATE0 = 0x1;
 
 if (tap < 2)
 {
-newTempo = 1;
 currentTapTime = tapTimeCount;
-
-tapAccum += tapTimeCount;
+tapPrev = tapTimeCount;
 tap++;
+maxTapCheck();
 }
-
 else
 {
-tapAccum += tapTimeCount;
-currentTapTime = tapAccum/tap;
+tapDiff = tapTimeCount - tapPrev;
+tapDiff = absVal(tapDiff);
+if (tapDiff >= 500)
+{
+tap = 1;
+}
+else
+{
 currentTapTime = (tapTimeCount + tapPrev)/2;
 tapPrev = tapTimeCount;
 tap++;
-tapFlash = 1;
-tapDispCount = 0;
+}
 }
 T2CONbits.TMR2ON = 1;
 }
 tapTimeCount = 0;
 }
-}
 
 void tapLED(void)
 {
-if (newTempo)
-{
-tapFlash = 1;
-tapDispCount = 0;
-newTempo = 0;
-LATEbits.LATE0 = 1;
-}
 
+# 84
 if(tapFlash)
 {
 tapDispCount++;
 if (tapDispCount >= tapOnTime)
 {
 tapDispCount = 0;
-LATEbits.LATE0 = 0;
+LATE0 = 0;
 tapFlash = 0;
 }
 }
@@ -17283,7 +17288,7 @@ tapDispCount++;
 if (tapDispCount >= (currentTapTime-tapOnTime))
 {
 tapDispCount = 0;
-LATEbits.LATE0 = 1;
+LATE0 = 1;
 tapFlash = 1;
 }
 }
@@ -17356,7 +17361,15 @@ fsw1 = 0;
 if (!RD4)
 {
 bypass ^= 1;
-LATD3 = bypass;
+if (bypMode)
+{
+LATD3 = !bypass;
+}
+else
+{
+LATD3 = 0;
+LATB5 = bypass;
+}
 LATD2 = bypass;
 }
 }
@@ -17476,6 +17489,8 @@ if (switch5)
 switch5 = 0;
 if (!RG3)
 {
+swX ^= 1;
+bypMode = swX;
 if (swX)
 {
 LATE1 = 1;
@@ -17486,7 +17501,6 @@ else
 LATE1 = 0;
 LATH1 = 1;
 }
-swX ^= 1;
 }
 }
 }

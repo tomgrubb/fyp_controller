@@ -12852,183 +12852,190 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 68: void processTaps(void);
 [; ;global.h: 69: void updatePresetLEDs(int psNum);
 [; ;global.h: 70: int readToggle(int target);
-"72 global.h
+[; ;global.h: 71: int absVal(int val);
+"73 global.h
 [v _intA `uc ~T0 @X0 1 e ]
 [i _intA
 -> -> 0 `i `uc
 ]
-[; ;global.h: 72: char intA = 0;
-"73
+[; ;global.h: 73: char intA = 0;
+"74
 [v _intB `uc ~T0 @X0 1 e ]
 [i _intB
 -> -> 0 `i `uc
 ]
-[; ;global.h: 73: char intB = 0;
-"74
+[; ;global.h: 74: char intB = 0;
+"75
 [v _intC `uc ~T0 @X0 1 e ]
 [i _intC
 -> -> 0 `i `uc
 ]
-[; ;global.h: 74: char intC = 0;
-"75
+[; ;global.h: 75: char intC = 0;
+"76
 [v _swX `uc ~T0 @X0 1 e ]
 [i _swX
 -> -> 0 `i `uc
 ]
-[; ;global.h: 75: char swX = 0;
-"78
+[; ;global.h: 76: char swX = 0;
+"79
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
 -> 0 `i
 ]
-[; ;global.h: 78: int switch1 = 0;
-"79
+[; ;global.h: 79: int switch1 = 0;
+"80
 [v _switch2 `i ~T0 @X0 1 e ]
 [i _switch2
 -> 0 `i
 ]
-[; ;global.h: 79: int switch2 = 0;
-"80
+[; ;global.h: 80: int switch2 = 0;
+"81
 [v _switch3 `i ~T0 @X0 1 e ]
 [i _switch3
 -> 0 `i
 ]
-[; ;global.h: 80: int switch3 = 0;
-"81
+[; ;global.h: 81: int switch3 = 0;
+"82
 [v _switch4 `i ~T0 @X0 1 e ]
 [i _switch4
 -> 0 `i
 ]
-[; ;global.h: 81: int switch4 = 0;
-"82
+[; ;global.h: 82: int switch4 = 0;
+"83
 [v _switch5 `i ~T0 @X0 1 e ]
 [i _switch5
 -> 0 `i
 ]
-[; ;global.h: 82: int switch5 = 0;
-"83
+[; ;global.h: 83: int switch5 = 0;
+"84
 [v _fsw1 `i ~T0 @X0 1 e ]
 [i _fsw1
 -> 0 `i
 ]
-[; ;global.h: 83: int fsw1 = 0;
-"84
+[; ;global.h: 84: int fsw1 = 0;
+"85
 [v _fsw2 `i ~T0 @X0 1 e ]
 [i _fsw2
 -> 0 `i
 ]
-[; ;global.h: 84: int fsw2 = 0;
-"86
+[; ;global.h: 85: int fsw2 = 0;
+"87
 [v _muxADC `i ~T0 @X0 1 e ]
 [i _muxADC
 -> 0 `i
 ]
-[; ;global.h: 86: int muxADC = 0;
-"88
+[; ;global.h: 87: int muxADC = 0;
+"89
 [v _bypass `uc ~T0 @X0 1 e ]
 [i _bypass
 -> -> 0 `i `uc
 ]
-[; ;global.h: 88: char bypass = 0;
-"89
+[; ;global.h: 89: char bypass = 0;
+"90
 [v _preset `uc ~T0 @X0 1 e ]
 [i _preset
 -> -> 0 `i `uc
 ]
-[; ;global.h: 89: char preset = 0;
-"92
+[; ;global.h: 90: char preset = 0;
+"91
+[v _bypMode `uc ~T0 @X0 1 e ]
+[i _bypMode
+-> -> 0 `i `uc
+]
+[; ;global.h: 91: char bypMode = 0;
+"94
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 92: int tapFlash = 0;
-"93
+[; ;global.h: 94: int tapFlash = 0;
+"95
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 93: int tapOnTime = 5;
-"94
+[; ;global.h: 95: int tapOnTime = 5;
+"96
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 94: int tapDispCount = 0;
-"95
+[; ;global.h: 96: int tapDispCount = 0;
+"97
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 95: int currentTapTime = 500;
-"98
+[; ;global.h: 97: int currentTapTime = 500;
+"100
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 98: int dataTarget = 0;
-"99
+[; ;global.h: 100: int dataTarget = 0;
+"101
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 99: int *dataPtr;
-"100
+[; ;global.h: 101: int *dataPtr;
+"102
 [v _feedbackValue `i ~T0 @X0 1 e ]
 [i _feedbackValue
 -> 0 `i
 ]
-[; ;global.h: 100: int feedbackValue = 0;
-"101
+[; ;global.h: 102: int feedbackValue = 0;
+"103
 [v _levelValue `i ~T0 @X0 1 e ]
 [i _levelValue
 -> 0 `i
 ]
-[; ;global.h: 101: int levelValue = 0;
-"102
+[; ;global.h: 103: int levelValue = 0;
+"104
 [v _timeValue `i ~T0 @X0 1 e ]
 [i _timeValue
 -> 0 `i
 ]
-[; ;global.h: 102: int timeValue = 0;
-"105
+[; ;global.h: 104: int timeValue = 0;
+"107
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 105: int tapTimeCount = 0;
-"106
+[; ;global.h: 107: int tapTimeCount = 0;
+"108
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 106: int tapPrev = 0;
-"107
+[; ;global.h: 108: int tapPrev = 0;
+"109
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 107: long int tapAccum = 0;
-"108
+[; ;global.h: 109: long int tapAccum = 0;
+"110
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 108: int tap = 0;
-"109
+[; ;global.h: 110: int tap = 0;
+"111
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 109: int tapTime = 0;
-"110
+[; ;global.h: 111: int tapTime = 0;
+"112
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 110: int newTempo = 0;
-"111
+[; ;global.h: 112: int newTempo = 0;
+"113
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 111: int timeoutCount = 0;
+[; ;global.h: 113: int timeoutCount = 0;
 "15 serial.c
 [v _I2C1_Write_EEPROM `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 "16

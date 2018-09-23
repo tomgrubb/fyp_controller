@@ -10,6 +10,7 @@
 
 
 #include <xc.h>
+#include <stdint.h>
 #include "global.h"
 
 void I2C1_Write_EEPROM(char devAddr, char memValue, char value)
@@ -127,11 +128,17 @@ void I2C1_Write_DigiPot(char value)
 
 void sendParam(void)
 {
+    int byte = 0;
+    
     dataTarget = SSP2BUF;       // read address from buffer
     while(SSP2STATbits.BF);     // wait until buffer clear
 
-    // set pointer to required data
-    if (dataTarget == 0xA1)
+    // set pointer to required data  
+    if (dataTarget == 0xAC)
+    {
+        dataPtr = setupComplete;
+    }    
+    else if (dataTarget == 0xA1)
     {
         dataPtr = feedbackValue;
     }
@@ -141,9 +148,19 @@ void sendParam(void)
     }
     else if (dataTarget == 0xA9)
     {
-        dataPtr = timeValue;
+        if (!hiLo)
+        {
+            byte = (timeValue & 0xFF);
+           dataPtr = byte;
+        }
+        else
+        {
+            byte = timeValue>>8;
+            dataPtr = byte;
+        }
+        hiLo ^= 1;
     }
-
+    
     SSP2BUF = dataPtr;          // load value into buffer
     dataTarget ^= 1;            // toggle target data
     SSP2CON1bits.CKP = 0x1;     // release clock
