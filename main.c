@@ -29,23 +29,26 @@
   *     15/07/2018 - Write drivers for EEPROM I2C communication (read/write).
   *                - Test at 100 kHz Clock; tests OK.
   *     22/08/2018 - Configuration and test of all hardware I/O.
-  *                - Define macros for hardware.          
+  *                - Define macros for hardware.
+  *     24/09/2018 - ADC reconfigured for 12 bit resolution (scaled down to 8 except for time)
+  *                - Factory settings added for default preset bank
+  *                - Setup complete check bit added to signal system is ready for operation           
   *       
   * ------------------------------------------------------------------------
   * 
   *     Created on March 5th, 2018, 5:14 PM
   * 
-  *     Last edited on August 22nd, 2018, 10:42 PM
+  *     Last edited on September 24th, 2018, 11:34 PM
   * 
   * ======================================================================== */
 
 
 // CONFIG1L
-#pragma config STVREN = OFF      // Stack Overflow/Underflow Reset (Enabled)
+#pragma config STVREN = OFF     // Stack Overflow/Underflow Reset (Disabled)
 #pragma config XINST = OFF      // Extended Instruction Set (Disabled)
 
 // CONFIG1H
-#pragma config BOREN = OFF       // Brown-Out Reset Enable (Controlled with SBOREN bit, disabled in Deep Sleep)
+#pragma config BOREN = OFF      // Brown-Out Reset Disable (Controlled with SBOREN bit, disabled in Deep Sleep)
 #pragma config BORV = 1         // Brown-out Reset Voltage (1.8V)
 #pragma config CP0 = OFF        // Code Protect (Program memory is not code-protected)
 
@@ -92,7 +95,7 @@
 #pragma config WDTPS = 32768    // Watchdog Timer Postscale (1:32768)
 
 // CONFIG6H
-#pragma config WDTEN = OFF  // Watchdog Timer Enable (WDT enabled in hardware; SWDTEN bit disabled)
+#pragma config WDTEN = OFF      // Watchdog Timer Enable (WDT disabled in hardware; SWDTEN bit disabled)
 #pragma config WINDIS = WDTSTD  // Windowed Watchdog Timer Disable (Standard WDT selected; windowed WDT disabled)
 #pragma config WPSA = 128       // WDT Prescaler (WDT prescaler ratio of 1:128)
 
