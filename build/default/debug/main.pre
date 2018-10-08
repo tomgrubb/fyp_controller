@@ -2,7 +2,7 @@
 # 1 "main.c"
 
 
-# 44
+# 49
 #pragma config STVREN = OFF
 #pragma config XINST = OFF
 
@@ -17217,17 +17217,20 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 54 "global.h"
+# 55 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -17237,10 +17240,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 1;
 
 
 int switch1 = 0;
@@ -17253,9 +17256,14 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
-char bypMode = 0;
+int bypass = 0;
+int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17264,11 +17272,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+
+int parameter[12];
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 
 int tapTimeCount = 0;
@@ -17279,7 +17301,25 @@ int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
 
-# 121 "main.c"
+int setupComplete = 0;
+int sync = 0;
+
+# 4 "factorySettings.h"
+int presetParams[] =
+{
+0x00, 0xFF, 0x7F, 0x7F,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+};
+
+int userParams[] =
+{
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+};
+
+# 127 "main.c"
 void __interrupt(high_priority) highPriorityISR(void)
 {
 
@@ -17287,12 +17327,14 @@ if(SSP2IF)
 {
 PIR2bits.SSP2IF = 0x0;
 sendParam();
+sync = 1;
 }
 
 if (TMR4IF)
 {
 TMR4IF = 0;
 tapLED();
+flashLED();
 T4CONbits.TMR4ON = 1;
 }
 
@@ -17325,106 +17367,86 @@ return -val;
 else return val;
 }
 
+void readControls(void)
+{
+
+timeA = ADC_Read(14);
+parameter[0] = timeA >> 8;
+parameter[1] = (timeA & 0xFF);
+
+fbkA = ADC_Read(4);
+parameter[2] = fbkA>>4;
+
+lvlA = ADC_Read(3);
+parameter[3] = lvlA>>4;
+
+
+timeB = ADC_Read(6);
+parameter[4] = timeB >> 8;
+parameter[5] = (timeB & 0xFF);
+
+fbkB = ADC_Read(2);
+parameter[6] = fbkB>>4;
+
+lvlB = ADC_Read(9);
+parameter[7] = lvlB>>4;
+
+
+timeC = ADC_Read(1);
+parameter[8] = timeC >> 8;
+parameter[9] = (timeC & 0xFF);
+
+fbkC = ADC_Read(5);
+parameter[10] = fbkC>>4;
+
+lvlC = ADC_Read(0);
+parameter[11] = lvlC>>4;
+}
+
 void main(void)
 {
-int result = 0;
-int i = 0;
-int byte = 0;
-int dryLevel = 50;
-int prevDry = 50;
+
+int dryLevel = 0;
+int prevDry = 0;
 int diff = 0;
-int dir = 1;
-
-int temp = 0;
-
-int bitA = 1;
-int bitB = 1;
-int bitC = 1;
 
 systemInit();
 
 T4CONbits.TMR4ON = 1;
 
-LATB5 = 1;
-LATD3 = 1;
-
-I2C1_Write_DigiPot(127);
-
-# 204
-while(1)
-{
-feedbackValue = ADC_Read(4);
-feedbackValue = feedbackValue>>2;
-
-levelValue = ADC_Read(3);
-levelValue = levelValue>>2;
-
-timeValue = ADC_Read(14);
-timeValue = timeValue>>2;
-}
-
-# 225
-while(1)
-{
-I2C1_Write_DigiPot(dryLevel);
-dryLevel += dir;
-if (dryLevel >= 127 | dryLevel <= 20)
-{
-dir *= -1;
-}
-_delay((unsigned long)((50)*(32000000/4000.0)));
-}
+I2C1_Write_DigiPot(0);
 
 while(1)
 {
-temp = ADC_Read(14);
-
-if (temp >= 1000)
+if (preset == 1)
 {
-temp = 1;
+parameter[0] = presetParams[0];
+parameter[1] = presetParams[1];
+parameter[2] = presetParams[2];
 }
-else if (temp >= 800)
+else if (preset == 3)
 {
-temp = 2;
+I2C1_Block_Read_EERPOM(3, 12, parameter);
 }
-else if (temp >= 600)
+else
 {
-temp = 3;
-}
-else if (temp >= 400)
-{
-temp = 4;
-}
-else if (temp >= 200)
-{
-temp = 5;
-}
-else temp = 0;
-
-updatePresetLEDs(temp);
-}
-
-while(1)
-{
-I2C1_Write_DigiPot(dryLevel);
-dryLevel += dir;
-if (dryLevel >= 127 | dryLevel <= 20)
-{
-dir *= -1;
-}
-_delay((unsigned long)((1500)*(32000000/4000000.0)));
-}
-
-while(1)
-{
-dryLevel = ADC_Read(3);
-dryLevel = dryLevel>>3;
+readControls();
+dryLevel = ADC_Read(8);
+dryLevel = dryLevel>>5;
 diff = dryLevel - prevDry;
-if (diff >= 3 | diff <= -3)
+diff = absVal(diff);
+
+if (diff >= 2)
 {
 I2C1_Write_DigiPot(dryLevel);
 prevDry = dryLevel;
 }
-_delay((unsigned long)((5)*(32000000/4000.0)));
+}
+
+
+if (!setupComplete)
+{
+setupComplete = 1;
+}
 }
 }

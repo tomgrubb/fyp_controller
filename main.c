@@ -32,13 +32,15 @@
   *                - Define macros for hardware.
   *     24/09/2018 - ADC reconfigured for 12 bit resolution (scaled down to 8 except for time)
   *                - Factory settings added for default preset bank
-  *                - Setup complete check bit added to signal system is ready for operation           
+  *                - Setup complete check bit added to signal system is ready for operation
+  *     03/10/2018 - Data collection and streaming for all nine delay parameters
+  *                - Changed masking and parameterized slave I2C transmissions               
   *       
   * ------------------------------------------------------------------------
   * 
   *     Created on March 5th, 2018, 5:14 PM
   * 
-  *     Last edited on September 24th, 2018, 11:34 PM
+  *     Last edited on October 3rd, 2018, 12:49 PM
   * 
   * ======================================================================== */
 
@@ -129,12 +131,14 @@ void __interrupt(high_priority) highPriorityISR(void)
     {
         PIR2bits.SSP2IF = 0x0;      // reset SSP2 flag
         sendParam();                // send values to DSP system
+        sync = 1;
     }
    
     if (TMR4IF) // Timer for 'Tap' LED (triggered every ~1ms)
     {
         TMR4IF = 0;                 // reset Timer 4 flag
         tapLED();                   // update tap LED
+        flashLED();                 // flash LEDs if needed
         T4CONbits.TMR4ON = 1;       // re-start timer
     }
     
@@ -167,62 +171,86 @@ int absVal(int val) // return absolute value of 'val'
     else return val;
 }
 
+void readControls(void)
+{
+    // Delay Line A
+    timeA = ADC_Read(14);
+    parameter[0] = timeA >> 8;
+    parameter[1] = (timeA & 0xFF);
+            
+    fbkA = ADC_Read(4);
+    parameter[2] = fbkA>>4;
+    
+    lvlA = ADC_Read(3);
+    parameter[3] = lvlA>>4;
+    
+    // Delay Line B
+    timeB = ADC_Read(6);
+    parameter[4] = timeB >> 8;
+    parameter[5] = (timeB & 0xFF);
+    
+    fbkB = ADC_Read(2);
+    parameter[6] = fbkB>>4;
+    
+    lvlB = ADC_Read(9);
+    parameter[7] = lvlB>>4;
+    
+    // Delay Line C
+    timeC = ADC_Read(1);
+    parameter[8] = timeC >> 8;
+    parameter[9] = (timeC & 0xFF);
+    
+    fbkC = ADC_Read(5);
+    parameter[10] = fbkC>>4;
+    
+    lvlC = ADC_Read(0);
+    parameter[11] = lvlC>>4;
+}
+
 void main(void)
 { 
-    int result = 0;
-    int i = 0;
-    int byte = 0;
-    int dryLevel = 50;
-    int prevDry = 50;
+
+    int dryLevel = 0;
+    int prevDry = 0;
     int diff = 0;
-    int dir = 1;
-   
-    int temp = 0;
-    
-    int bitA = 1;
-    int bitB = 1;
-    int bitC = 1;
     
     systemInit();
 
-    //T4CONbits.TMR4ON = 1;
+    T4CONbits.TMR4ON = 1;
     
-    I2C1_Write_DigiPot(127);
+    I2C1_Write_DigiPot(0);
     
     while(1)
     {
-        if (preset == 1)
-        {
-            timeValue = presetParams[0];
-            feedbackValue = presetParams[1];
-            levelValue = presetParams[2];
-        }
-        else
-        {
-            feedbackValue = ADC_Read(4);
-            feedbackValue = feedbackValue>>4;
-
-            levelValue = ADC_Read(3);
-            levelValue = levelValue>>4;
-
-            timeValue = ADC_Read(14);
-
-            dryLevel = ADC_Read(8);
-            dryLevel = dryLevel>>5;
-            diff = dryLevel - prevDry;
-            diff = absVal(diff);
-
-            if (diff >= 2)
+            if (preset == 1)
             {
-               I2C1_Write_DigiPot(dryLevel);
-               prevDry = dryLevel;
+                parameter[0] = presetParams[0];
+                parameter[1] = presetParams[1];
+                parameter[2] = presetParams[2];
+            }
+            else if (preset == 3)
+            {
+                I2C1_Block_Read_EERPOM(3, 12, parameter);
+            }
+            else
+            {   
+                readControls();
+                dryLevel = ADC_Read(8);
+                dryLevel = dryLevel>>5;
+                diff = dryLevel - prevDry;
+                diff = absVal(diff);
+                
+                if (diff >= 2)
+                {
+                    I2C1_Write_DigiPot(dryLevel);
+                    prevDry = dryLevel;
+                } 
+            }
+
+            // signal that we're ready to go
+            if (!setupComplete)
+            {
+                setupComplete = 1;
             } 
         }
-        
-        // signal that we're ready to go
-        if (!setupComplete)
-        {
-            setupComplete = 1;
-        }        
     }      
-}

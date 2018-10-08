@@ -17,12 +17,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1124 . . . . ]
 "26340
 [v _PIR2bits `VS1124 ~T0 @X0 0 e@4001 ]
-"67 global.h
+"71 global.h
 [v _sendParam `(v ~T0 @X0 0 ef ]
 "36842 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [v _TMR4IF `Vb ~T0 @X0 0 e@32192 ]
-"63 global.h
+"66 global.h
 [v _tapLED `(v ~T0 @X0 0 ef ]
+"67
+[v _flashLED `(v ~T0 @X0 0 ef ]
 "15575 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [s S647 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
 [n S647 . T4CKPS TMR4ON T4OUTPS ]
@@ -47,11 +49,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1305 . . . ]
 "29854
 [v _T2CONbits `VS1305 ~T0 @X0 0 e@4042 ]
-"64 global.h
+"68 global.h
 [v _checkSwitches `(v ~T0 @X0 0 ef ]
 "36774 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
-"65 global.h
+"69 global.h
 [v _serviceSwitches `(v ~T0 @X0 0 ef ]
 "30477 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [s S1341 :3 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -64,90 +66,92 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1340 . . . ]
 "30493
 [v _T0CONbits `VS1340 ~T0 @X0 0 e@4053 ]
-[p mainexit ]
-"55 global.h
-[v _systemInit `(v ~T0 @X0 0 ef ]
-"61
-[v _I2C1_Write_DigiPot `(v ~T0 @X0 0 ef1`uc ]
-"56
+"57 global.h
 [v _ADC_Read `(i ~T0 @X0 0 ef1`i ]
-"44 main.c
-[p x STVREN=OFF ]
-"45
-[p x XINST=OFF ]
-"48
-[p x BOREN=OFF ]
-"49
-[p x BORV=1 ]
-"50
-[p x CP0=OFF ]
-"53
-[p x FOSC=FRCDIV ]
-"54
-[p x SOSCSEL=DIG ]
-"55
-[p x CLKOEN=OFF ]
+[p mainexit ]
 "56
-[p x IESO=OFF ]
-"59
-[p x PLLDIV=PLL8X ]
+[v _systemInit `(v ~T0 @X0 0 ef ]
+"64
+[v _I2C1_Write_DigiPot `(v ~T0 @X0 0 ef1`uc ]
 "62
+[v _I2C1_Block_Read_EERPOM `(v ~T0 @X0 0 ef3`i`i`*uc ]
+"49 main.c
+[p x STVREN=OFF ]
+"50
+[p x XINST=OFF ]
+"53
+[p x BOREN=OFF ]
+"54
+[p x BORV=1 ]
+"55
+[p x CP0=OFF ]
+"58
+[p x FOSC=FRCDIV ]
+"59
+[p x SOSCSEL=DIG ]
+"60
+[p x CLKOEN=OFF ]
+"61
+[p x IESO=OFF ]
+"64
+[p x PLLDIV=PLL8X ]
+"67
 [p x POSCMD=NONE ]
-"63
-[p x FSCM=CSECMD ]
 "68
-[p x WPFP=WPFP255 ]
-"71
-[p x WPDIS=WPDIS ]
-"72
-[p x WPEND=WPENDMEM ]
+[p x FSCM=CSECMD ]
 "73
-[p x WPCFG=WPCFGDIS ]
+[p x WPFP=WPFP255 ]
 "76
-[p x T5GSEL=T5G ]
+[p x WPDIS=WPDIS ]
 "77
-[p x CINASEL=DEFAULT ]
+[p x WPEND=WPENDMEM ]
 "78
-[p x EASHFT=ON ]
-"79
-[p x ABW=XM16 ]
-"80
-[p x BW=16 ]
+[p x WPCFG=WPCFGDIS ]
 "81
-[p x WAIT=OFF ]
+[p x T5GSEL=T5G ]
+"82
+[p x CINASEL=DEFAULT ]
+"83
+[p x EASHFT=ON ]
 "84
-[p x IOL1WAY=ON ]
+[p x ABW=XM16 ]
 "85
-[p x LS48MHZ=SYSX2 ]
+[p x BW=16 ]
 "86
-[p x MSSPMSK2=MSK7 ]
-"87
-[p x MSSPMSK1=MSK7 ]
+[p x WAIT=OFF ]
+"89
+[p x IOL1WAY=ON ]
 "90
-[p x WDTWIN=PS25_0 ]
+[p x LS48MHZ=SYSX2 ]
 "91
-[p x WDTCLK=FRC ]
+[p x MSSPMSK2=MSK7 ]
 "92
-[p x WDTPS=32768 ]
+[p x MSSPMSK1=MSK7 ]
 "95
-[p x WDTEN=OFF ]
+[p x WDTWIN=PS25_0 ]
 "96
-[p x WINDIS=WDTSTD ]
+[p x WDTCLK=FRC ]
 "97
-[p x WPSA=128 ]
+[p x WDTPS=32768 ]
 "100
-[p x RETEN=OFF ]
+[p x WDTEN=OFF ]
 "101
-[p x VBTBOR=OFF ]
+[p x WINDIS=WDTSTD ]
 "102
+[p x WPSA=128 ]
+"105
+[p x RETEN=OFF ]
+"106
+[p x VBTBOR=OFF ]
+"107
 [p x DSBOREN=OFF ]
-"103
-[p x DSBITEN=OFF ]
 "108
+[p x DSBITEN=OFF ]
+"113
 [p x DSWDTPS=DSWDTPS1F ]
-"111
+"116
 [p x DSWDTEN=OFF ]
-"112
+"117
 [p x DSWDTOSC=LPRC ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -12744,527 +12748,696 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;global.h: 54: void interruptInit(void);
-[; ;global.h: 55: void systemInit(void);
-[; ;global.h: 56: int ADC_Read(int channel);
-[; ;global.h: 57: void updateLEDs(void);
-[; ;global.h: 58: void killLEDs(void);
-[; ;global.h: 59: void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
-[; ;global.h: 60: char I2C1_Read_EEPROM(char devAddr, char memValue);
-[; ;global.h: 61: void I2C1_Write_DigiPot(char value);
-[; ;global.h: 62: void readInterval(int select);
-[; ;global.h: 63: void tapLED(void);
-[; ;global.h: 64: void checkSwitches(void);
-[; ;global.h: 65: void serviceSwitches(void);
-[; ;global.h: 66: void startupSequence(void);
-[; ;global.h: 67: void sendParam(void);
-[; ;global.h: 68: void processTaps(void);
-[; ;global.h: 69: void updatePresetLEDs(int psNum);
-[; ;global.h: 70: int readToggle(int target);
-[; ;global.h: 71: int absVal(int val);
-"73 global.h
+[; ;global.h: 55: void interruptInit(void);
+[; ;global.h: 56: void systemInit(void);
+[; ;global.h: 57: int ADC_Read(int channel);
+[; ;global.h: 58: void updateLEDs(void);
+[; ;global.h: 59: void killLEDs(void);
+[; ;global.h: 60: void I2C1_Write_EEPROM(char memValue, char value);
+[; ;global.h: 61: void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+[; ;global.h: 62: void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+[; ;global.h: 63: char I2C1_Read_EEPROM(char devAddr, char memValue);
+[; ;global.h: 64: void I2C1_Write_DigiPot(char value);
+[; ;global.h: 65: void readInterval(int select);
+[; ;global.h: 66: void tapLED(void);
+[; ;global.h: 67: void flashLED(void);
+[; ;global.h: 68: void checkSwitches(void);
+[; ;global.h: 69: void serviceSwitches(void);
+[; ;global.h: 70: void startupSequence(void);
+[; ;global.h: 71: void sendParam(void);
+[; ;global.h: 72: void processTaps(void);
+[; ;global.h: 73: void updatePresetLEDs(int psNum);
+[; ;global.h: 74: int readToggle(int target);
+[; ;global.h: 75: int absVal(int val);
+"77 global.h
 [v _intA `i ~T0 @X0 1 e ]
 [i _intA
 -> 0 `i
 ]
-[; ;global.h: 73: int intA = 0;
-"74
+[; ;global.h: 77: int intA = 0;
+"78
 [v _intB `i ~T0 @X0 1 e ]
 [i _intB
 -> 0 `i
 ]
-[; ;global.h: 74: int intB = 0;
-"75
+[; ;global.h: 78: int intB = 0;
+"79
 [v _intC `i ~T0 @X0 1 e ]
 [i _intC
 -> 0 `i
 ]
-[; ;global.h: 75: int intC = 0;
-"76
+[; ;global.h: 79: int intC = 0;
+"80
 [v _swX `i ~T0 @X0 1 e ]
 [i _swX
--> 0 `i
+-> 1 `i
 ]
-[; ;global.h: 76: int swX = 0;
-"79
+[; ;global.h: 80: int swX = 1;
+"83
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
 -> 0 `i
 ]
-[; ;global.h: 79: int switch1 = 0;
-"80
+[; ;global.h: 83: int switch1 = 0;
+"84
 [v _switch2 `i ~T0 @X0 1 e ]
 [i _switch2
 -> 0 `i
 ]
-[; ;global.h: 80: int switch2 = 0;
-"81
+[; ;global.h: 84: int switch2 = 0;
+"85
 [v _switch3 `i ~T0 @X0 1 e ]
 [i _switch3
 -> 0 `i
 ]
-[; ;global.h: 81: int switch3 = 0;
-"82
+[; ;global.h: 85: int switch3 = 0;
+"86
 [v _switch4 `i ~T0 @X0 1 e ]
 [i _switch4
 -> 0 `i
 ]
-[; ;global.h: 82: int switch4 = 0;
-"83
+[; ;global.h: 86: int switch4 = 0;
+"87
 [v _switch5 `i ~T0 @X0 1 e ]
 [i _switch5
 -> 0 `i
 ]
-[; ;global.h: 83: int switch5 = 0;
-"84
+[; ;global.h: 87: int switch5 = 0;
+"88
 [v _fsw1 `i ~T0 @X0 1 e ]
 [i _fsw1
 -> 0 `i
 ]
-[; ;global.h: 84: int fsw1 = 0;
-"85
+[; ;global.h: 88: int fsw1 = 0;
+"89
 [v _fsw2 `i ~T0 @X0 1 e ]
 [i _fsw2
 -> 0 `i
 ]
-[; ;global.h: 85: int fsw2 = 0;
-"87
+[; ;global.h: 89: int fsw2 = 0;
+"91
 [v _muxADC `i ~T0 @X0 1 e ]
 [i _muxADC
 -> 0 `i
 ]
-[; ;global.h: 87: int muxADC = 0;
-"89
+[; ;global.h: 91: int muxADC = 0;
+"93
 [v _bypass `i ~T0 @X0 1 e ]
 [i _bypass
 -> 0 `i
 ]
-[; ;global.h: 89: int bypass = 0;
-"90
+[; ;global.h: 93: int bypass = 0;
+"94
 [v _preset `i ~T0 @X0 1 e ]
 [i _preset
 -> 0 `i
 ]
-[; ;global.h: 90: int preset = 0;
-"91
+[; ;global.h: 94: int preset = 0;
+"95
+[v _targPreset `i ~T0 @X0 1 e ]
+[i _targPreset
+-> 0 `i
+]
+[; ;global.h: 95: int targPreset = 0;
+"96
+[v _presetPend `i ~T0 @X0 1 e ]
+[i _presetPend
+-> 0 `i
+]
+[; ;global.h: 96: int presetPend = 0;
+"97
+[v _pFlashCount `i ~T0 @X0 1 e ]
+[i _pFlashCount
+-> 0 `i
+]
+[; ;global.h: 97: int pFlashCount = 0;
+"98
+[v _pFlash `i ~T0 @X0 1 e ]
+[i _pFlash
+-> 0 `i
+]
+[; ;global.h: 98: int pFlash = 0;
+"100
 [v _bypMode `i ~T0 @X0 1 e ]
 [i _bypMode
 -> 1 `i
 ]
-[; ;global.h: 91: int bypMode = 1;
-"94
+[; ;global.h: 100: int bypMode = 1;
+"103
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 94: int tapFlash = 0;
-"95
+[; ;global.h: 103: int tapFlash = 0;
+"104
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 95: int tapOnTime = 5;
-"96
+[; ;global.h: 104: int tapOnTime = 5;
+"105
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 96: int tapDispCount = 0;
-"97
+[; ;global.h: 105: int tapDispCount = 0;
+"106
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 97: int currentTapTime = 500;
-"100
-[v _hiLo `i ~T0 @X0 1 e ]
-[i _hiLo
+[; ;global.h: 106: int currentTapTime = 500;
+"110
+[v _parameter `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 110: int parameter[12];
+"112
+[v _shift `i ~T0 @X0 1 e ]
+[i _shift
 -> 0 `i
 ]
-[; ;global.h: 100: int hiLo = 0;
-"101
+[; ;global.h: 112: int shift = 0;
+"114
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 101: int dataTarget = 0;
-"102
+[; ;global.h: 114: int dataTarget = 0;
+"115
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 102: int *dataPtr;
-"103
-[v _feedbackValue `i ~T0 @X0 1 e ]
-[i _feedbackValue
+[; ;global.h: 115: int *dataPtr;
+"117
+[v _fbkA `i ~T0 @X0 1 e ]
+[i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 103: int feedbackValue = 0;
-"104
-[v _levelValue `i ~T0 @X0 1 e ]
-[i _levelValue
+[; ;global.h: 117: int fbkA = 0;
+"118
+[v _lvlA `i ~T0 @X0 1 e ]
+[i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 104: int levelValue = 0;
-"105
-[v _timeValue `i ~T0 @X0 1 e ]
-[i _timeValue
+[; ;global.h: 118: int lvlA = 0;
+"119
+[v _timeA `i ~T0 @X0 1 e ]
+[i _timeA
 -> 0 `i
 ]
-[; ;global.h: 105: int timeValue = 0;
-"108
+[; ;global.h: 119: int timeA = 0;
+"121
+[v _fbkB `i ~T0 @X0 1 e ]
+[i _fbkB
+-> 0 `i
+]
+[; ;global.h: 121: int fbkB = 0;
+"122
+[v _lvlB `i ~T0 @X0 1 e ]
+[i _lvlB
+-> 0 `i
+]
+[; ;global.h: 122: int lvlB = 0;
+"123
+[v _timeB `i ~T0 @X0 1 e ]
+[i _timeB
+-> 0 `i
+]
+[; ;global.h: 123: int timeB = 0;
+"125
+[v _fbkC `i ~T0 @X0 1 e ]
+[i _fbkC
+-> 0 `i
+]
+[; ;global.h: 125: int fbkC = 0;
+"126
+[v _lvlC `i ~T0 @X0 1 e ]
+[i _lvlC
+-> 0 `i
+]
+[; ;global.h: 126: int lvlC = 0;
+"127
+[v _timeC `i ~T0 @X0 1 e ]
+[i _timeC
+-> 0 `i
+]
+[; ;global.h: 127: int timeC = 0;
+"130
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 108: int tapTimeCount = 0;
-"109
+[; ;global.h: 130: int tapTimeCount = 0;
+"131
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 109: int tapPrev = 0;
-"110
+[; ;global.h: 131: int tapPrev = 0;
+"132
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 110: long int tapAccum = 0;
-"111
+[; ;global.h: 132: long int tapAccum = 0;
+"133
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 111: int tap = 0;
-"112
+[; ;global.h: 133: int tap = 0;
+"134
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 112: int tapTime = 0;
-"113
+[; ;global.h: 134: int tapTime = 0;
+"135
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 113: int newTempo = 0;
-"114
+[; ;global.h: 135: int newTempo = 0;
+"136
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 114: int timeoutCount = 0;
-"116
+[; ;global.h: 136: int timeoutCount = 0;
+"138
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 116: int setupComplete = 0;
+[; ;global.h: 138: int setupComplete = 0;
+"139
+[v _sync `i ~T0 @X0 1 e ]
+[i _sync
+-> 0 `i
+]
+[; ;global.h: 139: int sync = 0;
 "4 factorySettings.h
 [v _presetParams `i ~T0 @X0 -> 0 `x e ]
 [i _presetParams
 :U ..
-"5
--> 0 `i
--> 128 `i
 "6
--> 128 `i
+-> 0 `i
+-> 255 `i
+-> 127 `i
+-> 127 `i
+"7
+-> 0 `i
+-> 0 `i
+-> 0 `i
+-> 0 `i
+"8
+-> 0 `i
+-> 0 `i
+-> 0 `i
+"9
+-> 0 `i
 ..
 ]
-[; ;factorySettings.h: 4: int presetParams[] = {
-[; ;factorySettings.h: 5: 0, 128, 128
-[; ;factorySettings.h: 6: };
+[; ;factorySettings.h: 4: int presetParams[] =
+[; ;factorySettings.h: 5: {
+[; ;factorySettings.h: 6: 0x00, 0xFF, 0x7F, 0x7F,
+[; ;factorySettings.h: 7: 0x00, 0x00, 0x00, 0x00,
+[; ;factorySettings.h: 8: 0x00, 0x00, 0x00, 0x00
+[; ;factorySettings.h: 9: };
+"11
+[v _userParams `i ~T0 @X0 -> 0 `x e ]
+[i _userParams
+:U ..
+"13
+-> 0 `i
+-> 0 `i
+-> 0 `i
+-> 0 `i
+"14
+-> 0 `i
+-> 0 `i
+-> 0 `i
+-> 0 `i
+"15
+-> 0 `i
+-> 0 `i
+-> 0 `i
+"16
+-> 0 `i
+..
+]
+[; ;factorySettings.h: 11: int userParams[] =
+[; ;factorySettings.h: 12: {
+[; ;factorySettings.h: 13: 0x00, 0x00, 0x00, 0x00,
+[; ;factorySettings.h: 14: 0x00, 0x00, 0x00, 0x00,
+[; ;factorySettings.h: 15: 0x00, 0x00, 0x00, 0x00
+[; ;factorySettings.h: 16: };
 [v $root$_highPriorityISR `(v ~T0 @X0 0 e ]
-"122 main.c
+"127 main.c
 [v _highPriorityISR `(v ~T6 @X0 1 ef ]
-"123
+"128
 {
-[; ;main.c: 122: void __interrupt(high_priority) highPriorityISR(void)
-[; ;main.c: 123: {
+[; ;main.c: 127: void __interrupt(high_priority) highPriorityISR(void)
+[; ;main.c: 128: {
 [e :U _highPriorityISR ]
 [f ]
-[; ;main.c: 125: if(SSP2IF)
-"125
+[; ;main.c: 130: if(SSP2IF)
+"130
 [e $ ! _SSP2IF 1421  ]
-[; ;main.c: 126: {
-"126
+[; ;main.c: 131: {
+"131
 {
-[; ;main.c: 127: PIR2bits.SSP2IF = 0x0;
-"127
+[; ;main.c: 132: PIR2bits.SSP2IF = 0x0;
+"132
 [e = . . _PIR2bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 128: sendParam();
-"128
+[; ;main.c: 133: sendParam();
+"133
 [e ( _sendParam ..  ]
-"129
+[; ;main.c: 134: sync = 1;
+"134
+[e = _sync -> 1 `i ]
+"135
 }
 [e :U 1421 ]
-[; ;main.c: 129: }
-[; ;main.c: 131: if (TMR4IF)
-"131
+[; ;main.c: 135: }
+[; ;main.c: 137: if (TMR4IF)
+"137
 [e $ ! _TMR4IF 1422  ]
-[; ;main.c: 132: {
-"132
+[; ;main.c: 138: {
+"138
 {
-[; ;main.c: 133: TMR4IF = 0;
-"133
+[; ;main.c: 139: TMR4IF = 0;
+"139
 [e = _TMR4IF -> -> 0 `i `b ]
-[; ;main.c: 134: tapLED();
-"134
+[; ;main.c: 140: tapLED();
+"140
 [e ( _tapLED ..  ]
-[; ;main.c: 135: T4CONbits.TMR4ON = 1;
-"135
+[; ;main.c: 141: flashLED();
+"141
+[e ( _flashLED ..  ]
+[; ;main.c: 142: T4CONbits.TMR4ON = 1;
+"142
 [e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
-"136
+"143
 }
 [e :U 1422 ]
-[; ;main.c: 136: }
-[; ;main.c: 138: if (TMR2IF)
-"138
-[e $ ! _TMR2IF 1423  ]
-[; ;main.c: 139: {
-"139
-{
-[; ;main.c: 140: TMR2IF = 0;
-"140
-[e = _TMR2IF -> -> 0 `i `b ]
-[; ;main.c: 141: tapTimeCount++;
-"141
-[e ++ _tapTimeCount -> 1 `i ]
-[; ;main.c: 142: if (tapTimeCount >= 3000)
-"142
-[e $ ! >= _tapTimeCount -> 3000 `i 1424  ]
-[; ;main.c: 143: {
-"143
-{
-[; ;main.c: 144: tapTimeCount = 3000;
-"144
-[e = _tapTimeCount -> 3000 `i ]
-[; ;main.c: 145: T2CONbits.TMR2ON = 0;
+[; ;main.c: 143: }
+[; ;main.c: 145: if (TMR2IF)
 "145
-[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
+[e $ ! _TMR2IF 1423  ]
+[; ;main.c: 146: {
 "146
-}
-[; ;main.c: 146: }
-[e $U 1425  ]
+{
+[; ;main.c: 147: TMR2IF = 0;
 "147
+[e = _TMR2IF -> -> 0 `i `b ]
+[; ;main.c: 148: tapTimeCount++;
+"148
+[e ++ _tapTimeCount -> 1 `i ]
+[; ;main.c: 149: if (tapTimeCount >= 3000)
+"149
+[e $ ! >= _tapTimeCount -> 3000 `i 1424  ]
+[; ;main.c: 150: {
+"150
+{
+[; ;main.c: 151: tapTimeCount = 3000;
+"151
+[e = _tapTimeCount -> 3000 `i ]
+[; ;main.c: 152: T2CONbits.TMR2ON = 0;
+"152
+[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
+"153
+}
+[; ;main.c: 153: }
+[e $U 1425  ]
+"154
 [e :U 1424 ]
-[; ;main.c: 147: else T2CONbits.TMR2ON = 1;
+[; ;main.c: 154: else T2CONbits.TMR2ON = 1;
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
 [e :U 1425 ]
-"148
+"155
 }
 [e :U 1423 ]
-[; ;main.c: 148: }
-[; ;main.c: 150: checkSwitches();
-"150
-[e ( _checkSwitches ..  ]
-[; ;main.c: 152: if (TMR0IF)
-"152
-[e $ ! _TMR0IF 1426  ]
-[; ;main.c: 153: {
-"153
-{
-[; ;main.c: 154: TMR0IF = 0;
-"154
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;main.c: 155: serviceSwitches();
-"155
-[e ( _serviceSwitches ..  ]
-[; ;main.c: 156: T0CONbits.TMR0ON = 0x0;
-"156
-[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 155: }
+[; ;main.c: 157: checkSwitches();
 "157
+[e ( _checkSwitches ..  ]
+[; ;main.c: 159: if (TMR0IF)
+"159
+[e $ ! _TMR0IF 1426  ]
+[; ;main.c: 160: {
+"160
+{
+[; ;main.c: 161: TMR0IF = 0;
+"161
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;main.c: 162: serviceSwitches();
+"162
+[e ( _serviceSwitches ..  ]
+[; ;main.c: 163: T0CONbits.TMR0ON = 0x0;
+"163
+[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
+"164
 }
 [e :U 1426 ]
-[; ;main.c: 157: }
-[; ;main.c: 158: }
-"158
+[; ;main.c: 164: }
+[; ;main.c: 165: }
+"165
 [e :UE 1420 ]
 }
-"160
+"167
 [v _absVal `(i ~T0 @X0 1 ef1`i ]
-"161
+"168
 {
-[; ;main.c: 160: int absVal(int val)
-[; ;main.c: 161: {
+[; ;main.c: 167: int absVal(int val)
+[; ;main.c: 168: {
 [e :U _absVal ]
-"160
+"167
 [v _val `i ~T0 @X0 1 r1 ]
-"161
+"168
 [f ]
-[; ;main.c: 162: if (val < 0)
-"162
+[; ;main.c: 169: if (val < 0)
+"169
 [e $ ! < _val -> 0 `i 1428  ]
-[; ;main.c: 163: return -val;
-"163
+[; ;main.c: 170: return -val;
+"170
 [e ) -U _val ]
 [e $UE 1427  ]
 [e $U 1429  ]
-"164
+"171
 [e :U 1428 ]
-[; ;main.c: 164: else return val;
+[; ;main.c: 171: else return val;
 [e ) _val ]
 [e $UE 1427  ]
 [e :U 1429 ]
-[; ;main.c: 165: }
-"165
+[; ;main.c: 172: }
+"172
 [e :UE 1427 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"167
-[v _main `(v ~T0 @X0 1 ef ]
-"168
+"174
+[v _readControls `(v ~T0 @X0 1 ef ]
+"175
 {
-[; ;main.c: 167: void main(void)
-[; ;main.c: 168: {
+[; ;main.c: 174: void readControls(void)
+[; ;main.c: 175: {
+[e :U _readControls ]
+[f ]
+[; ;main.c: 177: timeA = ADC_Read(14);
+"177
+[e = _timeA ( _ADC_Read (1 -> 14 `i ]
+[; ;main.c: 178: parameter[0] = timeA >> 8;
+"178
+[e = *U + &U _parameter * -> -> -> 0 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeA -> 8 `i ]
+[; ;main.c: 179: parameter[1] = (timeA & 0xFF);
+"179
+[e = *U + &U _parameter * -> -> -> 1 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeA -> 255 `i ]
+[; ;main.c: 181: fbkA = ADC_Read(4);
+"181
+[e = _fbkA ( _ADC_Read (1 -> 4 `i ]
+[; ;main.c: 182: parameter[2] = fbkA>>4;
+"182
+[e = *U + &U _parameter * -> -> -> 2 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkA -> 4 `i ]
+[; ;main.c: 184: lvlA = ADC_Read(3);
+"184
+[e = _lvlA ( _ADC_Read (1 -> 3 `i ]
+[; ;main.c: 185: parameter[3] = lvlA>>4;
+"185
+[e = *U + &U _parameter * -> -> -> 3 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlA -> 4 `i ]
+[; ;main.c: 188: timeB = ADC_Read(6);
+"188
+[e = _timeB ( _ADC_Read (1 -> 6 `i ]
+[; ;main.c: 189: parameter[4] = timeB >> 8;
+"189
+[e = *U + &U _parameter * -> -> -> 4 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeB -> 8 `i ]
+[; ;main.c: 190: parameter[5] = (timeB & 0xFF);
+"190
+[e = *U + &U _parameter * -> -> -> 5 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeB -> 255 `i ]
+[; ;main.c: 192: fbkB = ADC_Read(2);
+"192
+[e = _fbkB ( _ADC_Read (1 -> 2 `i ]
+[; ;main.c: 193: parameter[6] = fbkB>>4;
+"193
+[e = *U + &U _parameter * -> -> -> 6 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkB -> 4 `i ]
+[; ;main.c: 195: lvlB = ADC_Read(9);
+"195
+[e = _lvlB ( _ADC_Read (1 -> 9 `i ]
+[; ;main.c: 196: parameter[7] = lvlB>>4;
+"196
+[e = *U + &U _parameter * -> -> -> 7 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlB -> 4 `i ]
+[; ;main.c: 199: timeC = ADC_Read(1);
+"199
+[e = _timeC ( _ADC_Read (1 -> 1 `i ]
+[; ;main.c: 200: parameter[8] = timeC >> 8;
+"200
+[e = *U + &U _parameter * -> -> -> 8 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeC -> 8 `i ]
+[; ;main.c: 201: parameter[9] = (timeC & 0xFF);
+"201
+[e = *U + &U _parameter * -> -> -> 9 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeC -> 255 `i ]
+[; ;main.c: 203: fbkC = ADC_Read(5);
+"203
+[e = _fbkC ( _ADC_Read (1 -> 5 `i ]
+[; ;main.c: 204: parameter[10] = fbkC>>4;
+"204
+[e = *U + &U _parameter * -> -> -> 10 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkC -> 4 `i ]
+[; ;main.c: 206: lvlC = ADC_Read(0);
+"206
+[e = _lvlC ( _ADC_Read (1 -> 0 `i ]
+[; ;main.c: 207: parameter[11] = lvlC>>4;
+"207
+[e = *U + &U _parameter * -> -> -> 11 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlC -> 4 `i ]
+[; ;main.c: 208: }
+"208
+[e :UE 1430 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"210
+[v _main `(v ~T0 @X0 1 ef ]
+"211
+{
+[; ;main.c: 210: void main(void)
+[; ;main.c: 211: {
 [e :U _main ]
 [f ]
-"169
-[v _result `i ~T0 @X0 1 a ]
-[; ;main.c: 169: int result = 0;
-[e = _result -> 0 `i ]
-"170
-[v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 170: int i = 0;
-[e = _i -> 0 `i ]
-"171
-[v _byte `i ~T0 @X0 1 a ]
-[; ;main.c: 171: int byte = 0;
-[e = _byte -> 0 `i ]
-"172
-[v _dryLevel `i ~T0 @X0 1 a ]
-[; ;main.c: 172: int dryLevel = 50;
-[e = _dryLevel -> 50 `i ]
-"173
-[v _prevDry `i ~T0 @X0 1 a ]
-[; ;main.c: 173: int prevDry = 50;
-[e = _prevDry -> 50 `i ]
-"174
-[v _diff `i ~T0 @X0 1 a ]
-[; ;main.c: 174: int diff = 0;
-[e = _diff -> 0 `i ]
-"175
-[v _dir `i ~T0 @X0 1 a ]
-[; ;main.c: 175: int dir = 1;
-[e = _dir -> 1 `i ]
-"177
-[v _temp `i ~T0 @X0 1 a ]
-[; ;main.c: 177: int temp = 0;
-[e = _temp -> 0 `i ]
-"179
-[v _bitA `i ~T0 @X0 1 a ]
-[; ;main.c: 179: int bitA = 1;
-[e = _bitA -> 1 `i ]
-"180
-[v _bitB `i ~T0 @X0 1 a ]
-[; ;main.c: 180: int bitB = 1;
-[e = _bitB -> 1 `i ]
-"181
-[v _bitC `i ~T0 @X0 1 a ]
-[; ;main.c: 181: int bitC = 1;
-[e = _bitC -> 1 `i ]
-[; ;main.c: 183: systemInit();
-"183
-[e ( _systemInit ..  ]
-[; ;main.c: 187: I2C1_Write_DigiPot(127);
-"187
-[e ( _I2C1_Write_DigiPot (1 -> -> 127 `i `uc ]
-[; ;main.c: 189: while(1)
-"189
-[e :U 1432 ]
-[; ;main.c: 190: {
-"190
-{
-[; ;main.c: 191: if (preset == 1)
-"191
-[e $ ! == _preset -> 1 `i 1434  ]
-[; ;main.c: 192: {
-"192
-{
-[; ;main.c: 193: timeValue = presetParams[0];
-"193
-[e = _timeValue *U + &U _presetParams * -> -> -> 0 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
-[; ;main.c: 194: feedbackValue = presetParams[1];
-"194
-[e = _feedbackValue *U + &U _presetParams * -> -> -> 1 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
-[; ;main.c: 195: levelValue = presetParams[2];
-"195
-[e = _levelValue *U + &U _presetParams * -> -> -> 2 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
-"196
-}
-[; ;main.c: 196: }
-[e $U 1435  ]
-"197
-[e :U 1434 ]
-[; ;main.c: 197: else
-[; ;main.c: 198: {
-"198
-{
-[; ;main.c: 199: feedbackValue = ADC_Read(4);
-"199
-[e = _feedbackValue ( _ADC_Read (1 -> 4 `i ]
-[; ;main.c: 200: feedbackValue = feedbackValue>>4;
-"200
-[e = _feedbackValue >> _feedbackValue -> 4 `i ]
-[; ;main.c: 202: levelValue = ADC_Read(3);
-"202
-[e = _levelValue ( _ADC_Read (1 -> 3 `i ]
-[; ;main.c: 203: levelValue = levelValue>>4;
-"203
-[e = _levelValue >> _levelValue -> 4 `i ]
-[; ;main.c: 205: timeValue = ADC_Read(14);
-"205
-[e = _timeValue ( _ADC_Read (1 -> 14 `i ]
-[; ;main.c: 207: dryLevel = ADC_Read(8);
-"207
-[e = _dryLevel ( _ADC_Read (1 -> 8 `i ]
-[; ;main.c: 208: dryLevel = dryLevel>>5;
-"208
-[e = _dryLevel >> _dryLevel -> 5 `i ]
-[; ;main.c: 209: diff = dryLevel - prevDry;
-"209
-[e = _diff - _dryLevel _prevDry ]
-[; ;main.c: 210: diff = absVal(diff);
-"210
-[e = _diff ( _absVal (1 _diff ]
-[; ;main.c: 212: if (diff >= 2)
-"212
-[e $ ! >= _diff -> 2 `i 1436  ]
-[; ;main.c: 213: {
 "213
-{
-[; ;main.c: 214: I2C1_Write_DigiPot(dryLevel);
+[v _dryLevel `i ~T0 @X0 1 a ]
+[; ;main.c: 213: int dryLevel = 0;
+[e = _dryLevel -> 0 `i ]
 "214
-[e ( _I2C1_Write_DigiPot (1 -> _dryLevel `uc ]
-[; ;main.c: 215: prevDry = dryLevel;
+[v _prevDry `i ~T0 @X0 1 a ]
+[; ;main.c: 214: int prevDry = 0;
+[e = _prevDry -> 0 `i ]
 "215
-[e = _prevDry _dryLevel ]
-"216
-}
-[e :U 1436 ]
+[v _diff `i ~T0 @X0 1 a ]
+[; ;main.c: 215: int diff = 0;
+[e = _diff -> 0 `i ]
+[; ;main.c: 217: systemInit();
 "217
-}
-[e :U 1435 ]
-[; ;main.c: 216: }
-[; ;main.c: 217: }
-[; ;main.c: 220: if (!setupComplete)
-"220
-[e $ ! ! != _setupComplete -> 0 `i 1437  ]
-[; ;main.c: 221: {
+[e ( _systemInit ..  ]
+[; ;main.c: 219: T4CONbits.TMR4ON = 1;
+"219
+[e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 221: I2C1_Write_DigiPot(0);
 "221
-{
-[; ;main.c: 222: setupComplete = 1;
-"222
-[e = _setupComplete -> 1 `i ]
+[e ( _I2C1_Write_DigiPot (1 -> -> 0 `i `uc ]
+[; ;main.c: 223: while(1)
 "223
-}
-[e :U 1437 ]
-"224
-}
-[e :U 1431 ]
-"189
-[e $U 1432  ]
 [e :U 1433 ]
-[; ;main.c: 223: }
-[; ;main.c: 224: }
-[; ;main.c: 225: }
+[; ;main.c: 224: {
+"224
+{
+[; ;main.c: 225: if (preset == 1)
 "225
-[e :UE 1430 ]
+[e $ ! == _preset -> 1 `i 1435  ]
+[; ;main.c: 226: {
+"226
+{
+[; ;main.c: 227: parameter[0] = presetParams[0];
+"227
+[e = *U + &U _parameter * -> -> -> 0 `i `ui `ux -> -> # *U &U _parameter `ui `ux *U + &U _presetParams * -> -> -> 0 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
+[; ;main.c: 228: parameter[1] = presetParams[1];
+"228
+[e = *U + &U _parameter * -> -> -> 1 `i `ui `ux -> -> # *U &U _parameter `ui `ux *U + &U _presetParams * -> -> -> 1 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
+[; ;main.c: 229: parameter[2] = presetParams[2];
+"229
+[e = *U + &U _parameter * -> -> -> 2 `i `ui `ux -> -> # *U &U _parameter `ui `ux *U + &U _presetParams * -> -> -> 2 `i `ui `ux -> -> # *U &U _presetParams `ui `ux ]
+"230
+}
+[; ;main.c: 230: }
+[e $U 1436  ]
+"231
+[e :U 1435 ]
+[; ;main.c: 231: else if (preset == 3)
+[e $ ! == _preset -> 3 `i 1437  ]
+[; ;main.c: 232: {
+"232
+{
+[; ;main.c: 233: I2C1_Block_Read_EERPOM(3, 12, parameter);
+"233
+[e ( _I2C1_Block_Read_EERPOM (3 , , -> 3 `i -> 12 `i -> &U _parameter `*uc ]
+"234
+}
+[; ;main.c: 234: }
+[e $U 1438  ]
+"235
+[e :U 1437 ]
+[; ;main.c: 235: else
+[; ;main.c: 236: {
+"236
+{
+[; ;main.c: 237: readControls();
+"237
+[e ( _readControls ..  ]
+[; ;main.c: 238: dryLevel = ADC_Read(8);
+"238
+[e = _dryLevel ( _ADC_Read (1 -> 8 `i ]
+[; ;main.c: 239: dryLevel = dryLevel>>5;
+"239
+[e = _dryLevel >> _dryLevel -> 5 `i ]
+[; ;main.c: 240: diff = dryLevel - prevDry;
+"240
+[e = _diff - _dryLevel _prevDry ]
+[; ;main.c: 241: diff = absVal(diff);
+"241
+[e = _diff ( _absVal (1 _diff ]
+[; ;main.c: 243: if (diff >= 2)
+"243
+[e $ ! >= _diff -> 2 `i 1439  ]
+[; ;main.c: 244: {
+"244
+{
+[; ;main.c: 245: I2C1_Write_DigiPot(dryLevel);
+"245
+[e ( _I2C1_Write_DigiPot (1 -> _dryLevel `uc ]
+[; ;main.c: 246: prevDry = dryLevel;
+"246
+[e = _prevDry _dryLevel ]
+"247
+}
+[e :U 1439 ]
+"248
+}
+[e :U 1438 ]
+[e :U 1436 ]
+[; ;main.c: 247: }
+[; ;main.c: 248: }
+[; ;main.c: 251: if (!setupComplete)
+"251
+[e $ ! ! != _setupComplete -> 0 `i 1440  ]
+[; ;main.c: 252: {
+"252
+{
+[; ;main.c: 253: setupComplete = 1;
+"253
+[e = _setupComplete -> 1 `i ]
+"254
+}
+[e :U 1440 ]
+"255
+}
+[e :U 1432 ]
+"223
+[e $U 1433  ]
+[e :U 1434 ]
+[; ;main.c: 254: }
+[; ;main.c: 255: }
+[; ;main.c: 256: }
+"256
+[e :UE 1431 ]
 }

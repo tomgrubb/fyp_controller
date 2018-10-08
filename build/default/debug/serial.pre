@@ -17145,17 +17145,110 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 54 "global.h"
+# 13 "/Applications/microchip/xc8/v1.43/include/stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 55 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -17165,10 +17258,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 1;
 
 
 int switch1 = 0;
@@ -17181,9 +17274,14 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
-char bypMode = 0;
+int bypass = 0;
+int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17192,11 +17290,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+
+int parameter[12];
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 
 int tapTimeCount = 0;
@@ -17207,10 +17319,28 @@ int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
 
-# 15 "serial.c"
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value)
+int setupComplete = 0;
+int sync = 0;
+
+# 18 "serial.c"
+int paramAddress[] =
 {
-char wrDevAddr = devAddr;
+0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
+0xB1, 0xB3, 0xB5, 0xB7
+};
+
+int presetAdd[] =
+{
+0x00,
+0x00,
+0x00,
+0x00,
+0x00
+};
+
+void I2C1_Write_EEPROM(char memValue, char value)
+{
+char wrDevAddr = 0b10100000;
 
 SSP1CON1bits.SSPEN = 0x1;
 _delay((unsigned long)((5)*(32000000/4000000.0)));
@@ -17234,6 +17364,100 @@ while (SSP1CON2bits.ACKSTAT);
 while(!PIR1bits.SSP1IF);
 SSP1CON2bits.PEN = 0x1;
 while(SSP1CON2bits.PEN);
+
+PIR1bits.SSP1IF = 0x0;
+SSP1CON1bits.SSPEN = 0x1;
+}
+
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
+{
+char wrDevAddr = 0b10100000;
+char memValue = presetAdd[slot];
+int n = 0;
+
+SSP1CON1bits.SSPEN = 0x1;
+_delay((unsigned long)((5)*(32000000/4000000.0)));
+
+SSP1CON2bits.SEN = 0x1;
+while(SSP1CON2bits.SEN);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = wrDevAddr;
+
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = memValue;
+
+for (n = 0; n < bytes; n++)
+{
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = data[n];
+}
+
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+SSP1CON2bits.PEN = 0x1;
+while(SSP1CON2bits.PEN);
+
+PIR1bits.SSP1IF = 0x0;
+SSP1CON1bits.SSPEN = 0x1;
+}
+
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
+{
+char dummyWrite = 0b10100000;
+char rdAddr = (dummyWrite|0x01);
+char memValue = presetAdd[slot];
+int n = 0;
+
+SSP1CON1bits.SSPEN = 0x1;
+_delay((unsigned long)((5)*(32000000/4000000.0)));
+
+SSP1CON2bits.SEN = 0x1;
+while(SSP1CON2bits.SEN);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = dummyWrite;
+
+if(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = memValue;
+
+while(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1CON2bits.RSEN = 0x1;
+
+while(SSP1CON2bits.RSEN);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = rdAddr;
+
+while(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+
+SSP1CON2bits.RCEN = 0x1;
+
+for (n = 0; n < bytes; n++)
+{
+while(!SSP1STATbits.BF);
+while (!PIR1bits.SSP1IF);
+
+data[n] = SSP1BUF;
+}
+
+SSP1CON2bits.ACKDT = 0x1;
+SSP1CON2bits.ACKEN = 0x1;
+
+while(SSP1CON2bits.ACKEN);
+PIR1bits.SSP1IF = 0x0;
+SSP1CON2bits.PEN = 0x1;
+while(SSP1CON2bits.PEN);
+
 
 PIR1bits.SSP1IF = 0x0;
 SSP1CON1bits.SSPEN = 0x1;
@@ -17323,25 +17547,22 @@ SSP1CON1bits.SSPEN = 0x1;
 
 void sendParam(void)
 {
+int n = 0;
+
 dataTarget = SSP2BUF;
-while(SSP2STATbits.BF);
 
 
-if (dataTarget == 0xA1)
+
+for (n = 0; n < 12; n++)
 {
-dataPtr = feedbackValue;
+if (dataTarget == paramAddress[n])
+{
+dataPtr = parameter[n];
+break;
 }
-else if (dataTarget == 0xA5)
-{
-dataPtr = levelValue;
-}
-else if (dataTarget == 0xA9)
-{
-dataPtr = timeValue;
 }
 
 SSP2BUF = dataPtr;
-dataTarget ^= 1;
 SSP2CON1bits.CKP = 0x1;
 PIR2bits.SSP2IF = 0x0;
 }

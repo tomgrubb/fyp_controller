@@ -17235,17 +17235,20 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 54 "global.h"
+# 55 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -17258,7 +17261,7 @@ int absVal(int val);
 int intA = 0;
 int intB = 0;
 int intC = 0;
-int swX = 0;
+int swX = 1;
 
 
 int switch1 = 0;
@@ -17273,6 +17276,11 @@ int muxADC = 0;
 
 int bypass = 0;
 int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
 int bypMode = 1;
 
 
@@ -17282,12 +17290,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
-int hiLo = 0;
+
+int parameter[12];
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 
 int tapTimeCount = 0;
@@ -17299,11 +17320,27 @@ int newTempo = 0;
 int timeoutCount = 0;
 
 int setupComplete = 0;
+int sync = 0;
 
-# 16 "serial.c"
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value)
+# 18 "serial.c"
+int paramAddress[] =
 {
-char wrDevAddr = devAddr;
+0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
+0xB1, 0xB3, 0xB5, 0xB7
+};
+
+int presetAdd[] =
+{
+0x00,
+0x00,
+0x00,
+0x00,
+0x00
+};
+
+void I2C1_Write_EEPROM(char memValue, char value)
+{
+char wrDevAddr = 0b10100000;
 
 SSP1CON1bits.SSPEN = 0x1;
 _delay((unsigned long)((5)*(32000000/4000000.0)));
@@ -17327,6 +17364,100 @@ while (SSP1CON2bits.ACKSTAT);
 while(!PIR1bits.SSP1IF);
 SSP1CON2bits.PEN = 0x1;
 while(SSP1CON2bits.PEN);
+
+PIR1bits.SSP1IF = 0x0;
+SSP1CON1bits.SSPEN = 0x1;
+}
+
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
+{
+char wrDevAddr = 0b10100000;
+char memValue = presetAdd[slot];
+int n = 0;
+
+SSP1CON1bits.SSPEN = 0x1;
+_delay((unsigned long)((5)*(32000000/4000000.0)));
+
+SSP1CON2bits.SEN = 0x1;
+while(SSP1CON2bits.SEN);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = wrDevAddr;
+
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = memValue;
+
+for (n = 0; n < bytes; n++)
+{
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = data[n];
+}
+
+while (SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+SSP1CON2bits.PEN = 0x1;
+while(SSP1CON2bits.PEN);
+
+PIR1bits.SSP1IF = 0x0;
+SSP1CON1bits.SSPEN = 0x1;
+}
+
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
+{
+char dummyWrite = 0b10100000;
+char rdAddr = (dummyWrite|0x01);
+char memValue = presetAdd[slot];
+int n = 0;
+
+SSP1CON1bits.SSPEN = 0x1;
+_delay((unsigned long)((5)*(32000000/4000000.0)));
+
+SSP1CON2bits.SEN = 0x1;
+while(SSP1CON2bits.SEN);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = dummyWrite;
+
+if(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = memValue;
+
+while(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1CON2bits.RSEN = 0x1;
+
+while(SSP1CON2bits.RSEN);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+SSP1BUF = rdAddr;
+
+while(SSP1CON2bits.ACKSTAT);
+while(!PIR1bits.SSP1IF);
+PIR1bits.SSP1IF = 0x0;
+
+SSP1CON2bits.RCEN = 0x1;
+
+for (n = 0; n < bytes; n++)
+{
+while(!SSP1STATbits.BF);
+while (!PIR1bits.SSP1IF);
+
+data[n] = SSP1BUF;
+}
+
+SSP1CON2bits.ACKDT = 0x1;
+SSP1CON2bits.ACKEN = 0x1;
+
+while(SSP1CON2bits.ACKEN);
+PIR1bits.SSP1IF = 0x0;
+SSP1CON2bits.PEN = 0x1;
+while(SSP1CON2bits.PEN);
+
 
 PIR1bits.SSP1IF = 0x0;
 SSP1CON1bits.SSPEN = 0x1;
@@ -17416,41 +17547,22 @@ SSP1CON1bits.SSPEN = 0x1;
 
 void sendParam(void)
 {
-int byte = 0;
+int n = 0;
 
 dataTarget = SSP2BUF;
-while(SSP2STATbits.BF);
 
 
-if (dataTarget == 0xAC)
+
+for (n = 0; n < 12; n++)
 {
-dataPtr = setupComplete;
+if (dataTarget == paramAddress[n])
+{
+dataPtr = parameter[n];
+break;
 }
-else if (dataTarget == 0xA1)
-{
-dataPtr = feedbackValue;
-}
-else if (dataTarget == 0xA5)
-{
-dataPtr = levelValue;
-}
-else if (dataTarget == 0xA9)
-{
-if (!hiLo)
-{
-byte = (timeValue & 0xFF);
-dataPtr = byte;
-}
-else
-{
-byte = timeValue>>8;
-dataPtr = byte;
-}
-hiLo ^= 1;
 }
 
 SSP2BUF = dataPtr;
-dataTarget ^= 1;
 SSP2CON1bits.CKP = 0x1;
 PIR2bits.SSP2IF = 0x0;
 }

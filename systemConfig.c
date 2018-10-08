@@ -96,12 +96,12 @@ void setupI2C2(void)
     TRISDbits.TRISD5 = 0x1;         // RD5 is an INPUT (SDA2)
     TRISDbits.TRISD6 = 0x1;         // RD6 is an INPUT (SCL2)
     
-    // I2C slave mode, 7 bit addressing, START and STOP interrupts DISABLED
+    // I2C Slave mode, 7 bit addressing, START and STOP interrupts DISABLED
     SSP2CON1bits.SSPM = 0x9;
     
     // acknowledged addresses are 0xA0, 0xA4, 0xA4, 0xAC
     SSP2ADD = 0b10100000;
-    SSP2MSK = 0b11110010;
+    SSP2MSK = 0b11000000;
     SSP2CON1bits.SSPM = 0x6;        // 7-bit masking enabled
     
     SSP2CON1bits.CKP = 0x1;         // Release Clock
@@ -207,6 +207,7 @@ void interfaceInit(void)
     // Switches
     ANCON2bits.ANSEL12 = 0;         // RG1 is DIGITAL
     TRISGbits.TRISG1 = 1;           // RG1 is INPUT (SW1)
+    PADCFG1bits.RGPU = 1;
     
     ANCON2bits.ANSEL13 = 0;         // RG2 is DIGITAL
     TRISGbits.TRISG2 = 1;           // RG2 is INPUT (SW2)
@@ -214,10 +215,12 @@ void interfaceInit(void)
     TRISEbits.TRISE6 = 1;           // RE6 is INPUT (SW3)
     
     TRISDbits.TRISD1 = 1;           // RD1 is INPUT (SW4)
+    PADCFG1bits.RDPU = 1;
     
     ANCON2bits.ANSEL14 = 0;         // RG3 is DIGITAL
     TRISGbits.TRISG3 = 1;           // RG3 is INPUT (SW5)
     
+    PADCFG1bits.REPU = 1;
     TRISDbits.TRISD4 = 1;           // RD4 is INPUT (FSW1)    
     TRISEbits.TRISE3 = 1;           // RE3 is INPUT (FSW2)
     
@@ -308,6 +311,21 @@ void interruptInit(void)
     INTCONbits.GIE = 0x1;             // ENABLE global interrupts
 }
 
+void defaultLED(void)
+{
+    ALED_UP = 1;
+    ALED_DWN = 1;
+    BLED_UP = 1;
+    BLED_DWN = 1;
+    CLED_UP = 1;
+    CLED_DWN = 1;
+    P1LED = 1;
+    P2LED = 1;
+    P3LED = 1;
+    P4LED = 1;
+    P5LED = 1; 
+}
+
 void bypassSetup(void)
 {
     TAILS = 1;
@@ -337,9 +355,8 @@ void systemInit(void)
     bypassSetup();
     killLEDs();
     startupSequence();
+    defaultLED();
     killLEDs();
-    
     bypassSetup();
-    
     interruptInit();
 }

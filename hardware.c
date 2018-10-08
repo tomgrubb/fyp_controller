@@ -103,6 +103,27 @@ void tapLED(void)
         }
 }
 
+void flashLED(void)
+{
+    if (presetPend)
+    {
+        pFlashCount++;
+        if (pFlashCount > 200)
+        {
+            if (pFlash)
+            {
+                updatePresetLEDs(targPreset);
+            }
+            else
+            {
+                updatePresetLEDs(0);
+            }
+            pFlash ^= 1;
+            pFlashCount = 0;
+        }
+    }
+}
+
 void checkSwitches(void)
 {
     char flag = 0;
@@ -285,31 +306,85 @@ void serviceSwitches(void)
         switch4 = 0;
         if (!SW4)
         {
-            preset++;
-            if (preset >= 6)
+            if (!shift)
             {
-                preset = 0;
+                preset++;
+                if (preset >= 6)
+                {
+                    preset = 0;
+                }
+                updatePresetLEDs(preset);
             }
-            updatePresetLEDs(preset);
+            else
+            {
+                if (!presetPend)
+                {
+                    // set target preset to read/write
+                    targPreset = preset;
+                    presetPend = 1;
+                    if (targPreset > 1)
+                    {
+                        targPreset = 1;
+                    }
+                }
+                else
+                {
+                    targPreset++;
+                    if (targPreset > 5)
+                    {
+                        targPreset = 1;
+                    }
+                }
+            }
         }
     }
     
     if (switch5)    // Switch 3 was pressed
     {
         switch5 = 0;
-        if (!SW5)
+        if (!shift)
         {
-            swX ^= 1;
-            bypMode = swX;
-            if (swX)
+            if (!SW5)
             {
-                LEDB = 1;
-                LEDR = 0;
+                shift = 1;
+                // IOC7 now RISING EDGE
+                IOCNbits.IOCN7 = 0x0;
+                IOCPbits.IOCP7 = 0x1;
             }
-            else
+        }
+        else
+        {
+            if (SW5)
             {
-                LEDB = 0;
-                LEDR = 1;
+                shift = 0;
+                // IOC7 now FALLING EDGE
+                IOCNbits.IOCN7 = 0x1;
+                IOCPbits.IOCP7 = 0x0;
+                
+                if (!presetPend)
+                {
+                    swX ^= 1;
+                    bypMode = swX;
+                    if (swX)
+                    {
+                        LEDB = 1;
+                        LEDR = 0;
+                    }
+                    else
+                    {
+                        LEDB = 0;
+                        LEDR = 1;
+                    }
+                }
+                else
+                {
+                    presetPend = 0;
+                    preset = targPreset;
+                    pFlash = 0;
+                    pFlashCount = 0;
+                    I2C1_Page_Write_EEPROM(preset, parameter, 12);
+                    updatePresetLEDs(preset);
+                }
             }
         }
     }
@@ -423,34 +498,6 @@ void startupSequence(void)
     __delay_ms(tShort);
     CLED_DWN = 0;
     __delay_ms(tShort);
-            
-    // Ping-Pong FSW LEDs
-    BypassLED = 1;
-    TapLED = 0;
-    __delay_ms(100);
-    BypassLED = 0;
-    TapLED = 1;
-    __delay_ms(100);
-    BypassLED = 1;
-    TapLED = 0;
-    __delay_ms(100);
-    BypassLED = 0;
-    TapLED = 1;
-    __delay_ms(100);
-    BypassLED = 0;
-    TapLED = 0;
-    __delay_ms(100);
-    BypassLED = 1;
-    TapLED = 1;
-    __delay_ms(tShort);
-    BypassLED = 0;
-    TapLED = 0;
-    __delay_ms(tShort);
-    BypassLED = 1;
-    TapLED = 1;
-    __delay_ms(tShort);
-    BypassLED = 0;
-    TapLED = 0;
 }
 
 void readInterval(int select)

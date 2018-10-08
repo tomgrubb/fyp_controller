@@ -4,6 +4,7 @@
 // DEFINE GLOBAL MACROS
 #define _XTAL_FREQ 32000000
 #define DigiPotAddr 0b00101111
+#define EEPROM_ADD  0b10100000 
 #define tShort 75
 
 // INPUT/OUTPUT MACROS
@@ -56,11 +57,14 @@ void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -73,7 +77,7 @@ int absVal(int val);
 int intA = 0;
 int intB = 0;
 int intC = 0;
-int swX = 0;
+int swX = 1;
 
 // Switch Flags
 int switch1 = 0;
@@ -88,6 +92,11 @@ int muxADC = 0;
 
 int bypass = 0;
 int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
 int bypMode = 1;
 
 // Tap Tempo LED variables
@@ -97,12 +106,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 // Parameter variables
-int hiLo = 0;
+
+int parameter[12]; 
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 // Tap Tempo Variables
 int tapTimeCount = 0;
@@ -114,5 +136,5 @@ int newTempo = 0;
 int timeoutCount = 0;
 
 int setupComplete = 0;
-
+int sync = 0;
 #endif /* GLOBAL_H */

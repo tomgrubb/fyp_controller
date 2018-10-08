@@ -17145,17 +17145,20 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 54 "global.h"
+# 55 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -17165,10 +17168,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 1;
 
 
 int switch1 = 0;
@@ -17181,9 +17184,14 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
-char bypMode = 0;
+int bypass = 0;
+int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17192,11 +17200,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+
+int parameter[12];
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 
 int tapTimeCount = 0;
@@ -17206,6 +17228,9 @@ int tap = 0;
 int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
+
+int setupComplete = 0;
+int sync = 0;
 
 # 15 "hardware.c"
 void maxTapCheck(void)
@@ -17294,6 +17319,27 @@ tapFlash = 1;
 }
 }
 
+void flashLED(void)
+{
+if (presetPend)
+{
+pFlashCount++;
+if (pFlashCount > 200)
+{
+if (pFlash)
+{
+updatePresetLEDs(targPreset);
+}
+else
+{
+updatePresetLEDs(0);
+}
+pFlash ^= 1;
+pFlashCount = 0;
+}
+}
+}
+
 void checkSwitches(void)
 {
 char flag = 0;
@@ -17364,6 +17410,7 @@ bypass ^= 1;
 if (bypMode)
 {
 LATD3 = !bypass;
+LATB5 = bypass;
 }
 else
 {
@@ -17475,6 +17522,8 @@ if (switch4)
 switch4 = 0;
 if (!RD1)
 {
+if (!shift)
+{
 preset++;
 if (preset >= 6)
 {
@@ -17482,12 +17531,53 @@ preset = 0;
 }
 updatePresetLEDs(preset);
 }
+else
+{
+if (!presetPend)
+{
+
+targPreset = preset;
+presetPend = 1;
+if (targPreset > 1)
+{
+targPreset = 1;
+}
+}
+else
+{
+targPreset++;
+if (targPreset > 5)
+{
+targPreset = 1;
+}
+}
+}
+}
 }
 
 if (switch5)
 {
 switch5 = 0;
+if (!shift)
+{
 if (!RG3)
+{
+shift = 1;
+
+IOCNbits.IOCN7 = 0x0;
+IOCPbits.IOCP7 = 0x1;
+}
+}
+else
+{
+if (RG3)
+{
+shift = 0;
+
+IOCNbits.IOCN7 = 0x1;
+IOCPbits.IOCP7 = 0x0;
+
+if (!presetPend)
 {
 swX ^= 1;
 bypMode = swX;
@@ -17500,6 +17590,17 @@ else
 {
 LATE1 = 0;
 LATH1 = 1;
+}
+}
+else
+{
+presetPend = 0;
+preset = targPreset;
+pFlash = 0;
+pFlashCount = 0;
+I2C1_Page_Write_EEPROM(preset, parameter, 12);
+updatePresetLEDs(preset);
+}
 }
 }
 }
@@ -17613,34 +17714,6 @@ LATG4 = 0;
 _delay((unsigned long)((75)*(32000000/4000.0)));
 LATH0 = 0;
 _delay((unsigned long)((75)*(32000000/4000.0)));
-
-
-LATD2 = 1;
-LATE0 = 0;
-_delay((unsigned long)((100)*(32000000/4000.0)));
-LATD2 = 0;
-LATE0 = 1;
-_delay((unsigned long)((100)*(32000000/4000.0)));
-LATD2 = 1;
-LATE0 = 0;
-_delay((unsigned long)((100)*(32000000/4000.0)));
-LATD2 = 0;
-LATE0 = 1;
-_delay((unsigned long)((100)*(32000000/4000.0)));
-LATD2 = 0;
-LATE0 = 0;
-_delay((unsigned long)((100)*(32000000/4000.0)));
-LATD2 = 1;
-LATE0 = 1;
-_delay((unsigned long)((75)*(32000000/4000.0)));
-LATD2 = 0;
-LATE0 = 0;
-_delay((unsigned long)((75)*(32000000/4000.0)));
-LATD2 = 1;
-LATE0 = 1;
-_delay((unsigned long)((75)*(32000000/4000.0)));
-LATD2 = 0;
-LATE0 = 0;
 }
 
 void readInterval(int select)

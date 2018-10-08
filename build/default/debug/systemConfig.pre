@@ -17145,17 +17145,20 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 54 "global.h"
+# 55 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
-void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
+void I2C1_Write_EEPROM(char memValue, char value);
+void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
 void tapLED(void);
+void flashLED(void);
 void checkSwitches(void);
 void serviceSwitches(void);
 void startupSequence(void);
@@ -17165,10 +17168,10 @@ void updatePresetLEDs(int psNum);
 int readToggle(int target);
 int absVal(int val);
 
-char intA = 0;
-char intB = 0;
-char intC = 0;
-char swX = 0;
+int intA = 0;
+int intB = 0;
+int intC = 0;
+int swX = 1;
 
 
 int switch1 = 0;
@@ -17181,9 +17184,14 @@ int fsw2 = 0;
 
 int muxADC = 0;
 
-char bypass = 0;
-char preset = 0;
-char bypMode = 0;
+int bypass = 0;
+int preset = 0;
+int targPreset = 0;
+int presetPend = 0;
+int pFlashCount = 0;
+int pFlash = 0;
+
+int bypMode = 1;
 
 
 int tapFlash = 0;
@@ -17192,11 +17200,25 @@ int tapDispCount = 0;
 int currentTapTime = 500;
 
 
+
+int parameter[12];
+
+int shift = 0;
+
 int dataTarget = 0;
 int *dataPtr;
-int feedbackValue = 0;
-int levelValue = 0;
-int timeValue = 0;
+
+int fbkA = 0;
+int lvlA = 0;
+int timeA = 0;
+
+int fbkB = 0;
+int lvlB = 0;
+int timeB = 0;
+
+int fbkC = 0;
+int lvlC = 0;
+int timeC = 0;
 
 
 int tapTimeCount = 0;
@@ -17206,6 +17228,9 @@ int tap = 0;
 int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
+
+int setupComplete = 0;
+int sync = 0;
 
 # 16 "systemConfig.c"
 void setupTMR0(void)
@@ -17296,7 +17321,7 @@ SSP2CON1bits.SSPM = 0x9;
 
 
 SSP2ADD = 0b10100000;
-SSP2MSK = 0b11110010;
+SSP2MSK = 0b11000000;
 SSP2CON1bits.SSPM = 0x6;
 
 SSP2CON1bits.CKP = 0x1;
@@ -17311,7 +17336,7 @@ SSP2CON1bits.SSPEN = 0x1;
 void setupADC(void)
 {
 ADCON1Hbits.ADON = 0;
-ADCON1Hbits.MODE12 = 0;
+ADCON1Hbits.MODE12 = 1;
 ADCON1Hbits.FORM = 0;
 ADCON1Lbits.SSRC = 0;
 ADCON1Lbits.ASAM = 0;
@@ -17402,6 +17427,7 @@ T5CONbits.SOSCEN = 0;
 
 ANCON2bits.ANSEL12 = 0;
 TRISGbits.TRISG1 = 1;
+PADCFG1bits.RGPU = 1;
 
 ANCON2bits.ANSEL13 = 0;
 TRISGbits.TRISG2 = 1;
@@ -17409,10 +17435,12 @@ TRISGbits.TRISG2 = 1;
 TRISEbits.TRISE6 = 1;
 
 TRISDbits.TRISD1 = 1;
+PADCFG1bits.RDPU = 1;
 
 ANCON2bits.ANSEL14 = 0;
 TRISGbits.TRISG3 = 1;
 
+PADCFG1bits.REPU = 1;
 TRISDbits.TRISD4 = 1;
 TRISEbits.TRISE3 = 1;
 
@@ -17503,6 +17531,30 @@ INTCONbits.PEIE = 0x1;
 INTCONbits.GIE = 0x1;
 }
 
+void defaultLED(void)
+{
+LATH7 = 1;
+LATF2 = 1;
+LATF5 = 1;
+LATF6 = 1;
+LATG4 = 1;
+LATH0 = 1;
+LATD0 = 1;
+LATE7 = 1;
+LATE5 = 1;
+LATE4 = 1;
+LATH2 = 1;
+}
+
+void bypassSetup(void)
+{
+LATB5 = 1;
+LATD3 = 1;
+LATE1 = 1;
+LATH1 = 0;
+LATD2 = 0;
+}
+
 void systemInit(void)
 {
 clockSwitch();
@@ -17520,10 +17572,11 @@ setupADC();
 
 mapPeripheralPins();
 interfaceInit();
-
+bypassSetup();
 killLEDs();
 startupSequence();
+defaultLED();
 killLEDs();
-
+bypassSetup();
 interruptInit();
 }

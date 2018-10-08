@@ -529,6 +529,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S691 . . . . . . ]
 "16326
 [v _T5CONbits `VS691 ~T0 @X0 0 e@3860 ]
+"20840
+[s S907 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S907 . RLPU RKPU RJPU RHPU RGPU RFPU REPU RDPU ]
+"20850
+[s S908 :1 `uc 1 ]
+[n S908 . PMPTTL ]
+"20839
+[u S906 `S907 1 `S908 1 ]
+[n S906 . . . ]
+"20854
+[v _PADCFG1bits `VS906 ~T0 @X0 0 e@3924 ]
 "25518
 [s S1095 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1095 . TRISE0 TRISE1 TRISE2 TRISE3 TRISE4 TRISE5 TRISE6 TRISE7 ]
@@ -609,15 +620,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S909 . . ]
 "20921
 [v _IOCNbits `VS909 ~T0 @X0 0 e@3925 ]
+"33708
+[v _LATH7 `Vb ~T0 @X0 0 e@31879 ]
+"33672
+[v _LATF2 `Vb ~T0 @X0 0 e@31858 ]
+"33678
+[v _LATF5 `Vb ~T0 @X0 0 e@31861 ]
+"33680
+[v _LATF6 `Vb ~T0 @X0 0 e@31862 ]
+"33692
+[v _LATG4 `Vb ~T0 @X0 0 e@31868 ]
+"33694
+[v _LATH0 `Vb ~T0 @X0 0 e@31872 ]
+"33640
+[v _LATD0 `Vb ~T0 @X0 0 e@31840 ]
+"33670
+[v _LATE7 `Vb ~T0 @X0 0 e@31855 ]
+"33666
+[v _LATE5 `Vb ~T0 @X0 0 e@31853 ]
+"33664
+[v _LATE4 `Vb ~T0 @X0 0 e@31852 ]
+"33698
+[v _LATH2 `Vb ~T0 @X0 0 e@31874 ]
 "33658
 [v _LATE1 `Vb ~T0 @X0 0 e@31849 ]
 "33696
 [v _LATH1 `Vb ~T0 @X0 0 e@31873 ]
 "33644
 [v _LATD2 `Vb ~T0 @X0 0 e@31842 ]
-"58 global.h
+"59 global.h
 [v _killLEDs `(v ~T0 @X0 0 ef ]
-"66
+"70
 [v _startupSequence `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -13214,219 +13247,291 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;global.h: 54: void interruptInit(void);
-[; ;global.h: 55: void systemInit(void);
-[; ;global.h: 56: int ADC_Read(int channel);
-[; ;global.h: 57: void updateLEDs(void);
-[; ;global.h: 58: void killLEDs(void);
-[; ;global.h: 59: void I2C1_Write_EEPROM(char devAddr, char memValue, char value);
-[; ;global.h: 60: char I2C1_Read_EEPROM(char devAddr, char memValue);
-[; ;global.h: 61: void I2C1_Write_DigiPot(char value);
-[; ;global.h: 62: void readInterval(int select);
-[; ;global.h: 63: void tapLED(void);
-[; ;global.h: 64: void checkSwitches(void);
-[; ;global.h: 65: void serviceSwitches(void);
-[; ;global.h: 66: void startupSequence(void);
-[; ;global.h: 67: void sendParam(void);
-[; ;global.h: 68: void processTaps(void);
-[; ;global.h: 69: void updatePresetLEDs(int psNum);
-[; ;global.h: 70: int readToggle(int target);
-[; ;global.h: 71: int absVal(int val);
-"73 global.h
+[; ;global.h: 55: void interruptInit(void);
+[; ;global.h: 56: void systemInit(void);
+[; ;global.h: 57: int ADC_Read(int channel);
+[; ;global.h: 58: void updateLEDs(void);
+[; ;global.h: 59: void killLEDs(void);
+[; ;global.h: 60: void I2C1_Write_EEPROM(char memValue, char value);
+[; ;global.h: 61: void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
+[; ;global.h: 62: void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+[; ;global.h: 63: char I2C1_Read_EEPROM(char devAddr, char memValue);
+[; ;global.h: 64: void I2C1_Write_DigiPot(char value);
+[; ;global.h: 65: void readInterval(int select);
+[; ;global.h: 66: void tapLED(void);
+[; ;global.h: 67: void flashLED(void);
+[; ;global.h: 68: void checkSwitches(void);
+[; ;global.h: 69: void serviceSwitches(void);
+[; ;global.h: 70: void startupSequence(void);
+[; ;global.h: 71: void sendParam(void);
+[; ;global.h: 72: void processTaps(void);
+[; ;global.h: 73: void updatePresetLEDs(int psNum);
+[; ;global.h: 74: int readToggle(int target);
+[; ;global.h: 75: int absVal(int val);
+"77 global.h
 [v _intA `i ~T0 @X0 1 e ]
 [i _intA
 -> 0 `i
 ]
-[; ;global.h: 73: int intA = 0;
-"74
+[; ;global.h: 77: int intA = 0;
+"78
 [v _intB `i ~T0 @X0 1 e ]
 [i _intB
 -> 0 `i
 ]
-[; ;global.h: 74: int intB = 0;
-"75
+[; ;global.h: 78: int intB = 0;
+"79
 [v _intC `i ~T0 @X0 1 e ]
 [i _intC
 -> 0 `i
 ]
-[; ;global.h: 75: int intC = 0;
-"76
+[; ;global.h: 79: int intC = 0;
+"80
 [v _swX `i ~T0 @X0 1 e ]
 [i _swX
--> 0 `i
+-> 1 `i
 ]
-[; ;global.h: 76: int swX = 0;
-"79
+[; ;global.h: 80: int swX = 1;
+"83
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
 -> 0 `i
 ]
-[; ;global.h: 79: int switch1 = 0;
-"80
+[; ;global.h: 83: int switch1 = 0;
+"84
 [v _switch2 `i ~T0 @X0 1 e ]
 [i _switch2
 -> 0 `i
 ]
-[; ;global.h: 80: int switch2 = 0;
-"81
+[; ;global.h: 84: int switch2 = 0;
+"85
 [v _switch3 `i ~T0 @X0 1 e ]
 [i _switch3
 -> 0 `i
 ]
-[; ;global.h: 81: int switch3 = 0;
-"82
+[; ;global.h: 85: int switch3 = 0;
+"86
 [v _switch4 `i ~T0 @X0 1 e ]
 [i _switch4
 -> 0 `i
 ]
-[; ;global.h: 82: int switch4 = 0;
-"83
+[; ;global.h: 86: int switch4 = 0;
+"87
 [v _switch5 `i ~T0 @X0 1 e ]
 [i _switch5
 -> 0 `i
 ]
-[; ;global.h: 83: int switch5 = 0;
-"84
+[; ;global.h: 87: int switch5 = 0;
+"88
 [v _fsw1 `i ~T0 @X0 1 e ]
 [i _fsw1
 -> 0 `i
 ]
-[; ;global.h: 84: int fsw1 = 0;
-"85
+[; ;global.h: 88: int fsw1 = 0;
+"89
 [v _fsw2 `i ~T0 @X0 1 e ]
 [i _fsw2
 -> 0 `i
 ]
-[; ;global.h: 85: int fsw2 = 0;
-"87
+[; ;global.h: 89: int fsw2 = 0;
+"91
 [v _muxADC `i ~T0 @X0 1 e ]
 [i _muxADC
 -> 0 `i
 ]
-[; ;global.h: 87: int muxADC = 0;
-"89
+[; ;global.h: 91: int muxADC = 0;
+"93
 [v _bypass `i ~T0 @X0 1 e ]
 [i _bypass
 -> 0 `i
 ]
-[; ;global.h: 89: int bypass = 0;
-"90
+[; ;global.h: 93: int bypass = 0;
+"94
 [v _preset `i ~T0 @X0 1 e ]
 [i _preset
 -> 0 `i
 ]
-[; ;global.h: 90: int preset = 0;
-"91
+[; ;global.h: 94: int preset = 0;
+"95
+[v _targPreset `i ~T0 @X0 1 e ]
+[i _targPreset
+-> 0 `i
+]
+[; ;global.h: 95: int targPreset = 0;
+"96
+[v _presetPend `i ~T0 @X0 1 e ]
+[i _presetPend
+-> 0 `i
+]
+[; ;global.h: 96: int presetPend = 0;
+"97
+[v _pFlashCount `i ~T0 @X0 1 e ]
+[i _pFlashCount
+-> 0 `i
+]
+[; ;global.h: 97: int pFlashCount = 0;
+"98
+[v _pFlash `i ~T0 @X0 1 e ]
+[i _pFlash
+-> 0 `i
+]
+[; ;global.h: 98: int pFlash = 0;
+"100
 [v _bypMode `i ~T0 @X0 1 e ]
 [i _bypMode
 -> 1 `i
 ]
-[; ;global.h: 91: int bypMode = 1;
-"94
+[; ;global.h: 100: int bypMode = 1;
+"103
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 94: int tapFlash = 0;
-"95
+[; ;global.h: 103: int tapFlash = 0;
+"104
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 95: int tapOnTime = 5;
-"96
+[; ;global.h: 104: int tapOnTime = 5;
+"105
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 96: int tapDispCount = 0;
-"97
+[; ;global.h: 105: int tapDispCount = 0;
+"106
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 97: int currentTapTime = 500;
-"100
-[v _hiLo `i ~T0 @X0 1 e ]
-[i _hiLo
+[; ;global.h: 106: int currentTapTime = 500;
+"110
+[v _parameter `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 110: int parameter[12];
+"112
+[v _shift `i ~T0 @X0 1 e ]
+[i _shift
 -> 0 `i
 ]
-[; ;global.h: 100: int hiLo = 0;
-"101
+[; ;global.h: 112: int shift = 0;
+"114
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 101: int dataTarget = 0;
-"102
+[; ;global.h: 114: int dataTarget = 0;
+"115
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 102: int *dataPtr;
-"103
-[v _feedbackValue `i ~T0 @X0 1 e ]
-[i _feedbackValue
+[; ;global.h: 115: int *dataPtr;
+"117
+[v _fbkA `i ~T0 @X0 1 e ]
+[i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 103: int feedbackValue = 0;
-"104
-[v _levelValue `i ~T0 @X0 1 e ]
-[i _levelValue
+[; ;global.h: 117: int fbkA = 0;
+"118
+[v _lvlA `i ~T0 @X0 1 e ]
+[i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 104: int levelValue = 0;
-"105
-[v _timeValue `i ~T0 @X0 1 e ]
-[i _timeValue
+[; ;global.h: 118: int lvlA = 0;
+"119
+[v _timeA `i ~T0 @X0 1 e ]
+[i _timeA
 -> 0 `i
 ]
-[; ;global.h: 105: int timeValue = 0;
-"108
+[; ;global.h: 119: int timeA = 0;
+"121
+[v _fbkB `i ~T0 @X0 1 e ]
+[i _fbkB
+-> 0 `i
+]
+[; ;global.h: 121: int fbkB = 0;
+"122
+[v _lvlB `i ~T0 @X0 1 e ]
+[i _lvlB
+-> 0 `i
+]
+[; ;global.h: 122: int lvlB = 0;
+"123
+[v _timeB `i ~T0 @X0 1 e ]
+[i _timeB
+-> 0 `i
+]
+[; ;global.h: 123: int timeB = 0;
+"125
+[v _fbkC `i ~T0 @X0 1 e ]
+[i _fbkC
+-> 0 `i
+]
+[; ;global.h: 125: int fbkC = 0;
+"126
+[v _lvlC `i ~T0 @X0 1 e ]
+[i _lvlC
+-> 0 `i
+]
+[; ;global.h: 126: int lvlC = 0;
+"127
+[v _timeC `i ~T0 @X0 1 e ]
+[i _timeC
+-> 0 `i
+]
+[; ;global.h: 127: int timeC = 0;
+"130
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 108: int tapTimeCount = 0;
-"109
+[; ;global.h: 130: int tapTimeCount = 0;
+"131
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 109: int tapPrev = 0;
-"110
+[; ;global.h: 131: int tapPrev = 0;
+"132
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 110: long int tapAccum = 0;
-"111
+[; ;global.h: 132: long int tapAccum = 0;
+"133
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 111: int tap = 0;
-"112
+[; ;global.h: 133: int tap = 0;
+"134
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 112: int tapTime = 0;
-"113
+[; ;global.h: 134: int tapTime = 0;
+"135
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 113: int newTempo = 0;
-"114
+[; ;global.h: 135: int newTempo = 0;
+"136
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 114: int timeoutCount = 0;
-"116
+[; ;global.h: 136: int timeoutCount = 0;
+"138
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 116: int setupComplete = 0;
+[; ;global.h: 138: int setupComplete = 0;
+"139
+[v _sync `i ~T0 @X0 1 e ]
+[i _sync
+-> 0 `i
+]
+[; ;global.h: 139: int sync = 0;
 "16 systemConfig.c
 [v _setupTMR0 `(v ~T0 @X0 1 ef ]
 "17
@@ -13653,9 +13758,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 103: SSP2ADD = 0b10100000;
 "103
 [e = _SSP2ADD -> -> 160 `i `uc ]
-[; ;systemConfig.c: 104: SSP2MSK = 0b11110010;
+[; ;systemConfig.c: 104: SSP2MSK = 0b11000000;
 "104
-[e = _SSP2MSK -> -> 242 `i `uc ]
+[e = _SSP2MSK -> -> 192 `i `uc ]
 [; ;systemConfig.c: 105: SSP2CON1bits.SSPM = 0x6;
 "105
 [e = . . _SSP2CON1bits 0 0 -> -> 6 `i `uc ]
@@ -13917,301 +14022,358 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 209: TRISGbits.TRISG1 = 1;
 "209
 [e = . . _TRISGbits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 211: ANCON2bits.ANSEL13 = 0;
-"211
-[e = . . _ANCON2bits 0 5 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 212: TRISGbits.TRISG2 = 1;
+[; ;systemConfig.c: 210: PADCFG1bits.RGPU = 1;
+"210
+[e = . . _PADCFG1bits 0 4 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 212: ANCON2bits.ANSEL13 = 0;
 "212
+[e = . . _ANCON2bits 0 5 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 213: TRISGbits.TRISG2 = 1;
+"213
 [e = . . _TRISGbits 0 2 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 214: TRISEbits.TRISE6 = 1;
-"214
+[; ;systemConfig.c: 215: TRISEbits.TRISE6 = 1;
+"215
 [e = . . _TRISEbits 0 6 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 216: TRISDbits.TRISD1 = 1;
-"216
+[; ;systemConfig.c: 217: TRISDbits.TRISD1 = 1;
+"217
 [e = . . _TRISDbits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 218: ANCON2bits.ANSEL14 = 0;
+[; ;systemConfig.c: 218: PADCFG1bits.RDPU = 1;
 "218
+[e = . . _PADCFG1bits 0 7 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 220: ANCON2bits.ANSEL14 = 0;
+"220
 [e = . . _ANCON2bits 0 6 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 219: TRISGbits.TRISG3 = 1;
-"219
-[e = . . _TRISGbits 0 3 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 221: TRISDbits.TRISD4 = 1;
+[; ;systemConfig.c: 221: TRISGbits.TRISG3 = 1;
 "221
+[e = . . _TRISGbits 0 3 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 223: PADCFG1bits.REPU = 1;
+"223
+[e = . . _PADCFG1bits 0 6 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 224: TRISDbits.TRISD4 = 1;
+"224
 [e = . . _TRISDbits 0 4 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 222: TRISEbits.TRISE3 = 1;
-"222
-[e = . . _TRISEbits 0 3 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 225: TRISEbits.TRISE0 = 0;
+[; ;systemConfig.c: 225: TRISEbits.TRISE3 = 1;
 "225
+[e = . . _TRISEbits 0 3 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 228: TRISEbits.TRISE0 = 0;
+"228
 [e = . . _TRISEbits 0 0 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 226: TRISDbits.TRISD2 = 0;
-"226
-[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 229: TRISEbits.TRISE1 = 0;
+[; ;systemConfig.c: 229: TRISDbits.TRISD2 = 0;
 "229
+[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 232: TRISEbits.TRISE1 = 0;
+"232
 [e = . . _TRISEbits 0 1 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 230: ANCON3bits.ANSEL17 = 0;
-"230
+[; ;systemConfig.c: 233: ANCON3bits.ANSEL17 = 0;
+"233
 [e = . . _ANCON3bits 0 1 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 231: TRISHbits.TRISH1 = 0;
-"231
-[e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 234: TRISDbits.TRISD0 = 0;
+[; ;systemConfig.c: 234: TRISHbits.TRISH1 = 0;
 "234
-[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 235: TRISEbits.TRISE7 = 0;
-"235
-[e = . . _TRISEbits 0 7 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 236: TRISEbits.TRISE5 = 0;
-"236
-[e = . . _TRISEbits 0 5 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 237: TRISEbits.TRISE4 = 0;
+[e = . . _TRISHbits 0 1 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 237: TRISDbits.TRISD0 = 0;
 "237
-[e = . . _TRISEbits 0 4 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 238: ANCON3bits.ANSEL18 = 0;
+[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 238: TRISEbits.TRISE7 = 0;
 "238
-[e = . . _ANCON3bits 0 2 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 239: TRISHbits.TRISH2 = 0;
+[e = . . _TRISEbits 0 7 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 239: TRISEbits.TRISE5 = 0;
 "239
-[e = . . _TRISHbits 0 2 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 242: ANCON1bits.ANSEL6 = 0;
+[e = . . _TRISEbits 0 5 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 240: TRISEbits.TRISE4 = 0;
+"240
+[e = . . _TRISEbits 0 4 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 241: ANCON3bits.ANSEL18 = 0;
+"241
+[e = . . _ANCON3bits 0 2 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 242: TRISHbits.TRISH2 = 0;
 "242
-[e = . . _ANCON1bits 0 6 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 243: TRISFbits.TRISF2 = 0;
-"243
-[e = . . _TRISFbits 0 1 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 244: ANCON3bits.ANSEL23 = 0;
-"244
-[e = . . _ANCON3bits 0 7 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 245: TRISHbits.TRISH7 = 0;
+[e = . . _TRISHbits 0 2 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 245: ANCON1bits.ANSEL6 = 0;
 "245
-[e = . . _TRISHbits 0 7 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 248: ANCON2bits.ANSEL10 = 0;
+[e = . . _ANCON1bits 0 6 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 246: TRISFbits.TRISF2 = 0;
+"246
+[e = . . _TRISFbits 0 1 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 247: ANCON3bits.ANSEL23 = 0;
+"247
+[e = . . _ANCON3bits 0 7 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 248: TRISHbits.TRISH7 = 0;
 "248
-[e = . . _ANCON2bits 0 2 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 249: TRISFbits.TRISF6 = 0;
-"249
-[e = . . _TRISFbits 0 5 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 250: ANCON2bits.ANSEL9 = 0;
-"250
-[e = . . _ANCON2bits 0 1 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 251: TRISFbits.TRISF5 = 0;
+[e = . . _TRISHbits 0 7 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 251: ANCON2bits.ANSEL10 = 0;
 "251
-[e = . . _TRISFbits 0 4 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 254: ANCON3bits.ANSEL16 = 0;
+[e = . . _ANCON2bits 0 2 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 252: TRISFbits.TRISF6 = 0;
+"252
+[e = . . _TRISFbits 0 5 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 253: ANCON2bits.ANSEL9 = 0;
+"253
+[e = . . _ANCON2bits 0 1 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 254: TRISFbits.TRISF5 = 0;
 "254
-[e = . . _ANCON3bits 0 0 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 255: TRISHbits.TRISH0 = 0;
-"255
-[e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 256: TRISGbits.TRISG4 = 0;
-"256
-[e = . . _TRISGbits 0 4 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 257: ANCON2bits.ANSEL15 = 0;
+[e = . . _TRISFbits 0 4 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 257: ANCON3bits.ANSEL16 = 0;
 "257
-[e = . . _ANCON2bits 0 7 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 260: TRISCbits.TRISC7 = 1;
+[e = . . _ANCON3bits 0 0 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 258: TRISHbits.TRISH0 = 0;
+"258
+[e = . . _TRISHbits 0 0 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 259: TRISGbits.TRISG4 = 0;
+"259
+[e = . . _TRISGbits 0 4 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 260: ANCON2bits.ANSEL15 = 0;
 "260
+[e = . . _ANCON2bits 0 7 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 263: TRISCbits.TRISC7 = 1;
+"263
 [e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 261: TRISJbits.TRISJ4 = 1;
-"261
+[; ;systemConfig.c: 264: TRISJbits.TRISJ4 = 1;
+"264
 [e = . . _TRISJbits 0 4 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 262: TRISJbits.TRISJ5 = 1;
-"262
-[e = . . _TRISJbits 0 5 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 265: TRISCbits.TRISC1 = 1;
+[; ;systemConfig.c: 265: TRISJbits.TRISJ5 = 1;
 "265
+[e = . . _TRISJbits 0 5 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 268: TRISCbits.TRISC1 = 1;
+"268
 [e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 266: TRISCbits.TRISC0 = 1;
-"266
+[; ;systemConfig.c: 269: TRISCbits.TRISC0 = 1;
+"269
 [e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 267: TRISCbits.TRISC6 = 1;
-"267
-[e = . . _TRISCbits 0 6 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 270: ANCON3bits.ANSEL21 = 0;
+[; ;systemConfig.c: 270: TRISCbits.TRISC6 = 1;
 "270
-[e = . . _ANCON3bits 0 5 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 271: ANCON3bits.ANSEL20 = 0;
-"271
-[e = . . _ANCON3bits 0 4 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 272: TRISFbits.TRISF3 = 1;
-"272
-[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 273: TRISHbits.TRISH5 = 1;
+[e = . . _TRISCbits 0 6 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 273: ANCON3bits.ANSEL21 = 0;
 "273
-[e = . . _TRISHbits 0 5 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 274: TRISHbits.TRISH4 = 1;
+[e = . . _ANCON3bits 0 5 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 274: ANCON3bits.ANSEL20 = 0;
 "274
-[e = . . _TRISHbits 0 4 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 277: TRISBbits.TRISB5 = 0;
+[e = . . _ANCON3bits 0 4 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 275: TRISFbits.TRISF3 = 1;
+"275
+[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 276: TRISHbits.TRISH5 = 1;
+"276
+[e = . . _TRISHbits 0 5 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 277: TRISHbits.TRISH4 = 1;
 "277
-[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 278: TRISDbits.TRISD3 = 0;
-"278
-[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-[; ;systemConfig.c: 279: LATB5 = 1;
-"279
-[e = _LATB5 -> -> 1 `i `b ]
-[; ;systemConfig.c: 280: LATD3 = 0;
+[e = . . _TRISHbits 0 4 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 280: TRISBbits.TRISB5 = 0;
 "280
-[e = _LATD3 -> -> 0 `i `b ]
-[; ;systemConfig.c: 283: TRISJbits.TRISJ0 = 1;
+[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 281: TRISDbits.TRISD3 = 0;
+"281
+[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
+[; ;systemConfig.c: 282: LATB5 = 1;
+"282
+[e = _LATB5 -> -> 1 `i `b ]
+[; ;systemConfig.c: 283: LATD3 = 0;
 "283
-[e = . . _TRISJbits 0 0 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 284: TRISJbits.TRISJ1 = 1;
-"284
-[e = . . _TRISJbits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 285: TRISDbits.TRISD7 = 1;
-"285
-[e = . . _TRISDbits 0 7 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 286: }
+[e = _LATD3 -> -> 0 `i `b ]
+[; ;systemConfig.c: 286: TRISJbits.TRISJ0 = 1;
 "286
+[e = . . _TRISJbits 0 0 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 287: TRISJbits.TRISJ1 = 1;
+"287
+[e = . . _TRISJbits 0 1 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 288: TRISDbits.TRISD7 = 1;
+"288
+[e = . . _TRISDbits 0 7 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 289: }
+"289
 [e :UE 1437 ]
 }
-"288
+"291
 [v _interruptInit `(v ~T0 @X0 1 ef ]
-"289
+"292
 {
-[; ;systemConfig.c: 288: void interruptInit(void)
-[; ;systemConfig.c: 289: {
+[; ;systemConfig.c: 291: void interruptInit(void)
+[; ;systemConfig.c: 292: {
 [e :U _interruptInit ]
 [f ]
-[; ;systemConfig.c: 290: INTCONbits.T0IE = 0x1;
-"290
-[e = . . _INTCONbits 1 5 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 291: PIE1bits.TMR1IE = 0x1;
-"291
-[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 292: PIE1bits.TMR2IE = 0x1;
-"292
-[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 293: PIE2bits.TMR3IE = 0x1;
+[; ;systemConfig.c: 293: INTCONbits.T0IE = 0x1;
 "293
-[e = . . _PIE2bits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 294: PIE5bits.TMR4IE = 0x1;
+[e = . . _INTCONbits 1 5 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 294: PIE1bits.TMR1IE = 0x1;
 "294
-[e = . . _PIE5bits 0 0 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 296: PIE2bits.SSP2IE = 0x1;
+[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 295: PIE1bits.TMR2IE = 0x1;
+"295
+[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 296: PIE2bits.TMR3IE = 0x1;
 "296
-[e = . . _PIE2bits 0 6 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 298: INTCONbits.IOCIE = 0x1;
-"298
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 299: IOCNbits.IOCN1 = 0x1;
+[e = . . _PIE2bits 0 1 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 297: PIE5bits.TMR4IE = 0x1;
+"297
+[e = . . _PIE5bits 0 0 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 299: PIE2bits.SSP2IE = 0x1;
 "299
-[e = . . _IOCNbits 0 1 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 300: IOCNbits.IOCN2 = 0x1;
-"300
-[e = . . _IOCNbits 0 2 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 301: IOCNbits.IOCN3 = 0x1;
+[e = . . _PIE2bits 0 6 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 301: INTCONbits.IOCIE = 0x1;
 "301
-[e = . . _IOCNbits 0 3 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 302: IOCNbits.IOCN4 = 0x1;
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 302: IOCNbits.IOCN1 = 0x1;
 "302
-[e = . . _IOCNbits 0 4 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 303: IOCNbits.IOCN5 = 0x1;
+[e = . . _IOCNbits 0 1 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 303: IOCNbits.IOCN2 = 0x1;
 "303
-[e = . . _IOCNbits 0 5 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 304: IOCNbits.IOCN6 = 0x1;
+[e = . . _IOCNbits 0 2 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 304: IOCNbits.IOCN3 = 0x1;
 "304
-[e = . . _IOCNbits 0 6 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 305: IOCNbits.IOCN7 = 0x1;
+[e = . . _IOCNbits 0 3 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 305: IOCNbits.IOCN4 = 0x1;
 "305
-[e = . . _IOCNbits 0 7 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 307: INTCONbits.PEIE = 0x1;
+[e = . . _IOCNbits 0 4 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 306: IOCNbits.IOCN5 = 0x1;
+"306
+[e = . . _IOCNbits 0 5 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 307: IOCNbits.IOCN6 = 0x1;
 "307
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 308: INTCONbits.GIE = 0x1;
+[e = . . _IOCNbits 0 6 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 308: IOCNbits.IOCN7 = 0x1;
 "308
+[e = . . _IOCNbits 0 7 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 310: INTCONbits.PEIE = 0x1;
+"310
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;systemConfig.c: 311: INTCONbits.GIE = 0x1;
+"311
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 309: }
-"309
+[; ;systemConfig.c: 312: }
+"312
 [e :UE 1438 ]
 }
-"311
-[v _bypassSetup `(v ~T0 @X0 1 ef ]
-"312
-{
-[; ;systemConfig.c: 311: void bypassSetup(void)
-[; ;systemConfig.c: 312: {
-[e :U _bypassSetup ]
-[f ]
-[; ;systemConfig.c: 313: LATB5 = 1;
-"313
-[e = _LATB5 -> -> 1 `i `b ]
-[; ;systemConfig.c: 314: LATD3 = 1;
 "314
-[e = _LATD3 -> -> 1 `i `b ]
-[; ;systemConfig.c: 315: LATE1 = 1;
+[v _defaultLED `(v ~T0 @X0 1 ef ]
 "315
-[e = _LATE1 -> -> 1 `i `b ]
-[; ;systemConfig.c: 316: LATH1 = 0;
+{
+[; ;systemConfig.c: 314: void defaultLED(void)
+[; ;systemConfig.c: 315: {
+[e :U _defaultLED ]
+[f ]
+[; ;systemConfig.c: 316: LATH7 = 1;
 "316
-[e = _LATH1 -> -> 0 `i `b ]
-[; ;systemConfig.c: 317: LATD2 = 0;
+[e = _LATH7 -> -> 1 `i `b ]
+[; ;systemConfig.c: 317: LATF2 = 1;
 "317
-[e = _LATD2 -> -> 0 `i `b ]
-[; ;systemConfig.c: 318: }
+[e = _LATF2 -> -> 1 `i `b ]
+[; ;systemConfig.c: 318: LATF5 = 1;
 "318
+[e = _LATF5 -> -> 1 `i `b ]
+[; ;systemConfig.c: 319: LATF6 = 1;
+"319
+[e = _LATF6 -> -> 1 `i `b ]
+[; ;systemConfig.c: 320: LATG4 = 1;
+"320
+[e = _LATG4 -> -> 1 `i `b ]
+[; ;systemConfig.c: 321: LATH0 = 1;
+"321
+[e = _LATH0 -> -> 1 `i `b ]
+[; ;systemConfig.c: 322: LATD0 = 1;
+"322
+[e = _LATD0 -> -> 1 `i `b ]
+[; ;systemConfig.c: 323: LATE7 = 1;
+"323
+[e = _LATE7 -> -> 1 `i `b ]
+[; ;systemConfig.c: 324: LATE5 = 1;
+"324
+[e = _LATE5 -> -> 1 `i `b ]
+[; ;systemConfig.c: 325: LATE4 = 1;
+"325
+[e = _LATE4 -> -> 1 `i `b ]
+[; ;systemConfig.c: 326: LATH2 = 1;
+"326
+[e = _LATH2 -> -> 1 `i `b ]
+[; ;systemConfig.c: 327: }
+"327
 [e :UE 1439 ]
 }
-"320
-[v _systemInit `(v ~T0 @X0 1 ef ]
-"321
+"329
+[v _bypassSetup `(v ~T0 @X0 1 ef ]
+"330
 {
-[; ;systemConfig.c: 320: void systemInit(void)
-[; ;systemConfig.c: 321: {
+[; ;systemConfig.c: 329: void bypassSetup(void)
+[; ;systemConfig.c: 330: {
+[e :U _bypassSetup ]
+[f ]
+[; ;systemConfig.c: 331: LATB5 = 1;
+"331
+[e = _LATB5 -> -> 1 `i `b ]
+[; ;systemConfig.c: 332: LATD3 = 1;
+"332
+[e = _LATD3 -> -> 1 `i `b ]
+[; ;systemConfig.c: 333: LATE1 = 1;
+"333
+[e = _LATE1 -> -> 1 `i `b ]
+[; ;systemConfig.c: 334: LATH1 = 0;
+"334
+[e = _LATH1 -> -> 0 `i `b ]
+[; ;systemConfig.c: 335: LATD2 = 0;
+"335
+[e = _LATD2 -> -> 0 `i `b ]
+[; ;systemConfig.c: 336: }
+"336
+[e :UE 1440 ]
+}
+"338
+[v _systemInit `(v ~T0 @X0 1 ef ]
+"339
+{
+[; ;systemConfig.c: 338: void systemInit(void)
+[; ;systemConfig.c: 339: {
 [e :U _systemInit ]
 [f ]
-[; ;systemConfig.c: 322: clockSwitch();
-"322
-[e ( _clockSwitch ..  ]
-[; ;systemConfig.c: 324: setupTMR0();
-"324
-[e ( _setupTMR0 ..  ]
-[; ;systemConfig.c: 325: setupTMR1();
-"325
-[e ( _setupTMR1 ..  ]
-[; ;systemConfig.c: 326: setupTMR2();
-"326
-[e ( _setupTMR2 ..  ]
-[; ;systemConfig.c: 327: setupTMR4();
-"327
-[e ( _setupTMR4 ..  ]
-[; ;systemConfig.c: 329: setupI2C1();
-"329
-[e ( _setupI2C1 ..  ]
-[; ;systemConfig.c: 330: setupI2C2();
-"330
-[e ( _setupI2C2 ..  ]
-[; ;systemConfig.c: 332: setupADC();
-"332
-[e ( _setupADC ..  ]
-[; ;systemConfig.c: 335: mapPeripheralPins();
-"335
-[e ( _mapPeripheralPins ..  ]
-[; ;systemConfig.c: 336: interfaceInit();
-"336
-[e ( _interfaceInit ..  ]
-[; ;systemConfig.c: 337: bypassSetup();
-"337
-[e ( _bypassSetup ..  ]
-[; ;systemConfig.c: 338: killLEDs();
-"338
-[e ( _killLEDs ..  ]
-[; ;systemConfig.c: 339: startupSequence();
-"339
-[e ( _startupSequence ..  ]
-[; ;systemConfig.c: 340: killLEDs();
+[; ;systemConfig.c: 340: clockSwitch();
 "340
-[e ( _killLEDs ..  ]
-[; ;systemConfig.c: 342: bypassSetup();
+[e ( _clockSwitch ..  ]
+[; ;systemConfig.c: 342: setupTMR0();
 "342
-[e ( _bypassSetup ..  ]
-[; ;systemConfig.c: 344: interruptInit();
+[e ( _setupTMR0 ..  ]
+[; ;systemConfig.c: 343: setupTMR1();
+"343
+[e ( _setupTMR1 ..  ]
+[; ;systemConfig.c: 344: setupTMR2();
 "344
-[e ( _interruptInit ..  ]
-[; ;systemConfig.c: 345: }
+[e ( _setupTMR2 ..  ]
+[; ;systemConfig.c: 345: setupTMR4();
 "345
-[e :UE 1440 ]
+[e ( _setupTMR4 ..  ]
+[; ;systemConfig.c: 347: setupI2C1();
+"347
+[e ( _setupI2C1 ..  ]
+[; ;systemConfig.c: 348: setupI2C2();
+"348
+[e ( _setupI2C2 ..  ]
+[; ;systemConfig.c: 350: setupADC();
+"350
+[e ( _setupADC ..  ]
+[; ;systemConfig.c: 353: mapPeripheralPins();
+"353
+[e ( _mapPeripheralPins ..  ]
+[; ;systemConfig.c: 354: interfaceInit();
+"354
+[e ( _interfaceInit ..  ]
+[; ;systemConfig.c: 355: bypassSetup();
+"355
+[e ( _bypassSetup ..  ]
+[; ;systemConfig.c: 356: killLEDs();
+"356
+[e ( _killLEDs ..  ]
+[; ;systemConfig.c: 357: startupSequence();
+"357
+[e ( _startupSequence ..  ]
+[; ;systemConfig.c: 358: defaultLED();
+"358
+[e ( _defaultLED ..  ]
+[; ;systemConfig.c: 359: killLEDs();
+"359
+[e ( _killLEDs ..  ]
+[; ;systemConfig.c: 360: bypassSetup();
+"360
+[e ( _bypassSetup ..  ]
+[; ;systemConfig.c: 361: interruptInit();
+"361
+[e ( _interruptInit ..  ]
+[; ;systemConfig.c: 362: }
+"362
+[e :UE 1441 ]
 }
