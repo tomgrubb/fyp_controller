@@ -18,16 +18,16 @@
 int paramAddress[] =
 {
     0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-    0xB1, 0xB3, 0xB5, 0xB7
+    0xB1, 0xB3, 0xB5, 0xB7, 0xBF 
 };
 
 int presetAdd[] = 
 {
     0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00
+    0x10,
+    0x20,
+    0x30,
+    0x40
 };
 
 void I2C1_Write_EEPROM(char memValue, char value)
@@ -52,6 +52,8 @@ void I2C1_Write_EEPROM(char memValue, char value)
     PIR1bits.SSP1IF = 0x0;          // clear flag
     SSP1BUF = value;                // send data
     
+    SSP1CON2bits.PEN = 0x1;         // send 'STOP' bit
+    
     while (SSP1CON2bits.ACKSTAT);   // wait for ACK
     while(!PIR1bits.SSP1IF);        // wait here
     SSP1CON2bits.PEN = 0x1;         // send 'STOP' bit
@@ -61,7 +63,7 @@ void I2C1_Write_EEPROM(char memValue, char value)
     SSP1CON1bits.SSPEN = 0x1;       // DISABLE I2C Module 
 }
 
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes)
 {
     char wrDevAddr = EEPROM_ADD;
     char memValue = presetAdd[slot];
@@ -97,7 +99,7 @@ void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
     SSP1CON1bits.SSPEN = 0x1;       // DISABLE I2C Module 
 }
 
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes)
 {
     char dummyWrite = EEPROM_ADD;
     char rdAddr = (dummyWrite|0x01);
@@ -134,12 +136,21 @@ void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
     
     SSP1CON2bits.RCEN = 0x1;        // enable receipt
     
-    for (n = 0; n < bytes; n++)
+    while(!SSP1STATbits.BF);        // wait for data
+    while (!PIR1bits.SSP1IF);       // wait here
+    data[n] = SSP1BUF;  
+    
+    for (n = 1; n < bytes; n++)
     {
+        SSP1CON2bits.ACKDT = 0x0;       // set bit for ACK
+        SSP1CON2bits.ACKEN = 0x1;       // send ACK
+        while(SSP1CON2bits.ACKEN);      // wait here
+        PIR1bits.SSP1IF = 0x0;          // reset flag
+        SSP1CON2bits.RCEN = 0x1;        // enable receipt
+        
         while(!SSP1STATbits.BF);        // wait for data
         while (!PIR1bits.SSP1IF);       // wait here
-    
-        data[n] = SSP1BUF;
+        data[n] = SSP1BUF;               
     }
     
     SSP1CON2bits.ACKDT = 0x1;       // set bit for NACK
@@ -153,6 +164,16 @@ void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
     
     PIR1bits.SSP1IF = 0x0;          // reset flag
     SSP1CON1bits.SSPEN = 0x1;       // DISABLE I2C Module  
+}
+
+void presetCtrl(int slot)
+{
+    char updateValue;
+    char bitSet = 2^slot;
+    
+    updateValue = (slotUsed | bitSet);
+    
+    I2C1_Write_EEPROM(0x40, updateValue);
 }
 
 char I2C1_Read_EEPROM(char devAddr, char memValue)
@@ -242,14 +263,16 @@ void sendParam(void)
     int n = 0;
     
     dataTarget = SSP2BUF;       // read address from buffer
-    //while(SSP2STATbits.BF);     // wait until buffer clear
-
-    
-    for (n = 0; n < 12; n++)
+ 
+    for (n = 0; n < 13; n++)
     {
         if (dataTarget == paramAddress[n])
         {
-            dataPtr = parameter[n];
+            if (n == 12)
+            {
+                dataPtr = setupComplete;
+            }
+            else dataPtr = parameter[n];
             break;
         }
     }

@@ -108,7 +108,7 @@ void flashLED(void)
     if (presetPend)
     {
         pFlashCount++;
-        if (pFlashCount > 200)
+        if (pFlashCount > 150)
         {
             if (pFlash)
             {
@@ -120,6 +120,20 @@ void flashLED(void)
             }
             pFlash ^= 1;
             pFlashCount = 0;
+        }
+    }
+    if ((armA + armB + armC) > 0)
+    {
+        armFlashCount++;
+        if (armFlashCount > 500)
+        {
+            armFlashCount = 0;
+            if (armFlashToggle)
+            {
+                updateLineLEDs(intA, intB, intC);
+            }
+            else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
+            armFlashToggle ^= 1;
         }
     }
 }
@@ -205,7 +219,7 @@ void serviceSwitches(void)
         }
     }
     
-    if (fsw2)   // tap tempo footswitch
+    if (fsw2)   // tap tempo foot switch
     {
         fsw2 = 0;
         if (AltFSW)
@@ -219,26 +233,18 @@ void serviceSwitches(void)
         switch1 = 0;
         if (!SW1)
         {
-            intA++;
-            if (intA >= 3)
+            if (!shift)
             {
-                intA = 0;
-            }
-            
-            if (intA == 0)
-            {
-                ALED_UP = 1;
-                ALED_DWN = 0;
-            }
-            else if (intA == 1)
-            {
-                ALED_UP = 0;
-                ALED_DWN = 1;
+                intA++;
+                if (intA > 3)
+                {
+                    intA = 0;
+                }
             }
             else
             {
-                ALED_UP = 1;
-                ALED_DWN = 1;
+                armA ^= 1;
+                shiftAction = 1;
             }
         }
     }
@@ -248,26 +254,18 @@ void serviceSwitches(void)
         switch2 = 0;
         if (!SW2)
         {
-            intB++;
-            if (intB >= 3)
+            if (!shift)
             {
-                intB = 0;
-            }
-            
-            if (intB == 0)
-            {
-                BLED_UP = 1;
-                BLED_DWN = 0;
-            }
-            else if (intB == 1)
-            {
-                BLED_UP = 0;
-                BLED_DWN = 1;
+                intB++;
+                if (intB > 3)
+                {
+                    intB = 0;
+                }
             }
             else
             {
-                BLED_UP = 1;
-                BLED_DWN = 1;
+                armB ^= 1;
+                shiftAction = 1;
             }
         }
     }
@@ -277,29 +275,26 @@ void serviceSwitches(void)
         switch3 = 0;
         if (!SW3)
         {
-            intC++;
-            if (intC >= 3)
+            if (!shift)
             {
-                intC = 0;
-            }
-            
-            if (intC == 0)
-            {
-                CLED_UP = 1;
-                CLED_DWN = 0;
-            }
-            else if (intC == 1)
-            {
-                CLED_UP = 0;
-                CLED_DWN = 1;
+                intC++;
+                if (intC > 3)
+                {
+                    intC = 0;
+                }
             }
             else
             {
-                CLED_UP = 1;
-                CLED_DWN = 1;
+                armC ^= 1;
+                shiftAction = 1;
             }
         }
     }
+    
+//    linesArmed = ((armA << 2) | (armB << 1) | (armC));
+//    parameter[13] = linesArmed;
+    
+    updateLineLEDs(intA, intB, intC);
     
     if (switch4)
     {
@@ -321,6 +316,10 @@ void serviceSwitches(void)
                 {
                     // set target preset to read/write
                     targPreset = preset;
+                    if (!targPreset)
+                    {
+                        targPreset = 1; 
+                    }
                     presetPend = 1;
                     if (targPreset > 1)
                     {
@@ -361,7 +360,7 @@ void serviceSwitches(void)
                 IOCNbits.IOCN7 = 0x1;
                 IOCPbits.IOCP7 = 0x0;
                 
-                if (!presetPend)
+                if (!shiftAction)
                 {
                     swX ^= 1;
                     bypMode = swX;
@@ -379,10 +378,11 @@ void serviceSwitches(void)
                 else
                 {
                     presetPend = 0;
+                    shiftAction = 0;
                     preset = targPreset;
                     pFlash = 0;
                     pFlashCount = 0;
-                    I2C1_Page_Write_EEPROM(preset, parameter, 12);
+                    savePend = 1;
                     updatePresetLEDs(preset);
                 }
             }
@@ -527,6 +527,72 @@ void readInterval(int select)
     P1LED = bitA;
     P2LED = bitB;
     P3LED = bitC;          
+}
+
+void updateLineLEDs(int lineA, int lineB, int lineC)
+{
+    if (lineA == 1)
+    {
+        ALED_UP = 1;
+        ALED_DWN = 0;
+    }
+    else if (lineA == 2)
+    {
+        ALED_UP = 0;
+        ALED_DWN = 1;
+    }
+    else if (lineA == 3)
+    {
+        ALED_UP = 1;
+        ALED_DWN = 1;
+    }
+    else
+    {
+        ALED_UP = 0;
+        ALED_DWN = 0;
+    }
+    
+    if (lineB == 1)
+    {
+        BLED_UP = 1;
+        BLED_DWN = 0;
+    }
+    else if (lineB == 2)
+    {
+        BLED_UP = 0;
+        BLED_DWN = 1;
+    }
+    else if (lineB == 3)
+    {
+        BLED_UP = 1;
+        BLED_DWN = 1;
+    }
+    else
+    {
+        BLED_UP = 0;
+        BLED_DWN = 0;
+    }
+    
+    if (lineC == 1)
+    {
+        CLED_UP = 1;
+        CLED_DWN = 0;
+    }
+    else if (lineC == 2)
+    {
+        CLED_UP = 0;
+        CLED_DWN = 1;
+    }
+    else if (lineC == 3)
+    {
+        CLED_UP = 1;
+        CLED_DWN = 1;
+    }
+    else
+    {
+        CLED_UP = 0;
+        CLED_DWN = 0;
+    }
 }
 
 void updatePresetLEDs(int psNum)

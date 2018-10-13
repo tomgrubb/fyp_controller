@@ -648,9 +648,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATH1 `Vb ~T0 @X0 0 e@31873 ]
 "33644
 [v _LATD2 `Vb ~T0 @X0 0 e@31842 ]
-"59 global.h
+"60 global.h
 [v _killLEDs `(v ~T0 @X0 0 ef ]
-"70
+"71
 [v _startupSequence `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -13247,291 +13247,359 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;global.h: 55: void interruptInit(void);
-[; ;global.h: 56: void systemInit(void);
-[; ;global.h: 57: int ADC_Read(int channel);
-[; ;global.h: 58: void updateLEDs(void);
-[; ;global.h: 59: void killLEDs(void);
-[; ;global.h: 60: void I2C1_Write_EEPROM(char memValue, char value);
-[; ;global.h: 61: void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-[; ;global.h: 62: void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
-[; ;global.h: 63: char I2C1_Read_EEPROM(char devAddr, char memValue);
-[; ;global.h: 64: void I2C1_Write_DigiPot(char value);
-[; ;global.h: 65: void readInterval(int select);
-[; ;global.h: 66: void tapLED(void);
-[; ;global.h: 67: void flashLED(void);
-[; ;global.h: 68: void checkSwitches(void);
-[; ;global.h: 69: void serviceSwitches(void);
-[; ;global.h: 70: void startupSequence(void);
-[; ;global.h: 71: void sendParam(void);
-[; ;global.h: 72: void processTaps(void);
-[; ;global.h: 73: void updatePresetLEDs(int psNum);
-[; ;global.h: 74: int readToggle(int target);
-[; ;global.h: 75: int absVal(int val);
-"77 global.h
+[; ;global.h: 56: void interruptInit(void);
+[; ;global.h: 57: void systemInit(void);
+[; ;global.h: 58: int ADC_Read(int channel);
+[; ;global.h: 59: void updateLEDs(void);
+[; ;global.h: 60: void killLEDs(void);
+[; ;global.h: 61: void I2C1_Write_EEPROM(char memValue, char value);
+[; ;global.h: 62: void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+[; ;global.h: 63: void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
+[; ;global.h: 64: char I2C1_Read_EEPROM(char devAddr, char memValue);
+[; ;global.h: 65: void I2C1_Write_DigiPot(char value);
+[; ;global.h: 66: void readInterval(int select);
+[; ;global.h: 67: void tapLED(void);
+[; ;global.h: 68: void flashLED(void);
+[; ;global.h: 69: void checkSwitches(void);
+[; ;global.h: 70: void serviceSwitches(void);
+[; ;global.h: 71: void startupSequence(void);
+[; ;global.h: 72: void sendParam(void);
+[; ;global.h: 73: void processTaps(void);
+[; ;global.h: 74: void updatePresetLEDs(int psNum);
+[; ;global.h: 75: void updateLineLEDs(int lineA, int lineB, int lineC);
+[; ;global.h: 76: int readToggle(int target);
+[; ;global.h: 77: int absVal(int val);
+[; ;global.h: 78: void presetCtrl(int slot);
+"80 global.h
 [v _intA `i ~T0 @X0 1 e ]
 [i _intA
 -> 0 `i
 ]
-[; ;global.h: 77: int intA = 0;
-"78
+[; ;global.h: 80: int intA = 0;
+"81
 [v _intB `i ~T0 @X0 1 e ]
 [i _intB
 -> 0 `i
 ]
-[; ;global.h: 78: int intB = 0;
-"79
+[; ;global.h: 81: int intB = 0;
+"82
 [v _intC `i ~T0 @X0 1 e ]
 [i _intC
 -> 0 `i
 ]
-[; ;global.h: 79: int intC = 0;
-"80
+[; ;global.h: 82: int intC = 0;
+"83
 [v _swX `i ~T0 @X0 1 e ]
 [i _swX
 -> 1 `i
 ]
-[; ;global.h: 80: int swX = 1;
-"83
+[; ;global.h: 83: int swX = 1;
+"84
+[v _shiftAction `i ~T0 @X0 1 e ]
+[i _shiftAction
+-> 0 `i
+]
+[; ;global.h: 84: int shiftAction = 0;
+"87
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
 -> 0 `i
 ]
-[; ;global.h: 83: int switch1 = 0;
-"84
+[; ;global.h: 87: int switch1 = 0;
+"88
 [v _switch2 `i ~T0 @X0 1 e ]
 [i _switch2
 -> 0 `i
 ]
-[; ;global.h: 84: int switch2 = 0;
-"85
+[; ;global.h: 88: int switch2 = 0;
+"89
 [v _switch3 `i ~T0 @X0 1 e ]
 [i _switch3
 -> 0 `i
 ]
-[; ;global.h: 85: int switch3 = 0;
-"86
+[; ;global.h: 89: int switch3 = 0;
+"90
 [v _switch4 `i ~T0 @X0 1 e ]
 [i _switch4
 -> 0 `i
 ]
-[; ;global.h: 86: int switch4 = 0;
-"87
+[; ;global.h: 90: int switch4 = 0;
+"91
 [v _switch5 `i ~T0 @X0 1 e ]
 [i _switch5
 -> 0 `i
 ]
-[; ;global.h: 87: int switch5 = 0;
-"88
+[; ;global.h: 91: int switch5 = 0;
+"92
 [v _fsw1 `i ~T0 @X0 1 e ]
 [i _fsw1
 -> 0 `i
 ]
-[; ;global.h: 88: int fsw1 = 0;
-"89
+[; ;global.h: 92: int fsw1 = 0;
+"93
 [v _fsw2 `i ~T0 @X0 1 e ]
 [i _fsw2
 -> 0 `i
 ]
-[; ;global.h: 89: int fsw2 = 0;
-"91
+[; ;global.h: 93: int fsw2 = 0;
+"94
+[v _bounceCount `i ~T0 @X0 1 e ]
+[i _bounceCount
+-> 0 `i
+]
+[; ;global.h: 94: int bounceCount = 0;
+"96
 [v _muxADC `i ~T0 @X0 1 e ]
 [i _muxADC
 -> 0 `i
 ]
-[; ;global.h: 91: int muxADC = 0;
-"93
+[; ;global.h: 96: int muxADC = 0;
+"98
 [v _bypass `i ~T0 @X0 1 e ]
 [i _bypass
 -> 0 `i
 ]
-[; ;global.h: 93: int bypass = 0;
-"94
+[; ;global.h: 98: int bypass = 0;
+"99
 [v _preset `i ~T0 @X0 1 e ]
 [i _preset
 -> 0 `i
 ]
-[; ;global.h: 94: int preset = 0;
-"95
+[; ;global.h: 99: int preset = 0;
+"100
 [v _targPreset `i ~T0 @X0 1 e ]
 [i _targPreset
 -> 0 `i
 ]
-[; ;global.h: 95: int targPreset = 0;
-"96
+[; ;global.h: 100: int targPreset = 0;
+"101
 [v _presetPend `i ~T0 @X0 1 e ]
 [i _presetPend
 -> 0 `i
 ]
-[; ;global.h: 96: int presetPend = 0;
-"97
+[; ;global.h: 101: int presetPend = 0;
+"102
+[v _savePend `i ~T0 @X0 1 e ]
+[i _savePend
+-> 0 `i
+]
+[; ;global.h: 102: int savePend = 0;
+"103
+[v _slotUsed `i ~T0 @X0 1 e ]
+[i _slotUsed
+-> 0 `i
+]
+[; ;global.h: 103: int slotUsed = 0;
+"104
 [v _pFlashCount `i ~T0 @X0 1 e ]
 [i _pFlashCount
 -> 0 `i
 ]
-[; ;global.h: 97: int pFlashCount = 0;
-"98
+[; ;global.h: 104: int pFlashCount = 0;
+"105
 [v _pFlash `i ~T0 @X0 1 e ]
 [i _pFlash
 -> 0 `i
 ]
-[; ;global.h: 98: int pFlash = 0;
-"100
+[; ;global.h: 105: int pFlash = 0;
+"107
 [v _bypMode `i ~T0 @X0 1 e ]
 [i _bypMode
 -> 1 `i
 ]
-[; ;global.h: 100: int bypMode = 1;
-"103
+[; ;global.h: 107: int bypMode = 1;
+"110
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 103: int tapFlash = 0;
-"104
+[; ;global.h: 110: int tapFlash = 0;
+"111
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 104: int tapOnTime = 5;
-"105
+[; ;global.h: 111: int tapOnTime = 5;
+"112
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 105: int tapDispCount = 0;
-"106
+[; ;global.h: 112: int tapDispCount = 0;
+"113
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 106: int currentTapTime = 500;
-"110
+[; ;global.h: 113: int currentTapTime = 500;
+"114
+[v _armFlashCount `i ~T0 @X0 1 e ]
+[i _armFlashCount
+-> 0 `i
+]
+[; ;global.h: 114: int armFlashCount = 0;
+"115
+[v _armFlash `i ~T0 @X0 1 e ]
+[i _armFlash
+-> 0 `i
+]
+[; ;global.h: 115: int armFlash = 0;
+"116
+[v _armFlashToggle `i ~T0 @X0 1 e ]
+[i _armFlashToggle
+-> 0 `i
+]
+[; ;global.h: 116: int armFlashToggle = 0;
+"119
 [v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 110: int parameter[12];
-"112
+[; ;global.h: 119: int parameter[12];
+"121
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 112: int shift = 0;
-"114
+[; ;global.h: 121: int shift = 0;
+"122
+[v _armA `i ~T0 @X0 1 e ]
+[i _armA
+-> 0 `i
+]
+[; ;global.h: 122: int armA = 0;
+"123
+[v _armB `i ~T0 @X0 1 e ]
+[i _armB
+-> 0 `i
+]
+[; ;global.h: 123: int armB = 0;
+"124
+[v _armC `i ~T0 @X0 1 e ]
+[i _armC
+-> 0 `i
+]
+[; ;global.h: 124: int armC = 0;
+"125
+[v _linesArmed `i ~T0 @X0 1 e ]
+[i _linesArmed
+-> 0 `i
+]
+[; ;global.h: 125: int linesArmed = 0;
+"127
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 114: int dataTarget = 0;
-"115
+[; ;global.h: 127: int dataTarget = 0;
+"128
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 115: int *dataPtr;
-"117
+[; ;global.h: 128: int *dataPtr;
+"130
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 117: int fbkA = 0;
-"118
+[; ;global.h: 130: int fbkA = 0;
+"131
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 118: int lvlA = 0;
-"119
+[; ;global.h: 131: int lvlA = 0;
+"132
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 119: int timeA = 0;
-"121
+[; ;global.h: 132: int timeA = 0;
+"134
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 121: int fbkB = 0;
-"122
+[; ;global.h: 134: int fbkB = 0;
+"135
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 122: int lvlB = 0;
-"123
+[; ;global.h: 135: int lvlB = 0;
+"136
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 123: int timeB = 0;
-"125
+[; ;global.h: 136: int timeB = 0;
+"138
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 125: int fbkC = 0;
-"126
+[; ;global.h: 138: int fbkC = 0;
+"139
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 126: int lvlC = 0;
-"127
+[; ;global.h: 139: int lvlC = 0;
+"140
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 127: int timeC = 0;
-"130
+[; ;global.h: 140: int timeC = 0;
+"143
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 130: int tapTimeCount = 0;
-"131
+[; ;global.h: 143: int tapTimeCount = 0;
+"144
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 131: int tapPrev = 0;
-"132
+[; ;global.h: 144: int tapPrev = 0;
+"145
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 132: long int tapAccum = 0;
-"133
+[; ;global.h: 145: long int tapAccum = 0;
+"146
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 133: int tap = 0;
-"134
+[; ;global.h: 146: int tap = 0;
+"147
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 134: int tapTime = 0;
-"135
+[; ;global.h: 147: int tapTime = 0;
+"148
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 135: int newTempo = 0;
-"136
+[; ;global.h: 148: int newTempo = 0;
+"149
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 136: int timeoutCount = 0;
-"138
+[; ;global.h: 149: int timeoutCount = 0;
+"151
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 138: int setupComplete = 0;
-"139
+[; ;global.h: 151: int setupComplete = 0;
+"152
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 139: int sync = 0;
+[; ;global.h: 152: int sync = 0;
 "16 systemConfig.c
 [v _setupTMR0 `(v ~T0 @X0 1 ef ]
 "17
@@ -13719,9 +13787,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;systemConfig.c: 81: TRISCbits.TRISC4 = 0x1;
 "81
 [e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
-[; ;systemConfig.c: 84: SSP1ADD = 0x4F;
+[; ;systemConfig.c: 84: SSP1ADD = 0x13;
 "84
-[e = _SSP1ADD -> -> 79 `i `uc ]
+[e = _SSP1ADD -> -> 19 `i `uc ]
 [; ;systemConfig.c: 85: SSP1CON1bits.SSPM = 0x8;
 "85
 [e = . . _SSP1CON1bits 0 0 -> -> 8 `i `uc ]

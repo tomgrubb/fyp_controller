@@ -121,7 +121,7 @@
 #include <pic18f85j94.h>
 #include "global.h"
 #include "factorySettings.h"
-//#include <pic18f85j94.h>
+
 
 // Interrupt Handler
 void __interrupt(high_priority) highPriorityISR(void)
@@ -131,10 +131,9 @@ void __interrupt(high_priority) highPriorityISR(void)
     {
         PIR2bits.SSP2IF = 0x0;      // reset SSP2 flag
         sendParam();                // send values to DSP system
-        sync = 1;
     }
    
-    if (TMR4IF) // Timer for 'Tap' LED (triggered every ~1ms)
+    if (TMR4IF) // Timer for LED flashing (triggered every ~1ms)
     {
         TMR4IF = 0;                 // reset Timer 4 flag
         tapLED();                   // update tap LED
@@ -159,8 +158,17 @@ void __interrupt(high_priority) highPriorityISR(void)
     if (TMR0IF) // de-bounce of switches complete
     {
         TMR0IF = 0;                 // reset Timer 0 flag
-        serviceSwitches();          // action switch states
-        T0CONbits.TMR0ON = 0x0;     // Timer 0 is OFF    
+        bounceCount++;
+        if (bounceCount < 2)
+        {
+            T0CONbits.TMR0ON = 0x1;     // Timer 0 is ON  
+        }
+        else
+        {       
+            bounceCount = 0;
+            serviceSwitches();          // action switch states
+            T0CONbits.TMR0ON = 0x0;     // Timer 0 is OFF 
+        }
     }
 }
 
@@ -207,6 +215,39 @@ void readControls(void)
     parameter[11] = lvlC>>4;
 }
 
+void updatePreset(int slot, int values[])
+{
+    int i;
+    
+    for (i = 0; i < 12; i++)
+    {
+        userParams[slot][i] = values[i];
+    }
+}
+
+void updateParams(int slot)
+{
+    int i;
+    
+    for (i = 0; i < 12; i++)
+    {
+        parameter[i] = userParams[slot][i];
+    }
+}
+
+void fetchPreset(void)
+{
+    int test = 0;
+    int i = 0;
+    int values[12];
+    
+    for (i = 0; i < 5; i++)
+    {
+        I2C1_Block_Read_EERPOM(i, values, 12);
+        updatePreset(i+1, values);
+    }
+}
+
 void main(void)
 { 
 
@@ -215,42 +256,45 @@ void main(void)
     int diff = 0;
     
     systemInit();
-
+               
+    fetchPreset();
+   
     T4CONbits.TMR4ON = 1;
     
     I2C1_Write_DigiPot(0);
     
     while(1)
     {
-            if (preset == 1)
-            {
-                parameter[0] = presetParams[0];
-                parameter[1] = presetParams[1];
-                parameter[2] = presetParams[2];
-            }
-            else if (preset == 3)
-            {
-                I2C1_Block_Read_EERPOM(3, 12, parameter);
-            }
-            else
-            {   
-                readControls();
-                dryLevel = ADC_Read(8);
-                dryLevel = dryLevel>>5;
-                diff = dryLevel - prevDry;
-                diff = absVal(diff);
-                
-                if (diff >= 2)
-                {
-                    I2C1_Write_DigiPot(dryLevel);
-                    prevDry = dryLevel;
-                } 
-            }
+        if (savePend)
+        {
+            I2C1_Page_Write_EEPROM((preset-1), parameter, 12);
+            updatePreset(preset, parameter);
+            savePend = 0;
+        }
+        
+        if (preset > 0)
+        {
+            updateParams(preset);
+        }
+        else
+        {   
+            readControls();
+            dryLevel = ADC_Read(8);
+            dryLevel = dryLevel>>5;
+            diff = dryLevel - prevDry;
+            diff = absVal(diff);
 
-            // signal that we're ready to go
-            if (!setupComplete)
+            if (diff >= 2)
             {
-                setupComplete = 1;
+                I2C1_Write_DigiPot(dryLevel);
+                prevDry = dryLevel;
             } 
         }
-    }      
+
+        // signal that we're ready to go
+        if (!setupComplete)
+        {
+            setupComplete = 1;
+        } 
+    }
+}      

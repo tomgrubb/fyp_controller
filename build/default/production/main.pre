@@ -17217,15 +17217,15 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 55 "global.h"
+# 56 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
 void I2C1_Write_EEPROM(char memValue, char value);
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
@@ -17237,13 +17237,16 @@ void startupSequence(void);
 void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
+void updateLineLEDs(int lineA, int lineB, int lineC);
 int readToggle(int target);
 int absVal(int val);
+void presetCtrl(int slot);
 
 int intA = 0;
 int intB = 0;
 int intC = 0;
 int swX = 1;
+int shiftAction = 0;
 
 
 int switch1 = 0;
@@ -17253,6 +17256,7 @@ int switch4 = 0;
 int switch5 = 0;
 int fsw1 = 0;
 int fsw2 = 0;
+int bounceCount = 0;
 
 int muxADC = 0;
 
@@ -17260,6 +17264,8 @@ int bypass = 0;
 int preset = 0;
 int targPreset = 0;
 int presetPend = 0;
+int savePend = 0;
+int slotUsed = 0;
 int pFlashCount = 0;
 int pFlash = 0;
 
@@ -17270,12 +17276,18 @@ int tapFlash = 0;
 int tapOnTime = 5;
 int tapDispCount = 0;
 int currentTapTime = 500;
-
+int armFlashCount = 0;
+int armFlash = 0;
+int armFlashToggle = 0;
 
 
 int parameter[12];
 
 int shift = 0;
+int armA = 0;
+int armB = 0;
+int armC = 0;
+int linesArmed = 0;
 
 int dataTarget = 0;
 int *dataPtr;
@@ -17312,11 +17324,32 @@ int presetParams[] =
 0x00, 0x00, 0x00, 0x00
 };
 
-int userParams[] =
+int userParams[5][12] = {
 {
 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00
+},
+{
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+},
+{
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+},
+{
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+},
+{
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00
+},
 };
 
 # 127 "main.c"
@@ -17327,7 +17360,6 @@ if(SSP2IF)
 {
 PIR2bits.SSP2IF = 0x0;
 sendParam();
-sync = 1;
 }
 
 if (TMR4IF)
@@ -17355,8 +17387,17 @@ checkSwitches();
 if (TMR0IF)
 {
 TMR0IF = 0;
+bounceCount++;
+if (bounceCount < 2)
+{
+T0CONbits.TMR0ON = 0x1;
+}
+else
+{
+bounceCount = 0;
 serviceSwitches();
 T0CONbits.TMR0ON = 0x0;
+}
 }
 }
 
@@ -17403,6 +17444,39 @@ lvlC = ADC_Read(0);
 parameter[11] = lvlC>>4;
 }
 
+void updatePreset(int slot, int values[])
+{
+int i;
+
+for (i = 0; i < 12; i++)
+{
+userParams[slot][i] = values[i];
+}
+}
+
+void updateParams(int slot)
+{
+int i;
+
+for (i = 0; i < 12; i++)
+{
+parameter[i] = userParams[slot][i];
+}
+}
+
+void fetchPreset(void)
+{
+int test = 0;
+int i = 0;
+int values[12];
+
+for (i = 0; i < 5; i++)
+{
+I2C1_Block_Read_EERPOM(i, values, 12);
+updatePreset(i+1, values);
+}
+}
+
 void main(void)
 {
 
@@ -17412,21 +17486,24 @@ int diff = 0;
 
 systemInit();
 
+fetchPreset();
+
 T4CONbits.TMR4ON = 1;
 
 I2C1_Write_DigiPot(0);
 
 while(1)
 {
-if (preset == 1)
+if (savePend)
 {
-parameter[0] = presetParams[0];
-parameter[1] = presetParams[1];
-parameter[2] = presetParams[2];
+I2C1_Page_Write_EEPROM((preset-1), parameter, 12);
+updatePreset(preset, parameter);
+savePend = 0;
 }
-else if (preset == 3)
+
+if (preset > 0)
 {
-I2C1_Block_Read_EERPOM(3, 12, parameter);
+updateParams(preset);
 }
 else
 {

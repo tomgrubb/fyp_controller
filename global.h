@@ -12,6 +12,7 @@
 #define BypassLED LATD2 
 #define CTRL LATD3
 #define TAILS LATB5
+#define PARAM_NUM 12
 
 #define SW1 RG1
 #define SW2 RG2
@@ -58,8 +59,8 @@ int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
 void I2C1_Write_EEPROM(char memValue, char value);
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
@@ -71,13 +72,16 @@ void startupSequence(void);
 void sendParam(void); 
 void processTaps(void);
 void updatePresetLEDs(int psNum);
+void updateLineLEDs(int lineA, int lineB, int lineC);
 int readToggle(int target);
-int absVal(int val); 
+int absVal(int val);
+void presetCtrl(int slot);
 
 int intA = 0;
 int intB = 0;
 int intC = 0;
 int swX = 1;
+int shiftAction = 0;
 
 // Switch Flags
 int switch1 = 0;
@@ -87,6 +91,7 @@ int switch4 = 0;
 int switch5 = 0;
 int fsw1 = 0;
 int fsw2 = 0;
+int bounceCount = 0;
 
 int muxADC = 0;
 
@@ -94,6 +99,8 @@ int bypass = 0;
 int preset = 0;
 int targPreset = 0;
 int presetPend = 0;
+int savePend = 0;
+int slotUsed = 0;
 int pFlashCount = 0;
 int pFlash = 0;
 
@@ -104,12 +111,18 @@ int tapFlash = 0;
 int tapOnTime = 5;
 int tapDispCount = 0;
 int currentTapTime = 500;
+int armFlashCount = 0;
+int armFlash = 0;
+int armFlashToggle = 0;
 
 // Parameter variables
-
 int parameter[12]; 
 
 int shift = 0;
+int armA = 0;
+int armB = 0;
+int armC = 0;
+int linesArmed = 0;
 
 int dataTarget = 0;
 int *dataPtr;

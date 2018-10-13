@@ -17235,15 +17235,15 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 55 "global.h"
+# 56 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
 void I2C1_Write_EEPROM(char memValue, char value);
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
@@ -17255,13 +17255,16 @@ void startupSequence(void);
 void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
+void updateLineLEDs(int lineA, int lineB, int lineC);
 int readToggle(int target);
 int absVal(int val);
+void presetCtrl(int slot);
 
 int intA = 0;
 int intB = 0;
 int intC = 0;
 int swX = 1;
+int shiftAction = 0;
 
 
 int switch1 = 0;
@@ -17271,6 +17274,7 @@ int switch4 = 0;
 int switch5 = 0;
 int fsw1 = 0;
 int fsw2 = 0;
+int bounceCount = 0;
 
 int muxADC = 0;
 
@@ -17278,6 +17282,8 @@ int bypass = 0;
 int preset = 0;
 int targPreset = 0;
 int presetPend = 0;
+int savePend = 0;
+int slotUsed = 0;
 int pFlashCount = 0;
 int pFlash = 0;
 
@@ -17288,12 +17294,18 @@ int tapFlash = 0;
 int tapOnTime = 5;
 int tapDispCount = 0;
 int currentTapTime = 500;
-
+int armFlashCount = 0;
+int armFlash = 0;
+int armFlashToggle = 0;
 
 
 int parameter[12];
 
 int shift = 0;
+int armA = 0;
+int armB = 0;
+int armC = 0;
+int linesArmed = 0;
 
 int dataTarget = 0;
 int *dataPtr;
@@ -17326,16 +17338,16 @@ int sync = 0;
 int paramAddress[] =
 {
 0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-0xB1, 0xB3, 0xB5, 0xB7
+0xB1, 0xB3, 0xB5, 0xB7, 0xBF
 };
 
 int presetAdd[] =
 {
 0x00,
-0x00,
-0x00,
-0x00,
-0x00
+0x10,
+0x20,
+0x30,
+0x40
 };
 
 void I2C1_Write_EEPROM(char memValue, char value)
@@ -17360,6 +17372,8 @@ while(!PIR1bits.SSP1IF);
 PIR1bits.SSP1IF = 0x0;
 SSP1BUF = value;
 
+SSP1CON2bits.PEN = 0x1;
+
 while (SSP1CON2bits.ACKSTAT);
 while(!PIR1bits.SSP1IF);
 SSP1CON2bits.PEN = 0x1;
@@ -17369,7 +17383,7 @@ PIR1bits.SSP1IF = 0x0;
 SSP1CON1bits.SSPEN = 0x1;
 }
 
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes)
 {
 char wrDevAddr = 0b10100000;
 char memValue = presetAdd[slot];
@@ -17405,7 +17419,7 @@ PIR1bits.SSP1IF = 0x0;
 SSP1CON1bits.SSPEN = 0x1;
 }
 
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes)
 {
 char dummyWrite = 0b10100000;
 char rdAddr = (dummyWrite|0x01);
@@ -17442,11 +17456,20 @@ PIR1bits.SSP1IF = 0x0;
 
 SSP1CON2bits.RCEN = 0x1;
 
-for (n = 0; n < bytes; n++)
-{
 while(!SSP1STATbits.BF);
 while (!PIR1bits.SSP1IF);
+data[n] = SSP1BUF;
 
+for (n = 1; n < bytes; n++)
+{
+SSP1CON2bits.ACKDT = 0x0;
+SSP1CON2bits.ACKEN = 0x1;
+while(SSP1CON2bits.ACKEN);
+PIR1bits.SSP1IF = 0x0;
+SSP1CON2bits.RCEN = 0x1;
+
+while(!SSP1STATbits.BF);
+while (!PIR1bits.SSP1IF);
 data[n] = SSP1BUF;
 }
 
@@ -17461,6 +17484,16 @@ while(SSP1CON2bits.PEN);
 
 PIR1bits.SSP1IF = 0x0;
 SSP1CON1bits.SSPEN = 0x1;
+}
+
+void presetCtrl(int slot)
+{
+char updateValue;
+char bitSet = 2^slot;
+
+updateValue = (slotUsed | bitSet);
+
+I2C1_Write_EEPROM(0x40, updateValue);
 }
 
 char I2C1_Read_EEPROM(char devAddr, char memValue)
@@ -17551,13 +17584,15 @@ int n = 0;
 
 dataTarget = SSP2BUF;
 
-
-
-for (n = 0; n < 12; n++)
+for (n = 0; n < 13; n++)
 {
 if (dataTarget == paramAddress[n])
 {
-dataPtr = parameter[n];
+if (n == 12)
+{
+dataPtr = setupComplete;
+}
+else dataPtr = parameter[n];
 break;
 }
 }

@@ -17145,15 +17145,15 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 55 "global.h"
+# 56 "global.h"
 void interruptInit(void);
 void systemInit(void);
 int ADC_Read(int channel);
 void updateLEDs(void);
 void killLEDs(void);
 void I2C1_Write_EEPROM(char memValue, char value);
-void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
+void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
 char I2C1_Read_EEPROM(char devAddr, char memValue);
 void I2C1_Write_DigiPot(char value);
 void readInterval(int select);
@@ -17165,13 +17165,16 @@ void startupSequence(void);
 void sendParam(void);
 void processTaps(void);
 void updatePresetLEDs(int psNum);
+void updateLineLEDs(int lineA, int lineB, int lineC);
 int readToggle(int target);
 int absVal(int val);
+void presetCtrl(int slot);
 
 int intA = 0;
 int intB = 0;
 int intC = 0;
 int swX = 1;
+int shiftAction = 0;
 
 
 int switch1 = 0;
@@ -17181,6 +17184,7 @@ int switch4 = 0;
 int switch5 = 0;
 int fsw1 = 0;
 int fsw2 = 0;
+int bounceCount = 0;
 
 int muxADC = 0;
 
@@ -17188,6 +17192,8 @@ int bypass = 0;
 int preset = 0;
 int targPreset = 0;
 int presetPend = 0;
+int savePend = 0;
+int slotUsed = 0;
 int pFlashCount = 0;
 int pFlash = 0;
 
@@ -17198,12 +17204,18 @@ int tapFlash = 0;
 int tapOnTime = 5;
 int tapDispCount = 0;
 int currentTapTime = 500;
-
+int armFlashCount = 0;
+int armFlash = 0;
+int armFlashToggle = 0;
 
 
 int parameter[12];
 
 int shift = 0;
+int armA = 0;
+int armB = 0;
+int armC = 0;
+int linesArmed = 0;
 
 int dataTarget = 0;
 int *dataPtr;
@@ -17324,7 +17336,7 @@ void flashLED(void)
 if (presetPend)
 {
 pFlashCount++;
-if (pFlashCount > 200)
+if (pFlashCount > 150)
 {
 if (pFlash)
 {
@@ -17336,6 +17348,20 @@ updatePresetLEDs(0);
 }
 pFlash ^= 1;
 pFlashCount = 0;
+}
+}
+if ((armA + armB + armC) > 0)
+{
+armFlashCount++;
+if (armFlashCount > 500)
+{
+armFlashCount = 0;
+if (armFlashToggle)
+{
+updateLineLEDs(intA, intB, intC);
+}
+else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
+armFlashToggle ^= 1;
 }
 }
 }
@@ -17435,26 +17461,18 @@ if (switch1)
 switch1 = 0;
 if (!RG1)
 {
+if (!shift)
+{
 intA++;
-if (intA >= 3)
+if (intA > 3)
 {
 intA = 0;
 }
-
-if (intA == 0)
-{
-LATH7 = 1;
-LATF2 = 0;
-}
-else if (intA == 1)
-{
-LATH7 = 0;
-LATF2 = 1;
 }
 else
 {
-LATH7 = 1;
-LATF2 = 1;
+armA ^= 1;
+shiftAction = 1;
 }
 }
 }
@@ -17464,26 +17482,18 @@ if (switch2)
 switch2 = 0;
 if (!RG2)
 {
+if (!shift)
+{
 intB++;
-if (intB >= 3)
+if (intB > 3)
 {
 intB = 0;
 }
-
-if (intB == 0)
-{
-LATF5 = 1;
-LATF6 = 0;
-}
-else if (intB == 1)
-{
-LATF5 = 0;
-LATF6 = 1;
 }
 else
 {
-LATF5 = 1;
-LATF6 = 1;
+armB ^= 1;
+shiftAction = 1;
 }
 }
 }
@@ -17493,29 +17503,26 @@ if (switch3)
 switch3 = 0;
 if (!RE6)
 {
+if (!shift)
+{
 intC++;
-if (intC >= 3)
+if (intC > 3)
 {
 intC = 0;
 }
-
-if (intC == 0)
-{
-LATG4 = 1;
-LATH0 = 0;
-}
-else if (intC == 1)
-{
-LATG4 = 0;
-LATH0 = 1;
 }
 else
 {
-LATG4 = 1;
-LATH0 = 1;
+armC ^= 1;
+shiftAction = 1;
 }
 }
 }
+
+
+
+
+updateLineLEDs(intA, intB, intC);
 
 if (switch4)
 {
@@ -17537,6 +17544,10 @@ if (!presetPend)
 {
 
 targPreset = preset;
+if (!targPreset)
+{
+targPreset = 1;
+}
 presetPend = 1;
 if (targPreset > 1)
 {
@@ -17577,7 +17588,7 @@ shift = 0;
 IOCNbits.IOCN7 = 0x1;
 IOCPbits.IOCP7 = 0x0;
 
-if (!presetPend)
+if (!shiftAction)
 {
 swX ^= 1;
 bypMode = swX;
@@ -17595,10 +17606,11 @@ LATH1 = 1;
 else
 {
 presetPend = 0;
+shiftAction = 0;
 preset = targPreset;
 pFlash = 0;
 pFlashCount = 0;
-I2C1_Page_Write_EEPROM(preset, parameter, 12);
+savePend = 1;
 updatePresetLEDs(preset);
 }
 }
@@ -17743,6 +17755,72 @@ bitC = RH4;
 LATD0 = bitA;
 LATE7 = bitB;
 LATE5 = bitC;
+}
+
+void updateLineLEDs(int lineA, int lineB, int lineC)
+{
+if (lineA == 1)
+{
+LATH7 = 1;
+LATF2 = 0;
+}
+else if (lineA == 2)
+{
+LATH7 = 0;
+LATF2 = 1;
+}
+else if (lineA == 3)
+{
+LATH7 = 1;
+LATF2 = 1;
+}
+else
+{
+LATH7 = 0;
+LATF2 = 0;
+}
+
+if (lineB == 1)
+{
+LATF5 = 1;
+LATF6 = 0;
+}
+else if (lineB == 2)
+{
+LATF5 = 0;
+LATF6 = 1;
+}
+else if (lineB == 3)
+{
+LATF5 = 1;
+LATF6 = 1;
+}
+else
+{
+LATF5 = 0;
+LATF6 = 0;
+}
+
+if (lineC == 1)
+{
+LATG4 = 1;
+LATH0 = 0;
+}
+else if (lineC == 2)
+{
+LATG4 = 0;
+LATH0 = 1;
+}
+else if (lineC == 3)
+{
+LATG4 = 1;
+LATH0 = 1;
+}
+else
+{
+LATG4 = 0;
+LATH0 = 0;
+}
 }
 
 void updatePresetLEDs(int psNum)

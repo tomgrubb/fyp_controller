@@ -12783,291 +12783,359 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;global.h: 55: void interruptInit(void);
-[; ;global.h: 56: void systemInit(void);
-[; ;global.h: 57: int ADC_Read(int channel);
-[; ;global.h: 58: void updateLEDs(void);
-[; ;global.h: 59: void killLEDs(void);
-[; ;global.h: 60: void I2C1_Write_EEPROM(char memValue, char value);
-[; ;global.h: 61: void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes);
-[; ;global.h: 62: void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[]);
-[; ;global.h: 63: char I2C1_Read_EEPROM(char devAddr, char memValue);
-[; ;global.h: 64: void I2C1_Write_DigiPot(char value);
-[; ;global.h: 65: void readInterval(int select);
-[; ;global.h: 66: void tapLED(void);
-[; ;global.h: 67: void flashLED(void);
-[; ;global.h: 68: void checkSwitches(void);
-[; ;global.h: 69: void serviceSwitches(void);
-[; ;global.h: 70: void startupSequence(void);
-[; ;global.h: 71: void sendParam(void);
-[; ;global.h: 72: void processTaps(void);
-[; ;global.h: 73: void updatePresetLEDs(int psNum);
-[; ;global.h: 74: int readToggle(int target);
-[; ;global.h: 75: int absVal(int val);
-"77 global.h
+[; ;global.h: 56: void interruptInit(void);
+[; ;global.h: 57: void systemInit(void);
+[; ;global.h: 58: int ADC_Read(int channel);
+[; ;global.h: 59: void updateLEDs(void);
+[; ;global.h: 60: void killLEDs(void);
+[; ;global.h: 61: void I2C1_Write_EEPROM(char memValue, char value);
+[; ;global.h: 62: void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes);
+[; ;global.h: 63: void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes);
+[; ;global.h: 64: char I2C1_Read_EEPROM(char devAddr, char memValue);
+[; ;global.h: 65: void I2C1_Write_DigiPot(char value);
+[; ;global.h: 66: void readInterval(int select);
+[; ;global.h: 67: void tapLED(void);
+[; ;global.h: 68: void flashLED(void);
+[; ;global.h: 69: void checkSwitches(void);
+[; ;global.h: 70: void serviceSwitches(void);
+[; ;global.h: 71: void startupSequence(void);
+[; ;global.h: 72: void sendParam(void);
+[; ;global.h: 73: void processTaps(void);
+[; ;global.h: 74: void updatePresetLEDs(int psNum);
+[; ;global.h: 75: void updateLineLEDs(int lineA, int lineB, int lineC);
+[; ;global.h: 76: int readToggle(int target);
+[; ;global.h: 77: int absVal(int val);
+[; ;global.h: 78: void presetCtrl(int slot);
+"80 global.h
 [v _intA `i ~T0 @X0 1 e ]
 [i _intA
 -> 0 `i
 ]
-[; ;global.h: 77: int intA = 0;
-"78
+[; ;global.h: 80: int intA = 0;
+"81
 [v _intB `i ~T0 @X0 1 e ]
 [i _intB
 -> 0 `i
 ]
-[; ;global.h: 78: int intB = 0;
-"79
+[; ;global.h: 81: int intB = 0;
+"82
 [v _intC `i ~T0 @X0 1 e ]
 [i _intC
 -> 0 `i
 ]
-[; ;global.h: 79: int intC = 0;
-"80
+[; ;global.h: 82: int intC = 0;
+"83
 [v _swX `i ~T0 @X0 1 e ]
 [i _swX
 -> 1 `i
 ]
-[; ;global.h: 80: int swX = 1;
-"83
+[; ;global.h: 83: int swX = 1;
+"84
+[v _shiftAction `i ~T0 @X0 1 e ]
+[i _shiftAction
+-> 0 `i
+]
+[; ;global.h: 84: int shiftAction = 0;
+"87
 [v _switch1 `i ~T0 @X0 1 e ]
 [i _switch1
 -> 0 `i
 ]
-[; ;global.h: 83: int switch1 = 0;
-"84
+[; ;global.h: 87: int switch1 = 0;
+"88
 [v _switch2 `i ~T0 @X0 1 e ]
 [i _switch2
 -> 0 `i
 ]
-[; ;global.h: 84: int switch2 = 0;
-"85
+[; ;global.h: 88: int switch2 = 0;
+"89
 [v _switch3 `i ~T0 @X0 1 e ]
 [i _switch3
 -> 0 `i
 ]
-[; ;global.h: 85: int switch3 = 0;
-"86
+[; ;global.h: 89: int switch3 = 0;
+"90
 [v _switch4 `i ~T0 @X0 1 e ]
 [i _switch4
 -> 0 `i
 ]
-[; ;global.h: 86: int switch4 = 0;
-"87
+[; ;global.h: 90: int switch4 = 0;
+"91
 [v _switch5 `i ~T0 @X0 1 e ]
 [i _switch5
 -> 0 `i
 ]
-[; ;global.h: 87: int switch5 = 0;
-"88
+[; ;global.h: 91: int switch5 = 0;
+"92
 [v _fsw1 `i ~T0 @X0 1 e ]
 [i _fsw1
 -> 0 `i
 ]
-[; ;global.h: 88: int fsw1 = 0;
-"89
+[; ;global.h: 92: int fsw1 = 0;
+"93
 [v _fsw2 `i ~T0 @X0 1 e ]
 [i _fsw2
 -> 0 `i
 ]
-[; ;global.h: 89: int fsw2 = 0;
-"91
+[; ;global.h: 93: int fsw2 = 0;
+"94
+[v _bounceCount `i ~T0 @X0 1 e ]
+[i _bounceCount
+-> 0 `i
+]
+[; ;global.h: 94: int bounceCount = 0;
+"96
 [v _muxADC `i ~T0 @X0 1 e ]
 [i _muxADC
 -> 0 `i
 ]
-[; ;global.h: 91: int muxADC = 0;
-"93
+[; ;global.h: 96: int muxADC = 0;
+"98
 [v _bypass `i ~T0 @X0 1 e ]
 [i _bypass
 -> 0 `i
 ]
-[; ;global.h: 93: int bypass = 0;
-"94
+[; ;global.h: 98: int bypass = 0;
+"99
 [v _preset `i ~T0 @X0 1 e ]
 [i _preset
 -> 0 `i
 ]
-[; ;global.h: 94: int preset = 0;
-"95
+[; ;global.h: 99: int preset = 0;
+"100
 [v _targPreset `i ~T0 @X0 1 e ]
 [i _targPreset
 -> 0 `i
 ]
-[; ;global.h: 95: int targPreset = 0;
-"96
+[; ;global.h: 100: int targPreset = 0;
+"101
 [v _presetPend `i ~T0 @X0 1 e ]
 [i _presetPend
 -> 0 `i
 ]
-[; ;global.h: 96: int presetPend = 0;
-"97
+[; ;global.h: 101: int presetPend = 0;
+"102
+[v _savePend `i ~T0 @X0 1 e ]
+[i _savePend
+-> 0 `i
+]
+[; ;global.h: 102: int savePend = 0;
+"103
+[v _slotUsed `i ~T0 @X0 1 e ]
+[i _slotUsed
+-> 0 `i
+]
+[; ;global.h: 103: int slotUsed = 0;
+"104
 [v _pFlashCount `i ~T0 @X0 1 e ]
 [i _pFlashCount
 -> 0 `i
 ]
-[; ;global.h: 97: int pFlashCount = 0;
-"98
+[; ;global.h: 104: int pFlashCount = 0;
+"105
 [v _pFlash `i ~T0 @X0 1 e ]
 [i _pFlash
 -> 0 `i
 ]
-[; ;global.h: 98: int pFlash = 0;
-"100
+[; ;global.h: 105: int pFlash = 0;
+"107
 [v _bypMode `i ~T0 @X0 1 e ]
 [i _bypMode
 -> 1 `i
 ]
-[; ;global.h: 100: int bypMode = 1;
-"103
+[; ;global.h: 107: int bypMode = 1;
+"110
 [v _tapFlash `i ~T0 @X0 1 e ]
 [i _tapFlash
 -> 0 `i
 ]
-[; ;global.h: 103: int tapFlash = 0;
-"104
+[; ;global.h: 110: int tapFlash = 0;
+"111
 [v _tapOnTime `i ~T0 @X0 1 e ]
 [i _tapOnTime
 -> 5 `i
 ]
-[; ;global.h: 104: int tapOnTime = 5;
-"105
+[; ;global.h: 111: int tapOnTime = 5;
+"112
 [v _tapDispCount `i ~T0 @X0 1 e ]
 [i _tapDispCount
 -> 0 `i
 ]
-[; ;global.h: 105: int tapDispCount = 0;
-"106
+[; ;global.h: 112: int tapDispCount = 0;
+"113
 [v _currentTapTime `i ~T0 @X0 1 e ]
 [i _currentTapTime
 -> 500 `i
 ]
-[; ;global.h: 106: int currentTapTime = 500;
-"110
+[; ;global.h: 113: int currentTapTime = 500;
+"114
+[v _armFlashCount `i ~T0 @X0 1 e ]
+[i _armFlashCount
+-> 0 `i
+]
+[; ;global.h: 114: int armFlashCount = 0;
+"115
+[v _armFlash `i ~T0 @X0 1 e ]
+[i _armFlash
+-> 0 `i
+]
+[; ;global.h: 115: int armFlash = 0;
+"116
+[v _armFlashToggle `i ~T0 @X0 1 e ]
+[i _armFlashToggle
+-> 0 `i
+]
+[; ;global.h: 116: int armFlashToggle = 0;
+"119
 [v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 110: int parameter[12];
-"112
+[; ;global.h: 119: int parameter[12];
+"121
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 112: int shift = 0;
-"114
+[; ;global.h: 121: int shift = 0;
+"122
+[v _armA `i ~T0 @X0 1 e ]
+[i _armA
+-> 0 `i
+]
+[; ;global.h: 122: int armA = 0;
+"123
+[v _armB `i ~T0 @X0 1 e ]
+[i _armB
+-> 0 `i
+]
+[; ;global.h: 123: int armB = 0;
+"124
+[v _armC `i ~T0 @X0 1 e ]
+[i _armC
+-> 0 `i
+]
+[; ;global.h: 124: int armC = 0;
+"125
+[v _linesArmed `i ~T0 @X0 1 e ]
+[i _linesArmed
+-> 0 `i
+]
+[; ;global.h: 125: int linesArmed = 0;
+"127
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 114: int dataTarget = 0;
-"115
+[; ;global.h: 127: int dataTarget = 0;
+"128
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 115: int *dataPtr;
-"117
+[; ;global.h: 128: int *dataPtr;
+"130
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 117: int fbkA = 0;
-"118
+[; ;global.h: 130: int fbkA = 0;
+"131
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 118: int lvlA = 0;
-"119
+[; ;global.h: 131: int lvlA = 0;
+"132
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 119: int timeA = 0;
-"121
+[; ;global.h: 132: int timeA = 0;
+"134
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 121: int fbkB = 0;
-"122
+[; ;global.h: 134: int fbkB = 0;
+"135
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 122: int lvlB = 0;
-"123
+[; ;global.h: 135: int lvlB = 0;
+"136
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 123: int timeB = 0;
-"125
+[; ;global.h: 136: int timeB = 0;
+"138
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 125: int fbkC = 0;
-"126
+[; ;global.h: 138: int fbkC = 0;
+"139
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 126: int lvlC = 0;
-"127
+[; ;global.h: 139: int lvlC = 0;
+"140
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 127: int timeC = 0;
-"130
+[; ;global.h: 140: int timeC = 0;
+"143
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 130: int tapTimeCount = 0;
-"131
+[; ;global.h: 143: int tapTimeCount = 0;
+"144
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 131: int tapPrev = 0;
-"132
+[; ;global.h: 144: int tapPrev = 0;
+"145
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 132: long int tapAccum = 0;
-"133
+[; ;global.h: 145: long int tapAccum = 0;
+"146
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 133: int tap = 0;
-"134
+[; ;global.h: 146: int tap = 0;
+"147
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 134: int tapTime = 0;
-"135
+[; ;global.h: 147: int tapTime = 0;
+"148
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 135: int newTempo = 0;
-"136
+[; ;global.h: 148: int newTempo = 0;
+"149
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 136: int timeoutCount = 0;
-"138
+[; ;global.h: 149: int timeoutCount = 0;
+"151
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 138: int setupComplete = 0;
-"139
+[; ;global.h: 151: int setupComplete = 0;
+"152
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 139: int sync = 0;
+[; ;global.h: 152: int sync = 0;
 "18 serial.c
 [v _paramAddress `i ~T0 @X0 -> 0 `x e ]
 [i _paramAddress
@@ -13085,14 +13153,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 177 `i
 -> 179 `i
 -> 181 `i
-"22
 -> 183 `i
+"22
+-> 191 `i
 ..
 ]
 [; ;serial.c: 18: int paramAddress[] =
 [; ;serial.c: 19: {
 [; ;serial.c: 20: 0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-[; ;serial.c: 21: 0xB1, 0xB3, 0xB5, 0xB7
+[; ;serial.c: 21: 0xB1, 0xB3, 0xB5, 0xB7, 0xBF
 [; ;serial.c: 22: };
 "24
 [v _presetAdd `i ~T0 @X0 -> 0 `x e ]
@@ -13101,22 +13170,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 -> 0 `i
 "27
--> 0 `i
+-> 16 `i
 "28
--> 0 `i
+-> 32 `i
 "29
--> 0 `i
+-> 48 `i
 "31
--> 0 `i
+-> 64 `i
 ..
 ]
 [; ;serial.c: 24: int presetAdd[] =
 [; ;serial.c: 25: {
 [; ;serial.c: 26: 0x00,
-[; ;serial.c: 27: 0x00,
-[; ;serial.c: 28: 0x00,
-[; ;serial.c: 29: 0x00,
-[; ;serial.c: 30: 0x00
+[; ;serial.c: 27: 0x10,
+[; ;serial.c: 28: 0x20,
+[; ;serial.c: 29: 0x30,
+[; ;serial.c: 30: 0x40
 [; ;serial.c: 31: };
 "33
 [v _I2C1_Write_EEPROM `(v ~T0 @X0 1 ef2`uc`uc ]
@@ -13196,725 +13265,807 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.c: 53: SSP1BUF = value;
 "53
 [e = _SSP1BUF _value ]
-[; ;serial.c: 55: while (SSP1CON2bits.ACKSTAT);
+[; ;serial.c: 55: SSP1CON2bits.PEN = 0x1;
 "55
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 57: while (SSP1CON2bits.ACKSTAT);
+"57
 [e $U 1436  ]
 [e :U 1437 ]
 [e :U 1436 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1437  ]
 [e :U 1438 ]
-[; ;serial.c: 56: while(!PIR1bits.SSP1IF);
-"56
+[; ;serial.c: 58: while(!PIR1bits.SSP1IF);
+"58
 [e $U 1439  ]
 [e :U 1440 ]
 [e :U 1439 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1440  ]
 [e :U 1441 ]
-[; ;serial.c: 57: SSP1CON2bits.PEN = 0x1;
-"57
+[; ;serial.c: 59: SSP1CON2bits.PEN = 0x1;
+"59
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 58: while(SSP1CON2bits.PEN);
-"58
+[; ;serial.c: 60: while(SSP1CON2bits.PEN);
+"60
 [e $U 1442  ]
 [e :U 1443 ]
 [e :U 1442 ]
 [e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1443  ]
 [e :U 1444 ]
-[; ;serial.c: 60: PIR1bits.SSP1IF = 0x0;
-"60
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 61: SSP1CON1bits.SSPEN = 0x1;
-"61
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 62: }
+[; ;serial.c: 62: PIR1bits.SSP1IF = 0x0;
 "62
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 63: SSP1CON1bits.SSPEN = 0x1;
+"63
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 64: }
+"64
 [e :UE 1420 ]
 }
-"64
-[v _I2C1_Page_Write_EEPROM `(v ~T0 @X0 1 ef3`i`*uc`i ]
-"65
-{
-[; ;serial.c: 64: void I2C1_Page_Write_EEPROM(int slot, char data[], int bytes)
-[; ;serial.c: 65: {
-[e :U _I2C1_Page_Write_EEPROM ]
-"64
-[v _slot `i ~T0 @X0 1 r1 ]
-[v _data `*uc ~T0 @X0 1 r2 ]
-[v _bytes `i ~T0 @X0 1 r3 ]
-"65
-[f ]
 "66
-[v _wrDevAddr `uc ~T0 @X0 1 a ]
-[; ;serial.c: 66: char wrDevAddr = 0b10100000;
-[e = _wrDevAddr -> -> 160 `i `uc ]
+[v _I2C1_Page_Write_EEPROM `(v ~T0 @X0 1 ef3`i`**i`i ]
 "67
-[v _memValue `uc ~T0 @X0 1 a ]
-[; ;serial.c: 67: char memValue = presetAdd[slot];
-[e = _memValue -> *U + &U _presetAdd * -> -> _slot `ui `ux -> -> # *U &U _presetAdd `ui `ux `uc ]
+{
+[; ;serial.c: 66: void I2C1_Page_Write_EEPROM(int slot, int *data[], int bytes)
+[; ;serial.c: 67: {
+[e :U _I2C1_Page_Write_EEPROM ]
+"66
+[v _slot `i ~T0 @X0 1 r1 ]
+[v _data `**i ~T0 @X0 1 r2 ]
+[v _bytes `i ~T0 @X0 1 r3 ]
+"67
+[f ]
 "68
-[v _n `i ~T0 @X0 1 a ]
-[; ;serial.c: 68: int n = 0;
-[e = _n -> 0 `i ]
-[; ;serial.c: 70: SSP1CON1bits.SSPEN = 0x1;
+[v _wrDevAddr `uc ~T0 @X0 1 a ]
+[; ;serial.c: 68: char wrDevAddr = 0b10100000;
+[e = _wrDevAddr -> -> 160 `i `uc ]
+"69
+[v _memValue `uc ~T0 @X0 1 a ]
+[; ;serial.c: 69: char memValue = presetAdd[slot];
+[e = _memValue -> *U + &U _presetAdd * -> -> _slot `ui `ux -> -> # *U &U _presetAdd `ui `ux `uc ]
 "70
+[v _n `i ~T0 @X0 1 a ]
+[; ;serial.c: 70: int n = 0;
+[e = _n -> 0 `i ]
+[; ;serial.c: 72: SSP1CON1bits.SSPEN = 0x1;
+"72
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 71: _delay((unsigned long)((5)*(32000000/4000000.0)));
-"71
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;serial.c: 73: SSP1CON2bits.SEN = 0x1;
+[; ;serial.c: 73: _delay((unsigned long)((5)*(32000000/4000000.0)));
 "73
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;serial.c: 75: SSP1CON2bits.SEN = 0x1;
+"75
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
-[; ;serial.c: 74: while(SSP1CON2bits.SEN);
-"74
+[; ;serial.c: 76: while(SSP1CON2bits.SEN);
+"76
 [e $U 1446  ]
 [e :U 1447 ]
 [e :U 1446 ]
 [e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1447  ]
 [e :U 1448 ]
-[; ;serial.c: 75: PIR1bits.SSP1IF = 0x0;
-"75
+[; ;serial.c: 77: PIR1bits.SSP1IF = 0x0;
+"77
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 76: SSP1BUF = wrDevAddr;
-"76
-[e = _SSP1BUF _wrDevAddr ]
-[; ;serial.c: 78: while (SSP1CON2bits.ACKSTAT);
+[; ;serial.c: 78: SSP1BUF = wrDevAddr;
 "78
+[e = _SSP1BUF _wrDevAddr ]
+[; ;serial.c: 80: while (SSP1CON2bits.ACKSTAT);
+"80
 [e $U 1449  ]
 [e :U 1450 ]
 [e :U 1449 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1450  ]
 [e :U 1451 ]
-[; ;serial.c: 79: while(!PIR1bits.SSP1IF);
-"79
+[; ;serial.c: 81: while(!PIR1bits.SSP1IF);
+"81
 [e $U 1452  ]
 [e :U 1453 ]
 [e :U 1452 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1453  ]
 [e :U 1454 ]
-[; ;serial.c: 80: PIR1bits.SSP1IF = 0x0;
-"80
+[; ;serial.c: 82: PIR1bits.SSP1IF = 0x0;
+"82
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 81: SSP1BUF = memValue;
-"81
-[e = _SSP1BUF _memValue ]
-[; ;serial.c: 83: for (n = 0; n < bytes; n++)
+[; ;serial.c: 83: SSP1BUF = memValue;
 "83
+[e = _SSP1BUF _memValue ]
+[; ;serial.c: 85: for (n = 0; n < bytes; n++)
+"85
 {
 [e = _n -> 0 `i ]
 [e $U 1458  ]
-"84
+"86
 [e :U 1455 ]
-[; ;serial.c: 84: {
+[; ;serial.c: 86: {
 {
-[; ;serial.c: 85: while (SSP1CON2bits.ACKSTAT);
-"85
+[; ;serial.c: 87: while (SSP1CON2bits.ACKSTAT);
+"87
 [e $U 1459  ]
 [e :U 1460 ]
 [e :U 1459 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1460  ]
 [e :U 1461 ]
-[; ;serial.c: 86: while(!PIR1bits.SSP1IF);
-"86
+[; ;serial.c: 88: while(!PIR1bits.SSP1IF);
+"88
 [e $U 1462  ]
 [e :U 1463 ]
 [e :U 1462 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1463  ]
 [e :U 1464 ]
-[; ;serial.c: 87: PIR1bits.SSP1IF = 0x0;
-"87
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 88: SSP1BUF = data[n];
-"88
-[e = _SSP1BUF *U + _data * -> _n `x -> -> # *U _data `i `x ]
+[; ;serial.c: 89: PIR1bits.SSP1IF = 0x0;
 "89
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 90: SSP1BUF = data[n];
+"90
+[e = _SSP1BUF -> *U + _data * -> _n `x -> -> # *U _data `i `x `Vuc ]
+"91
 }
-"83
+"85
 [e ++ _n -> 1 `i ]
 [e :U 1458 ]
 [e $ < _n _bytes 1455  ]
 [e :U 1456 ]
-"89
-}
-[; ;serial.c: 89: }
-[; ;serial.c: 91: while (SSP1CON2bits.ACKSTAT);
 "91
+}
+[; ;serial.c: 91: }
+[; ;serial.c: 93: while (SSP1CON2bits.ACKSTAT);
+"93
 [e $U 1465  ]
 [e :U 1466 ]
 [e :U 1465 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1466  ]
 [e :U 1467 ]
-[; ;serial.c: 92: while(!PIR1bits.SSP1IF);
-"92
+[; ;serial.c: 94: while(!PIR1bits.SSP1IF);
+"94
 [e $U 1468  ]
 [e :U 1469 ]
 [e :U 1468 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1469  ]
 [e :U 1470 ]
-[; ;serial.c: 93: SSP1CON2bits.PEN = 0x1;
-"93
+[; ;serial.c: 95: SSP1CON2bits.PEN = 0x1;
+"95
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 94: while(SSP1CON2bits.PEN);
-"94
+[; ;serial.c: 96: while(SSP1CON2bits.PEN);
+"96
 [e $U 1471  ]
 [e :U 1472 ]
 [e :U 1471 ]
 [e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1472  ]
 [e :U 1473 ]
-[; ;serial.c: 96: PIR1bits.SSP1IF = 0x0;
-"96
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 97: SSP1CON1bits.SSPEN = 0x1;
-"97
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 98: }
+[; ;serial.c: 98: PIR1bits.SSP1IF = 0x0;
 "98
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 99: SSP1CON1bits.SSPEN = 0x1;
+"99
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 100: }
+"100
 [e :UE 1445 ]
 }
-"100
-[v _I2C1_Block_Read_EERPOM `(v ~T0 @X0 1 ef3`i`i`*uc ]
-"101
-{
-[; ;serial.c: 100: void I2C1_Block_Read_EERPOM(int slot, int bytes, char data[])
-[; ;serial.c: 101: {
-[e :U _I2C1_Block_Read_EERPOM ]
-"100
-[v _slot `i ~T0 @X0 1 r1 ]
-[v _bytes `i ~T0 @X0 1 r2 ]
-[v _data `*uc ~T0 @X0 1 r3 ]
-"101
-[f ]
 "102
-[v _dummyWrite `uc ~T0 @X0 1 a ]
-[; ;serial.c: 102: char dummyWrite = 0b10100000;
-[e = _dummyWrite -> -> 160 `i `uc ]
+[v _I2C1_Block_Read_EERPOM `(v ~T0 @X0 1 ef3`i`**i`i ]
 "103
-[v _rdAddr `uc ~T0 @X0 1 a ]
-[; ;serial.c: 103: char rdAddr = (dummyWrite|0x01);
-[e = _rdAddr -> | -> _dummyWrite `i -> 1 `i `uc ]
+{
+[; ;serial.c: 102: void I2C1_Block_Read_EERPOM(int slot, int *data[], int bytes)
+[; ;serial.c: 103: {
+[e :U _I2C1_Block_Read_EERPOM ]
+"102
+[v _slot `i ~T0 @X0 1 r1 ]
+[v _data `**i ~T0 @X0 1 r2 ]
+[v _bytes `i ~T0 @X0 1 r3 ]
+"103
+[f ]
 "104
-[v _memValue `uc ~T0 @X0 1 a ]
-[; ;serial.c: 104: char memValue = presetAdd[slot];
-[e = _memValue -> *U + &U _presetAdd * -> -> _slot `ui `ux -> -> # *U &U _presetAdd `ui `ux `uc ]
+[v _dummyWrite `uc ~T0 @X0 1 a ]
+[; ;serial.c: 104: char dummyWrite = 0b10100000;
+[e = _dummyWrite -> -> 160 `i `uc ]
 "105
-[v _n `i ~T0 @X0 1 a ]
-[; ;serial.c: 105: int n = 0;
-[e = _n -> 0 `i ]
-[; ;serial.c: 107: SSP1CON1bits.SSPEN = 0x1;
+[v _rdAddr `uc ~T0 @X0 1 a ]
+[; ;serial.c: 105: char rdAddr = (dummyWrite|0x01);
+[e = _rdAddr -> | -> _dummyWrite `i -> 1 `i `uc ]
+"106
+[v _memValue `uc ~T0 @X0 1 a ]
+[; ;serial.c: 106: char memValue = presetAdd[slot];
+[e = _memValue -> *U + &U _presetAdd * -> -> _slot `ui `ux -> -> # *U &U _presetAdd `ui `ux `uc ]
 "107
+[v _n `i ~T0 @X0 1 a ]
+[; ;serial.c: 107: int n = 0;
+[e = _n -> 0 `i ]
+[; ;serial.c: 109: SSP1CON1bits.SSPEN = 0x1;
+"109
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 108: _delay((unsigned long)((5)*(32000000/4000000.0)));
-"108
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;serial.c: 110: SSP1CON2bits.SEN = 0x1;
+[; ;serial.c: 110: _delay((unsigned long)((5)*(32000000/4000000.0)));
 "110
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;serial.c: 112: SSP1CON2bits.SEN = 0x1;
+"112
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
-[; ;serial.c: 111: while(SSP1CON2bits.SEN);
-"111
+[; ;serial.c: 113: while(SSP1CON2bits.SEN);
+"113
 [e $U 1475  ]
 [e :U 1476 ]
 [e :U 1475 ]
 [e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1476  ]
 [e :U 1477 ]
-[; ;serial.c: 112: while(!PIR1bits.SSP1IF);
-"112
+[; ;serial.c: 114: while(!PIR1bits.SSP1IF);
+"114
 [e $U 1478  ]
 [e :U 1479 ]
 [e :U 1478 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1479  ]
 [e :U 1480 ]
-[; ;serial.c: 113: PIR1bits.SSP1IF = 0x0;
-"113
+[; ;serial.c: 115: PIR1bits.SSP1IF = 0x0;
+"115
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 114: SSP1BUF = dummyWrite;
-"114
-[e = _SSP1BUF _dummyWrite ]
-[; ;serial.c: 116: if(SSP1CON2bits.ACKSTAT);
+[; ;serial.c: 116: SSP1BUF = dummyWrite;
 "116
+[e = _SSP1BUF _dummyWrite ]
+[; ;serial.c: 118: if(SSP1CON2bits.ACKSTAT);
+"118
 [e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1481  ]
 [e :U 1481 ]
-[; ;serial.c: 117: while(!PIR1bits.SSP1IF);
-"117
+[; ;serial.c: 119: while(!PIR1bits.SSP1IF);
+"119
 [e $U 1482  ]
 [e :U 1483 ]
 [e :U 1482 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1483  ]
 [e :U 1484 ]
-[; ;serial.c: 118: PIR1bits.SSP1IF = 0x0;
-"118
+[; ;serial.c: 120: PIR1bits.SSP1IF = 0x0;
+"120
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 119: SSP1BUF = memValue;
-"119
-[e = _SSP1BUF _memValue ]
-[; ;serial.c: 121: while(SSP1CON2bits.ACKSTAT);
+[; ;serial.c: 121: SSP1BUF = memValue;
 "121
+[e = _SSP1BUF _memValue ]
+[; ;serial.c: 123: while(SSP1CON2bits.ACKSTAT);
+"123
 [e $U 1485  ]
 [e :U 1486 ]
 [e :U 1485 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1486  ]
 [e :U 1487 ]
-[; ;serial.c: 122: while(!PIR1bits.SSP1IF);
-"122
+[; ;serial.c: 124: while(!PIR1bits.SSP1IF);
+"124
 [e $U 1488  ]
 [e :U 1489 ]
 [e :U 1488 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1489  ]
 [e :U 1490 ]
-[; ;serial.c: 123: PIR1bits.SSP1IF = 0x0;
-"123
+[; ;serial.c: 125: PIR1bits.SSP1IF = 0x0;
+"125
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 124: SSP1CON2bits.RSEN = 0x1;
-"124
-[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
-[; ;serial.c: 126: while(SSP1CON2bits.RSEN);
+[; ;serial.c: 126: SSP1CON2bits.RSEN = 0x1;
 "126
+[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
+[; ;serial.c: 128: while(SSP1CON2bits.RSEN);
+"128
 [e $U 1491  ]
 [e :U 1492 ]
 [e :U 1491 ]
 [e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1492  ]
 [e :U 1493 ]
-[; ;serial.c: 127: while(!PIR1bits.SSP1IF);
-"127
+[; ;serial.c: 129: while(!PIR1bits.SSP1IF);
+"129
 [e $U 1494  ]
 [e :U 1495 ]
 [e :U 1494 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1495  ]
 [e :U 1496 ]
-[; ;serial.c: 128: PIR1bits.SSP1IF = 0x0;
-"128
+[; ;serial.c: 130: PIR1bits.SSP1IF = 0x0;
+"130
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 129: SSP1BUF = rdAddr;
-"129
-[e = _SSP1BUF _rdAddr ]
-[; ;serial.c: 131: while(SSP1CON2bits.ACKSTAT);
+[; ;serial.c: 131: SSP1BUF = rdAddr;
 "131
+[e = _SSP1BUF _rdAddr ]
+[; ;serial.c: 133: while(SSP1CON2bits.ACKSTAT);
+"133
 [e $U 1497  ]
 [e :U 1498 ]
 [e :U 1497 ]
 [e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1498  ]
 [e :U 1499 ]
-[; ;serial.c: 132: while(!PIR1bits.SSP1IF);
-"132
+[; ;serial.c: 134: while(!PIR1bits.SSP1IF);
+"134
 [e $U 1500  ]
 [e :U 1501 ]
 [e :U 1500 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1501  ]
 [e :U 1502 ]
-[; ;serial.c: 133: PIR1bits.SSP1IF = 0x0;
-"133
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 135: SSP1CON2bits.RCEN = 0x1;
+[; ;serial.c: 135: PIR1bits.SSP1IF = 0x0;
 "135
-[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
-[; ;serial.c: 137: for (n = 0; n < bytes; n++)
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 137: SSP1CON2bits.RCEN = 0x1;
 "137
-{
-[e = _n -> 0 `i ]
-[e $U 1506  ]
-"138
-[e :U 1503 ]
-[; ;serial.c: 138: {
-{
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
 [; ;serial.c: 139: while(!SSP1STATbits.BF);
 "139
-[e $U 1507  ]
-[e :U 1508 ]
-[e :U 1507 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1508  ]
-[e :U 1509 ]
+[e $U 1503  ]
+[e :U 1504 ]
+[e :U 1503 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1504  ]
+[e :U 1505 ]
 [; ;serial.c: 140: while (!PIR1bits.SSP1IF);
 "140
-[e $U 1510  ]
-[e :U 1511 ]
-[e :U 1510 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1511  ]
-[e :U 1512 ]
-[; ;serial.c: 142: data[n] = SSP1BUF;
-"142
-[e = *U + _data * -> _n `x -> -> # *U _data `i `x _SSP1BUF ]
-"143
-}
-"137
-[e ++ _n -> 1 `i ]
+[e $U 1506  ]
+[e :U 1507 ]
 [e :U 1506 ]
-[e $ < _n _bytes 1503  ]
-[e :U 1504 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1507  ]
+[e :U 1508 ]
+[; ;serial.c: 141: data[n] = SSP1BUF;
+"141
+[e = *U + _data * -> _n `x -> -> # *U _data `i `x -> _SSP1BUF `*i ]
+[; ;serial.c: 143: for (n = 1; n < bytes; n++)
 "143
-}
-[; ;serial.c: 143: }
-[; ;serial.c: 145: SSP1CON2bits.ACKDT = 0x1;
+{
+[e = _n -> 1 `i ]
+[e $U 1512  ]
+"144
+[e :U 1509 ]
+[; ;serial.c: 144: {
+{
+[; ;serial.c: 145: SSP1CON2bits.ACKDT = 0x0;
 "145
-[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
+[e = . . _SSP1CON2bits 0 5 -> -> 0 `i `uc ]
 [; ;serial.c: 146: SSP1CON2bits.ACKEN = 0x1;
 "146
 [e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
-[; ;serial.c: 148: while(SSP1CON2bits.ACKEN);
-"148
+[; ;serial.c: 147: while(SSP1CON2bits.ACKEN);
+"147
 [e $U 1513  ]
 [e :U 1514 ]
 [e :U 1513 ]
 [e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1514  ]
 [e :U 1515 ]
-[; ;serial.c: 149: PIR1bits.SSP1IF = 0x0;
-"149
+[; ;serial.c: 148: PIR1bits.SSP1IF = 0x0;
+"148
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 150: SSP1CON2bits.PEN = 0x1;
-"150
-[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 151: while(SSP1CON2bits.PEN);
+[; ;serial.c: 149: SSP1CON2bits.RCEN = 0x1;
+"149
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
+[; ;serial.c: 151: while(!SSP1STATbits.BF);
 "151
 [e $U 1516  ]
 [e :U 1517 ]
 [e :U 1516 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1517  ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1517  ]
 [e :U 1518 ]
-[; ;serial.c: 154: PIR1bits.SSP1IF = 0x0;
+[; ;serial.c: 152: while (!PIR1bits.SSP1IF);
+"152
+[e $U 1519  ]
+[e :U 1520 ]
+[e :U 1519 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1520  ]
+[e :U 1521 ]
+[; ;serial.c: 153: data[n] = SSP1BUF;
+"153
+[e = *U + _data * -> _n `x -> -> # *U _data `i `x -> _SSP1BUF `*i ]
 "154
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 155: SSP1CON1bits.SSPEN = 0x1;
-"155
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 156: }
+}
+"143
+[e ++ _n -> 1 `i ]
+[e :U 1512 ]
+[e $ < _n _bytes 1509  ]
+[e :U 1510 ]
+"154
+}
+[; ;serial.c: 154: }
+[; ;serial.c: 156: SSP1CON2bits.ACKDT = 0x1;
 "156
+[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
+[; ;serial.c: 157: SSP1CON2bits.ACKEN = 0x1;
+"157
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+[; ;serial.c: 159: while(SSP1CON2bits.ACKEN);
+"159
+[e $U 1522  ]
+[e :U 1523 ]
+[e :U 1522 ]
+[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1523  ]
+[e :U 1524 ]
+[; ;serial.c: 160: PIR1bits.SSP1IF = 0x0;
+"160
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 161: SSP1CON2bits.PEN = 0x1;
+"161
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 162: while(SSP1CON2bits.PEN);
+"162
+[e $U 1525  ]
+[e :U 1526 ]
+[e :U 1525 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1526  ]
+[e :U 1527 ]
+[; ;serial.c: 165: PIR1bits.SSP1IF = 0x0;
+"165
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 166: SSP1CON1bits.SSPEN = 0x1;
+"166
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 167: }
+"167
 [e :UE 1474 ]
 }
-"158
-[v _I2C1_Read_EEPROM `(uc ~T0 @X0 1 ef2`uc`uc ]
-"159
+"169
+[v _presetCtrl `(v ~T0 @X0 1 ef1`i ]
+"170
 {
-[; ;serial.c: 158: char I2C1_Read_EEPROM(char devAddr, char memValue)
-[; ;serial.c: 159: {
+[; ;serial.c: 169: void presetCtrl(int slot)
+[; ;serial.c: 170: {
+[e :U _presetCtrl ]
+"169
+[v _slot `i ~T0 @X0 1 r1 ]
+"170
+[f ]
+"171
+[v _updateValue `uc ~T0 @X0 1 a ]
+"172
+[v _bitSet `uc ~T0 @X0 1 a ]
+[; ;serial.c: 171: char updateValue;
+[; ;serial.c: 172: char bitSet = 2^slot;
+[e = _bitSet -> ^ -> 2 `i _slot `uc ]
+[; ;serial.c: 174: updateValue = (slotUsed | bitSet);
+"174
+[e = _updateValue -> | _slotUsed -> _bitSet `i `uc ]
+[; ;serial.c: 176: I2C1_Write_EEPROM(0x40, updateValue);
+"176
+[e ( _I2C1_Write_EEPROM (2 , -> -> 64 `i `uc _updateValue ]
+[; ;serial.c: 177: }
+"177
+[e :UE 1528 ]
+}
+"179
+[v _I2C1_Read_EEPROM `(uc ~T0 @X0 1 ef2`uc`uc ]
+"180
+{
+[; ;serial.c: 179: char I2C1_Read_EEPROM(char devAddr, char memValue)
+[; ;serial.c: 180: {
 [e :U _I2C1_Read_EEPROM ]
-"158
+"179
 [v _devAddr `uc ~T0 @X0 1 r1 ]
 [v _memValue `uc ~T0 @X0 1 r2 ]
-"159
+"180
 [f ]
-"160
+"181
 [v _dummyWrite `uc ~T0 @X0 1 a ]
-[; ;serial.c: 160: char dummyWrite = devAddr;
+[; ;serial.c: 181: char dummyWrite = devAddr;
 [e = _dummyWrite _devAddr ]
-"161
+"182
 [v _rdAddr `uc ~T0 @X0 1 a ]
-[; ;serial.c: 161: char rdAddr = (devAddr|0x01);
+[; ;serial.c: 182: char rdAddr = (devAddr|0x01);
 [e = _rdAddr -> | -> _devAddr `i -> 1 `i `uc ]
-"162
+"183
 [v _value `uc ~T0 @X0 1 a ]
-[; ;serial.c: 162: char value = 0x0;
+[; ;serial.c: 183: char value = 0x0;
 [e = _value -> -> 0 `i `uc ]
-[; ;serial.c: 164: SSP1CON1bits.SSPEN = 0x1;
-"164
+[; ;serial.c: 185: SSP1CON1bits.SSPEN = 0x1;
+"185
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 165: _delay((unsigned long)((5)*(32000000/4000000.0)));
-"165
+[; ;serial.c: 186: _delay((unsigned long)((5)*(32000000/4000000.0)));
+"186
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;serial.c: 167: SSP1CON2bits.SEN = 0x1;
-"167
+[; ;serial.c: 188: SSP1CON2bits.SEN = 0x1;
+"188
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
-[; ;serial.c: 168: while(SSP1CON2bits.SEN);
-"168
-[e $U 1520  ]
-[e :U 1521 ]
-[e :U 1520 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1521  ]
-[e :U 1522 ]
-[; ;serial.c: 169: while(!PIR1bits.SSP1IF);
-"169
-[e $U 1523  ]
-[e :U 1524 ]
-[e :U 1523 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1524  ]
-[e :U 1525 ]
-[; ;serial.c: 170: PIR1bits.SSP1IF = 0x0;
-"170
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 171: SSP1BUF = dummyWrite;
-"171
-[e = _SSP1BUF _dummyWrite ]
-[; ;serial.c: 173: if(SSP1CON2bits.ACKSTAT);
-"173
-[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1526  ]
-[e :U 1526 ]
-[; ;serial.c: 174: while(!PIR1bits.SSP1IF);
-"174
-[e $U 1527  ]
-[e :U 1528 ]
-[e :U 1527 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1528  ]
-[e :U 1529 ]
-[; ;serial.c: 175: PIR1bits.SSP1IF = 0x0;
-"175
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 176: SSP1BUF = memValue;
-"176
-[e = _SSP1BUF _memValue ]
-[; ;serial.c: 178: while(SSP1CON2bits.ACKSTAT);
-"178
+[; ;serial.c: 189: while(SSP1CON2bits.SEN);
+"189
 [e $U 1530  ]
 [e :U 1531 ]
 [e :U 1530 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1531  ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1531  ]
 [e :U 1532 ]
-[; ;serial.c: 179: while(!PIR1bits.SSP1IF);
-"179
+[; ;serial.c: 190: while(!PIR1bits.SSP1IF);
+"190
 [e $U 1533  ]
 [e :U 1534 ]
 [e :U 1533 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1534  ]
 [e :U 1535 ]
-[; ;serial.c: 180: PIR1bits.SSP1IF = 0x0;
-"180
+[; ;serial.c: 191: PIR1bits.SSP1IF = 0x0;
+"191
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 181: SSP1CON2bits.RSEN = 0x1;
-"181
-[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
-[; ;serial.c: 183: while(SSP1CON2bits.RSEN);
-"183
-[e $U 1536  ]
-[e :U 1537 ]
-[e :U 1536 ]
-[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1537  ]
-[e :U 1538 ]
-[; ;serial.c: 184: while(!PIR1bits.SSP1IF);
-"184
-[e $U 1539  ]
-[e :U 1540 ]
-[e :U 1539 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1540  ]
-[e :U 1541 ]
-[; ;serial.c: 185: PIR1bits.SSP1IF = 0x0;
-"185
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 186: SSP1BUF = rdAddr;
-"186
-[e = _SSP1BUF _rdAddr ]
-[; ;serial.c: 188: while(SSP1CON2bits.ACKSTAT);
-"188
-[e $U 1542  ]
-[e :U 1543 ]
-[e :U 1542 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1543  ]
-[e :U 1544 ]
-[; ;serial.c: 189: while(!PIR1bits.SSP1IF);
-"189
-[e $U 1545  ]
-[e :U 1546 ]
-[e :U 1545 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1546  ]
-[e :U 1547 ]
-[; ;serial.c: 190: PIR1bits.SSP1IF = 0x0;
-"190
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 192: SSP1CON2bits.RCEN = 0x1;
+[; ;serial.c: 192: SSP1BUF = dummyWrite;
 "192
-[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
-[; ;serial.c: 194: while(!SSP1STATbits.BF);
+[e = _SSP1BUF _dummyWrite ]
+[; ;serial.c: 194: if(SSP1CON2bits.ACKSTAT);
 "194
-[e $U 1548  ]
-[e :U 1549 ]
-[e :U 1548 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1549  ]
-[e :U 1550 ]
-[; ;serial.c: 195: while (!PIR1bits.SSP1IF);
+[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1536  ]
+[e :U 1536 ]
+[; ;serial.c: 195: while(!PIR1bits.SSP1IF);
 "195
-[e $U 1551  ]
-[e :U 1552 ]
-[e :U 1551 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1552  ]
-[e :U 1553 ]
-[; ;serial.c: 197: value = SSP1BUF;
+[e $U 1537  ]
+[e :U 1538 ]
+[e :U 1537 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1538  ]
+[e :U 1539 ]
+[; ;serial.c: 196: PIR1bits.SSP1IF = 0x0;
+"196
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 197: SSP1BUF = memValue;
 "197
-[e = _value _SSP1BUF ]
-[; ;serial.c: 199: SSP1CON2bits.ACKDT = 0x1;
+[e = _SSP1BUF _memValue ]
+[; ;serial.c: 199: while(SSP1CON2bits.ACKSTAT);
 "199
-[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
-[; ;serial.c: 200: SSP1CON2bits.ACKEN = 0x1;
+[e $U 1540  ]
+[e :U 1541 ]
+[e :U 1540 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1541  ]
+[e :U 1542 ]
+[; ;serial.c: 200: while(!PIR1bits.SSP1IF);
 "200
-[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
-[; ;serial.c: 202: while(SSP1CON2bits.ACKEN);
+[e $U 1543  ]
+[e :U 1544 ]
+[e :U 1543 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1544  ]
+[e :U 1545 ]
+[; ;serial.c: 201: PIR1bits.SSP1IF = 0x0;
+"201
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 202: SSP1CON2bits.RSEN = 0x1;
 "202
-[e $U 1554  ]
-[e :U 1555 ]
-[e :U 1554 ]
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1555  ]
-[e :U 1556 ]
-[; ;serial.c: 203: PIR1bits.SSP1IF = 0x0;
-"203
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 204: SSP1CON2bits.PEN = 0x1;
+[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
+[; ;serial.c: 204: while(SSP1CON2bits.RSEN);
 "204
-[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 205: while(SSP1CON2bits.PEN);
+[e $U 1546  ]
+[e :U 1547 ]
+[e :U 1546 ]
+[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1547  ]
+[e :U 1548 ]
+[; ;serial.c: 205: while(!PIR1bits.SSP1IF);
 "205
-[e $U 1557  ]
-[e :U 1558 ]
-[e :U 1557 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1558  ]
-[e :U 1559 ]
-[; ;serial.c: 208: PIR1bits.SSP1IF = 0x0;
-"208
+[e $U 1549  ]
+[e :U 1550 ]
+[e :U 1549 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1550  ]
+[e :U 1551 ]
+[; ;serial.c: 206: PIR1bits.SSP1IF = 0x0;
+"206
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 209: SSP1CON1bits.SSPEN = 0x1;
+[; ;serial.c: 207: SSP1BUF = rdAddr;
+"207
+[e = _SSP1BUF _rdAddr ]
+[; ;serial.c: 209: while(SSP1CON2bits.ACKSTAT);
 "209
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 211: return value;
+[e $U 1552  ]
+[e :U 1553 ]
+[e :U 1552 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1553  ]
+[e :U 1554 ]
+[; ;serial.c: 210: while(!PIR1bits.SSP1IF);
+"210
+[e $U 1555  ]
+[e :U 1556 ]
+[e :U 1555 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1556  ]
+[e :U 1557 ]
+[; ;serial.c: 211: PIR1bits.SSP1IF = 0x0;
 "211
-[e ) _value ]
-[e $UE 1519  ]
-[; ;serial.c: 212: }
-"212
-[e :UE 1519 ]
-}
-"214
-[v _I2C1_Write_DigiPot `(v ~T0 @X0 1 ef1`uc ]
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 213: SSP1CON2bits.RCEN = 0x1;
+"213
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
+[; ;serial.c: 215: while(!SSP1STATbits.BF);
 "215
-{
-[; ;serial.c: 214: void I2C1_Write_DigiPot(char value)
-[; ;serial.c: 215: {
-[e :U _I2C1_Write_DigiPot ]
-"214
-[v _value `uc ~T0 @X0 1 r1 ]
-"215
-[f ]
+[e $U 1558  ]
+[e :U 1559 ]
+[e :U 1558 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1559  ]
+[e :U 1560 ]
+[; ;serial.c: 216: while (!PIR1bits.SSP1IF);
 "216
-[v _wrCommand `uc ~T0 @X0 1 a ]
-[; ;serial.c: 216: char wrCommand = (0b00101111 << 1);
-[e = _wrCommand -> << -> 47 `i -> 1 `i `uc ]
-[; ;serial.c: 218: SSP1CON1bits.SSPEN = 0x1;
-"218
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 219: _delay((unsigned long)((5)*(32000000/4000000.0)));
-"219
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;serial.c: 221: SSP1CON2bits.SEN = 0x1;
-"221
-[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
-[; ;serial.c: 222: while(SSP1CON2bits.SEN);
-"222
 [e $U 1561  ]
 [e :U 1562 ]
 [e :U 1561 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1562  ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1562  ]
 [e :U 1563 ]
-[; ;serial.c: 223: PIR1bits.SSP1IF = 0x0;
+[; ;serial.c: 218: value = SSP1BUF;
+"218
+[e = _value _SSP1BUF ]
+[; ;serial.c: 220: SSP1CON2bits.ACKDT = 0x1;
+"220
+[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
+[; ;serial.c: 221: SSP1CON2bits.ACKEN = 0x1;
+"221
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+[; ;serial.c: 223: while(SSP1CON2bits.ACKEN);
 "223
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 224: SSP1BUF = wrCommand;
-"224
-[e = _SSP1BUF _wrCommand ]
-[; ;serial.c: 226: while (SSP1CON2bits.ACKSTAT);
-"226
 [e $U 1564  ]
 [e :U 1565 ]
 [e :U 1564 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1565  ]
+[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1565  ]
 [e :U 1566 ]
-[; ;serial.c: 227: while(!PIR1bits.SSP1IF);
-"227
+[; ;serial.c: 224: PIR1bits.SSP1IF = 0x0;
+"224
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 225: SSP1CON2bits.PEN = 0x1;
+"225
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 226: while(SSP1CON2bits.PEN);
+"226
 [e $U 1567  ]
 [e :U 1568 ]
 [e :U 1567 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1568  ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1568  ]
 [e :U 1569 ]
-[; ;serial.c: 228: PIR1bits.SSP1IF = 0x0;
-"228
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 229: SSP1BUF = value;
+[; ;serial.c: 229: PIR1bits.SSP1IF = 0x0;
 "229
-[e = _SSP1BUF _value ]
-[; ;serial.c: 231: while (SSP1CON2bits.ACKSTAT);
-"231
-[e $U 1570  ]
-[e :U 1571 ]
-[e :U 1570 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1571  ]
-[e :U 1572 ]
-[; ;serial.c: 232: while(!PIR1bits.SSP1IF);
-"232
-[e $U 1573  ]
-[e :U 1574 ]
-[e :U 1573 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1574  ]
-[e :U 1575 ]
-[; ;serial.c: 233: SSP1CON2bits.PEN = 0x1;
-"233
-[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 234: while(SSP1CON2bits.PEN);
-"234
-[e $U 1576  ]
-[e :U 1577 ]
-[e :U 1576 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1577  ]
-[e :U 1578 ]
-[; ;serial.c: 236: PIR1bits.SSP1IF = 0x0;
-"236
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;serial.c: 237: SSP1CON1bits.SSPEN = 0x1;
-"237
+[; ;serial.c: 230: SSP1CON1bits.SSPEN = 0x1;
+"230
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;serial.c: 238: }
-"238
-[e :UE 1560 ]
+[; ;serial.c: 232: return value;
+"232
+[e ) _value ]
+[e $UE 1529  ]
+[; ;serial.c: 233: }
+"233
+[e :UE 1529 ]
 }
-"240
-[v _sendParam `(v ~T0 @X0 1 ef ]
-"241
+"235
+[v _I2C1_Write_DigiPot `(v ~T0 @X0 1 ef1`uc ]
+"236
 {
-[; ;serial.c: 240: void sendParam(void)
-[; ;serial.c: 241: {
+[; ;serial.c: 235: void I2C1_Write_DigiPot(char value)
+[; ;serial.c: 236: {
+[e :U _I2C1_Write_DigiPot ]
+"235
+[v _value `uc ~T0 @X0 1 r1 ]
+"236
+[f ]
+"237
+[v _wrCommand `uc ~T0 @X0 1 a ]
+[; ;serial.c: 237: char wrCommand = (0b00101111 << 1);
+[e = _wrCommand -> << -> 47 `i -> 1 `i `uc ]
+[; ;serial.c: 239: SSP1CON1bits.SSPEN = 0x1;
+"239
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 240: _delay((unsigned long)((5)*(32000000/4000000.0)));
+"240
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;serial.c: 242: SSP1CON2bits.SEN = 0x1;
+"242
+[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
+[; ;serial.c: 243: while(SSP1CON2bits.SEN);
+"243
+[e $U 1571  ]
+[e :U 1572 ]
+[e :U 1571 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1572  ]
+[e :U 1573 ]
+[; ;serial.c: 244: PIR1bits.SSP1IF = 0x0;
+"244
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 245: SSP1BUF = wrCommand;
+"245
+[e = _SSP1BUF _wrCommand ]
+[; ;serial.c: 247: while (SSP1CON2bits.ACKSTAT);
+"247
+[e $U 1574  ]
+[e :U 1575 ]
+[e :U 1574 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1575  ]
+[e :U 1576 ]
+[; ;serial.c: 248: while(!PIR1bits.SSP1IF);
+"248
+[e $U 1577  ]
+[e :U 1578 ]
+[e :U 1577 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1578  ]
+[e :U 1579 ]
+[; ;serial.c: 249: PIR1bits.SSP1IF = 0x0;
+"249
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 250: SSP1BUF = value;
+"250
+[e = _SSP1BUF _value ]
+[; ;serial.c: 252: while (SSP1CON2bits.ACKSTAT);
+"252
+[e $U 1580  ]
+[e :U 1581 ]
+[e :U 1580 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1581  ]
+[e :U 1582 ]
+[; ;serial.c: 253: while(!PIR1bits.SSP1IF);
+"253
+[e $U 1583  ]
+[e :U 1584 ]
+[e :U 1583 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1584  ]
+[e :U 1585 ]
+[; ;serial.c: 254: SSP1CON2bits.PEN = 0x1;
+"254
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 255: while(SSP1CON2bits.PEN);
+"255
+[e $U 1586  ]
+[e :U 1587 ]
+[e :U 1586 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1587  ]
+[e :U 1588 ]
+[; ;serial.c: 257: PIR1bits.SSP1IF = 0x0;
+"257
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;serial.c: 258: SSP1CON1bits.SSPEN = 0x1;
+"258
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;serial.c: 259: }
+"259
+[e :UE 1570 ]
+}
+"261
+[v _sendParam `(v ~T0 @X0 1 ef ]
+"262
+{
+[; ;serial.c: 261: void sendParam(void)
+[; ;serial.c: 262: {
 [e :U _sendParam ]
 [f ]
-"242
+"263
 [v _n `i ~T0 @X0 1 a ]
-[; ;serial.c: 242: int n = 0;
+[; ;serial.c: 263: int n = 0;
 [e = _n -> 0 `i ]
-[; ;serial.c: 244: dataTarget = SSP2BUF;
-"244
+[; ;serial.c: 265: dataTarget = SSP2BUF;
+"265
 [e = _dataTarget -> _SSP2BUF `i ]
-[; ;serial.c: 248: for (n = 0; n < 12; n++)
-"248
+[; ;serial.c: 267: for (n = 0; n < 13; n++)
+"267
 {
 [e = _n -> 0 `i ]
-[e $ < _n -> 12 `i 1580  ]
-[e $U 1581  ]
-"249
-[e :U 1580 ]
-[; ;serial.c: 249: {
+[e $ < _n -> 13 `i 1590  ]
+[e $U 1591  ]
+"268
+[e :U 1590 ]
+[; ;serial.c: 268: {
 {
-[; ;serial.c: 250: if (dataTarget == paramAddress[n])
-"250
-[e $ ! == _dataTarget *U + &U _paramAddress * -> -> _n `ui `ux -> -> # *U &U _paramAddress `ui `ux 1583  ]
-[; ;serial.c: 251: {
-"251
+[; ;serial.c: 269: if (dataTarget == paramAddress[n])
+"269
+[e $ ! == _dataTarget *U + &U _paramAddress * -> -> _n `ui `ux -> -> # *U &U _paramAddress `ui `ux 1593  ]
+[; ;serial.c: 270: {
+"270
 {
-[; ;serial.c: 252: dataPtr = parameter[n];
-"252
+[; ;serial.c: 271: if (n == 12)
+"271
+[e $ ! == _n -> 12 `i 1594  ]
+[; ;serial.c: 272: {
+"272
+{
+[; ;serial.c: 273: dataPtr = setupComplete;
+"273
+[e = _dataPtr -> _setupComplete `*i ]
+"274
+}
+[; ;serial.c: 274: }
+[e $U 1595  ]
+"275
+[e :U 1594 ]
+[; ;serial.c: 275: else dataPtr = parameter[n];
 [e = _dataPtr -> *U + &U _parameter * -> -> _n `ui `ux -> -> # *U &U _parameter `ui `ux `*i ]
-[; ;serial.c: 253: break;
-"253
-[e $U 1581  ]
-"254
+[e :U 1595 ]
+[; ;serial.c: 276: break;
+"276
+[e $U 1591  ]
+"277
 }
-[e :U 1583 ]
-"255
+[e :U 1593 ]
+"278
 }
-"248
+"267
 [e ++ _n -> 1 `i ]
-[e $ < _n -> 12 `i 1580  ]
-[e :U 1581 ]
-"255
+[e $ < _n -> 13 `i 1590  ]
+[e :U 1591 ]
+"278
 }
-[; ;serial.c: 254: }
-[; ;serial.c: 255: }
-[; ;serial.c: 257: SSP2BUF = dataPtr;
-"257
+[; ;serial.c: 277: }
+[; ;serial.c: 278: }
+[; ;serial.c: 280: SSP2BUF = dataPtr;
+"280
 [e = _SSP2BUF -> _dataPtr `Vuc ]
-[; ;serial.c: 258: SSP2CON1bits.CKP = 0x1;
-"258
+[; ;serial.c: 281: SSP2CON1bits.CKP = 0x1;
+"281
 [e = . . _SSP2CON1bits 0 1 -> -> 1 `i `uc ]
-[; ;serial.c: 259: PIR2bits.SSP2IF = 0x0;
-"259
+[; ;serial.c: 282: PIR2bits.SSP2IF = 0x0;
+"282
 [e = . . _PIR2bits 0 6 -> -> 0 `i `uc ]
-[; ;serial.c: 260: }
-"260
-[e :UE 1579 ]
+[; ;serial.c: 283: }
+"283
+[e :UE 1589 ]
 }

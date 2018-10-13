@@ -81,7 +81,7 @@ void setupI2C1(void)
     TRISCbits.TRISC4 = 0x1;         // RC4 is an INPUT (SDA1)
     
     // Master Mode, Clock = Fosc / (4*(SSP1ADD + 1))
-    SSP1ADD = 0x4F;                 // Clock speed is 100 kHz
+    SSP1ADD = 0x13;                 // Clock speed is 100 kHz
     SSP1CON1bits.SSPM = 0x8;        // Master Mode, Slave is idle
     
     SSP1BUF = 0x00;                 // Clear buffer
