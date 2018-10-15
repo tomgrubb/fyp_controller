@@ -181,9 +181,15 @@ int absVal(int val) // return absolute value of 'val'
 
 void readControls(void)
 {
+    if (masterTime.f > 0)
+    {
+        lock = lockIn;
+    }
+    else lock = 0;
+    
     // Delay Line A
     timeA = ADC_Read(14);
-    parameter[0] = timeA >> 8;
+    parameter[0] = ((timeA >> 8) | (armA << 7) | (lock << 6));
     parameter[1] = (timeA & 0xFF);
             
     fbkA = ADC_Read(4);
@@ -194,7 +200,7 @@ void readControls(void)
     
     // Delay Line B
     timeB = ADC_Read(6);
-    parameter[4] = timeB >> 8;
+    parameter[4] = ((timeB >> 8) | (armB << 7));
     parameter[5] = (timeB & 0xFF);
     
     fbkB = ADC_Read(2);
@@ -205,7 +211,7 @@ void readControls(void)
     
     // Delay Line C
     timeC = ADC_Read(1);
-    parameter[8] = timeC >> 8;
+    parameter[8] = ((timeC >> 8) | (armC << 7));
     parameter[9] = (timeC & 0xFF);
     
     fbkC = ADC_Read(5);
@@ -213,15 +219,22 @@ void readControls(void)
     
     lvlC = ADC_Read(0);
     parameter[11] = lvlC>>4;
+
+    // Break down Master Time into bytes
+    parameter[12] = masterTime.b[0];
+    parameter[13] = masterTime.b[1];
+    parameter[14] = masterTime.b[2];
 }
 
-void updatePreset(int slot, int values[])
+void updatePreset(int slot, int data[])
 {
     int i;
+    int temp;
     
     for (i = 0; i < 12; i++)
     {
-        userParams[slot][i] = values[i];
+        temp = data[i];
+        userParams[slot][i] = temp;
     }
 }
 
@@ -239,12 +252,11 @@ void fetchPreset(void)
 {
     int test = 0;
     int i = 0;
-    int values[12];
     
     for (i = 0; i < 5; i++)
     {
-        I2C1_Block_Read_EERPOM(i, values, 12);
-        updatePreset(i+1, values);
+        I2C1_Block_Read_EERPOM(i, presetRead, 12);
+        updatePreset(i+1, presetRead);
     }
 }
 

@@ -17299,7 +17299,8 @@ int armFlash = 0;
 int armFlashToggle = 0;
 
 
-int parameter[12];
+int parameter[15];
+int presetRead[12];
 
 int shift = 0;
 int armA = 0;
@@ -17331,6 +17332,12 @@ int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
 
+
+typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+
+f2b masterTime;
+int lock = 0;
+
 int setupComplete = 0;
 int sync = 0;
 
@@ -17338,7 +17345,7 @@ int sync = 0;
 int paramAddress[] =
 {
 0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-0xB1, 0xB3, 0xB5, 0xB7, 0xBF
+0xB1, 0xB3, 0xB5, 0xB7, 0xB9, 0xBB, 0xBD, 0xBF
 };
 
 int presetAdd[] =
@@ -17584,11 +17591,11 @@ int n = 0;
 
 dataTarget = SSP2BUF;
 
-for (n = 0; n < 13; n++)
+for (n = 0; n < 15; n++)
 {
 if (dataTarget == paramAddress[n])
 {
-if (n == 12)
+if (n == 15)
 {
 dataPtr = setupComplete;
 }

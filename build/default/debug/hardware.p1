@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"153 global.h
+[u S1420 `f 1 `uc -> # `f `ui ]
+[n S1420 float2bytes f b ]
 "29839 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [s S1306 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
 [n S1306 . T2CKPS TMR2ON T2OUTPS ]
@@ -12993,155 +12996,168 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;global.h: 116: int armFlashToggle = 0;
 "119
-[v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 119: int parameter[12];
-"121
+[v _parameter `i ~T0 @X0 -> 15 `i e ]
+[; ;global.h: 119: int parameter[15];
+"120
+[v _presetRead `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 120: int presetRead[12];
+"122
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 121: int shift = 0;
-"122
+[; ;global.h: 122: int shift = 0;
+"123
 [v _armA `i ~T0 @X0 1 e ]
 [i _armA
 -> 0 `i
 ]
-[; ;global.h: 122: int armA = 0;
-"123
+[; ;global.h: 123: int armA = 0;
+"124
 [v _armB `i ~T0 @X0 1 e ]
 [i _armB
 -> 0 `i
 ]
-[; ;global.h: 123: int armB = 0;
-"124
+[; ;global.h: 124: int armB = 0;
+"125
 [v _armC `i ~T0 @X0 1 e ]
 [i _armC
 -> 0 `i
 ]
-[; ;global.h: 124: int armC = 0;
-"125
+[; ;global.h: 125: int armC = 0;
+"126
 [v _linesArmed `i ~T0 @X0 1 e ]
 [i _linesArmed
 -> 0 `i
 ]
-[; ;global.h: 125: int linesArmed = 0;
-"127
+[; ;global.h: 126: int linesArmed = 0;
+"128
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 127: int dataTarget = 0;
-"128
+[; ;global.h: 128: int dataTarget = 0;
+"129
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 128: int *dataPtr;
-"130
+[; ;global.h: 129: int *dataPtr;
+"131
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 130: int fbkA = 0;
-"131
+[; ;global.h: 131: int fbkA = 0;
+"132
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 131: int lvlA = 0;
-"132
+[; ;global.h: 132: int lvlA = 0;
+"133
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 132: int timeA = 0;
-"134
+[; ;global.h: 133: int timeA = 0;
+"135
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 134: int fbkB = 0;
-"135
+[; ;global.h: 135: int fbkB = 0;
+"136
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 135: int lvlB = 0;
-"136
+[; ;global.h: 136: int lvlB = 0;
+"137
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 136: int timeB = 0;
-"138
+[; ;global.h: 137: int timeB = 0;
+"139
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 138: int fbkC = 0;
-"139
+[; ;global.h: 139: int fbkC = 0;
+"140
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 139: int lvlC = 0;
-"140
+[; ;global.h: 140: int lvlC = 0;
+"141
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 140: int timeC = 0;
-"143
+[; ;global.h: 141: int timeC = 0;
+"144
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 143: int tapTimeCount = 0;
-"144
+[; ;global.h: 144: int tapTimeCount = 0;
+"145
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 144: int tapPrev = 0;
-"145
+[; ;global.h: 145: int tapPrev = 0;
+"146
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 145: long int tapAccum = 0;
-"146
+[; ;global.h: 146: long int tapAccum = 0;
+"147
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 146: int tap = 0;
-"147
+[; ;global.h: 147: int tap = 0;
+"148
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 147: int tapTime = 0;
-"148
+[; ;global.h: 148: int tapTime = 0;
+"149
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 148: int newTempo = 0;
-"149
+[; ;global.h: 149: int newTempo = 0;
+"150
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 149: int timeoutCount = 0;
-"151
+[; ;global.h: 150: int timeoutCount = 0;
+[; ;global.h: 153: typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+"155
+[v _masterTime `S1420 ~T0 @X0 1 e ]
+[; ;global.h: 155: f2b masterTime;
+"156
+[v _lock `i ~T0 @X0 1 e ]
+[i _lock
+-> 0 `i
+]
+[; ;global.h: 156: int lock = 0;
+"158
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 151: int setupComplete = 0;
-"152
+[; ;global.h: 158: int setupComplete = 0;
+"159
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 152: int sync = 0;
+[; ;global.h: 159: int sync = 0;
 "15 hardware.c
 [v _maxTapCheck `(v ~T0 @X0 1 ef ]
 "16
@@ -13152,7 +13168,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;hardware.c: 17: if (tapTimeCount > 3000)
 "17
-[e $ ! > _tapTimeCount -> 3000 `i 1421  ]
+[e $ ! > _tapTimeCount -> 3000 `i 1422  ]
 [; ;hardware.c: 18: {
 "18
 {
@@ -13165,11 +13181,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "21
 }
 [; ;hardware.c: 21: }
-[e $U 1422  ]
+[e $U 1423  ]
 "22
-[e :U 1421 ]
+[e :U 1422 ]
 [; ;hardware.c: 22: else if (tapTimeCount >= 1500)
-[e $ ! >= _tapTimeCount -> 1500 `i 1423  ]
+[e $ ! >= _tapTimeCount -> 1500 `i 1424  ]
 [; ;hardware.c: 23: {
 "23
 {
@@ -13184,12 +13200,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _currentTapTime -> 1500 `i ]
 "27
 }
-[e :U 1423 ]
+[e :U 1424 ]
 "28
-[e :U 1422 ]
+[e :U 1423 ]
 [; ;hardware.c: 27: }
 [; ;hardware.c: 28: }
-[e :UE 1420 ]
+[e :UE 1421 ]
 }
 "30
 [v _processTaps `(v ~T0 @X0 1 ef ]
@@ -13205,7 +13221,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _tapDiff -> 0 `i ]
 [; ;hardware.c: 34: if (tap < 1)
 "34
-[e $ ! < _tap -> 1 `i 1425  ]
+[e $ ! < _tap -> 1 `i 1426  ]
 [; ;hardware.c: 35: {
 "35
 {
@@ -13224,9 +13240,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "40
 }
 [; ;hardware.c: 40: }
-[e $U 1426  ]
+[e $U 1427  ]
 "41
-[e :U 1425 ]
+[e :U 1426 ]
 [; ;hardware.c: 41: else
 [; ;hardware.c: 42: {
 "42
@@ -13245,7 +13261,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATE0 -> -> 1 `i `b ]
 [; ;hardware.c: 48: if (tap < 2)
 "48
-[e $ ! < _tap -> 2 `i 1427  ]
+[e $ ! < _tap -> 2 `i 1428  ]
 [; ;hardware.c: 49: {
 "49
 {
@@ -13264,9 +13280,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "54
 }
 [; ;hardware.c: 54: }
-[e $U 1428  ]
+[e $U 1429  ]
 "55
-[e :U 1427 ]
+[e :U 1428 ]
 [; ;hardware.c: 55: else
 [; ;hardware.c: 56: {
 "56
@@ -13279,7 +13295,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _tapDiff ( _absVal (1 _tapDiff ]
 [; ;hardware.c: 59: if (tapDiff >= 500)
 "59
-[e $ ! >= _tapDiff -> 500 `i 1429  ]
+[e $ ! >= _tapDiff -> 500 `i 1430  ]
 [; ;hardware.c: 60: {
 "60
 {
@@ -13289,9 +13305,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "62
 }
 [; ;hardware.c: 62: }
-[e $U 1430  ]
+[e $U 1431  ]
 "63
-[e :U 1429 ]
+[e :U 1430 ]
 [; ;hardware.c: 63: else
 [; ;hardware.c: 64: {
 "64
@@ -13307,1896 +13323,1899 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _tap -> 1 `i ]
 "68
 }
-[e :U 1430 ]
+[e :U 1431 ]
 "69
 }
-[e :U 1428 ]
+[e :U 1429 ]
 [; ;hardware.c: 68: }
 [; ;hardware.c: 69: }
-[; ;hardware.c: 70: T2CONbits.TMR2ON = 1;
+[; ;hardware.c: 70: masterTime.f = currentTapTime*1.024;
 "70
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+[e = . _masterTime 0 -> * -> _currentTapTime `d .1.024 `f ]
+[; ;hardware.c: 71: T2CONbits.TMR2ON = 1;
 "71
-}
-[e :U 1426 ]
-[; ;hardware.c: 71: }
-[; ;hardware.c: 72: tapTimeCount = 0;
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
 "72
-[e = _tapTimeCount -> 0 `i ]
-[; ;hardware.c: 73: }
-"73
-[e :UE 1424 ]
 }
-"75
-[v _tapLED `(v ~T0 @X0 1 ef ]
+[e :U 1427 ]
+[; ;hardware.c: 72: }
+[; ;hardware.c: 73: tapTimeCount = 0;
+"73
+[e = _tapTimeCount -> 0 `i ]
+[; ;hardware.c: 74: }
+"74
+[e :UE 1425 ]
+}
 "76
+[v _tapLED `(v ~T0 @X0 1 ef ]
+"77
 {
-[; ;hardware.c: 75: void tapLED(void)
-[; ;hardware.c: 76: {
+[; ;hardware.c: 76: void tapLED(void)
+[; ;hardware.c: 77: {
 [e :U _tapLED ]
 [f ]
-[; ;hardware.c: 84: if(tapFlash)
-"84
-[e $ ! != _tapFlash -> 0 `i 1432  ]
-[; ;hardware.c: 85: {
+[; ;hardware.c: 85: if(tapFlash)
 "85
-{
-[; ;hardware.c: 86: tapDispCount++;
+[e $ ! != _tapFlash -> 0 `i 1433  ]
+[; ;hardware.c: 86: {
 "86
-[e ++ _tapDispCount -> 1 `i ]
-[; ;hardware.c: 87: if (tapDispCount >= tapOnTime)
-"87
-[e $ ! >= _tapDispCount _tapOnTime 1433  ]
-[; ;hardware.c: 88: {
-"88
 {
-[; ;hardware.c: 89: tapDispCount = 0;
+[; ;hardware.c: 87: tapDispCount++;
+"87
+[e ++ _tapDispCount -> 1 `i ]
+[; ;hardware.c: 88: if (tapDispCount >= tapOnTime)
+"88
+[e $ ! >= _tapDispCount _tapOnTime 1434  ]
+[; ;hardware.c: 89: {
 "89
-[e = _tapDispCount -> 0 `i ]
-[; ;hardware.c: 90: LATE0 = 0;
+{
+[; ;hardware.c: 90: tapDispCount = 0;
 "90
-[e = _LATE0 -> -> 0 `i `b ]
-[; ;hardware.c: 91: tapFlash = 0;
+[e = _tapDispCount -> 0 `i ]
+[; ;hardware.c: 91: LATE0 = 0;
 "91
-[e = _tapFlash -> 0 `i ]
+[e = _LATE0 -> -> 0 `i `b ]
+[; ;hardware.c: 92: tapFlash = 0;
 "92
-}
-[e :U 1433 ]
+[e = _tapFlash -> 0 `i ]
 "93
 }
-[; ;hardware.c: 92: }
-[; ;hardware.c: 93: }
-[e $U 1434  ]
+[e :U 1434 ]
 "94
-[e :U 1432 ]
-[; ;hardware.c: 94: else
-[; ;hardware.c: 95: {
-"95
-{
-[; ;hardware.c: 96: tapDispCount++;
-"96
-[e ++ _tapDispCount -> 1 `i ]
-[; ;hardware.c: 97: if (tapDispCount >= (currentTapTime-tapOnTime))
-"97
-[e $ ! >= _tapDispCount - _currentTapTime _tapOnTime 1435  ]
-[; ;hardware.c: 98: {
-"98
-{
-[; ;hardware.c: 99: tapDispCount = 0;
-"99
-[e = _tapDispCount -> 0 `i ]
-[; ;hardware.c: 100: LATE0 = 1;
-"100
-[e = _LATE0 -> -> 1 `i `b ]
-[; ;hardware.c: 101: tapFlash = 1;
-"101
-[e = _tapFlash -> 1 `i ]
-"102
 }
-[e :U 1435 ]
+[; ;hardware.c: 93: }
+[; ;hardware.c: 94: }
+[e $U 1435  ]
+"95
+[e :U 1433 ]
+[; ;hardware.c: 95: else
+[; ;hardware.c: 96: {
+"96
+{
+[; ;hardware.c: 97: tapDispCount++;
+"97
+[e ++ _tapDispCount -> 1 `i ]
+[; ;hardware.c: 98: if (tapDispCount >= (currentTapTime-tapOnTime))
+"98
+[e $ ! >= _tapDispCount - _currentTapTime _tapOnTime 1436  ]
+[; ;hardware.c: 99: {
+"99
+{
+[; ;hardware.c: 100: tapDispCount = 0;
+"100
+[e = _tapDispCount -> 0 `i ]
+[; ;hardware.c: 101: LATE0 = 1;
+"101
+[e = _LATE0 -> -> 1 `i `b ]
+[; ;hardware.c: 102: tapFlash = 1;
+"102
+[e = _tapFlash -> 1 `i ]
 "103
 }
-[e :U 1434 ]
-[; ;hardware.c: 102: }
+[e :U 1436 ]
+"104
+}
+[e :U 1435 ]
 [; ;hardware.c: 103: }
 [; ;hardware.c: 104: }
-"104
-[e :UE 1431 ]
+[; ;hardware.c: 105: }
+"105
+[e :UE 1432 ]
 }
-"106
-[v _flashLED `(v ~T0 @X0 1 ef ]
 "107
+[v _flashLED `(v ~T0 @X0 1 ef ]
+"108
 {
-[; ;hardware.c: 106: void flashLED(void)
-[; ;hardware.c: 107: {
+[; ;hardware.c: 107: void flashLED(void)
+[; ;hardware.c: 108: {
 [e :U _flashLED ]
 [f ]
-[; ;hardware.c: 108: if (presetPend)
-"108
-[e $ ! != _presetPend -> 0 `i 1437  ]
-[; ;hardware.c: 109: {
+[; ;hardware.c: 109: if (presetPend)
 "109
-{
-[; ;hardware.c: 110: pFlashCount++;
+[e $ ! != _presetPend -> 0 `i 1438  ]
+[; ;hardware.c: 110: {
 "110
-[e ++ _pFlashCount -> 1 `i ]
-[; ;hardware.c: 111: if (pFlashCount > 150)
+{
+[; ;hardware.c: 111: pFlashCount++;
 "111
-[e $ ! > _pFlashCount -> 150 `i 1438  ]
-[; ;hardware.c: 112: {
+[e ++ _pFlashCount -> 1 `i ]
+[; ;hardware.c: 112: if (pFlashCount > 150)
 "112
-{
-[; ;hardware.c: 113: if (pFlash)
+[e $ ! > _pFlashCount -> 150 `i 1439  ]
+[; ;hardware.c: 113: {
 "113
-[e $ ! != _pFlash -> 0 `i 1439  ]
-[; ;hardware.c: 114: {
+{
+[; ;hardware.c: 114: if (pFlash)
 "114
-{
-[; ;hardware.c: 115: updatePresetLEDs(targPreset);
+[e $ ! != _pFlash -> 0 `i 1440  ]
+[; ;hardware.c: 115: {
 "115
-[e ( _updatePresetLEDs (1 _targPreset ]
+{
+[; ;hardware.c: 116: updatePresetLEDs(targPreset);
 "116
-}
-[; ;hardware.c: 116: }
-[e $U 1440  ]
+[e ( _updatePresetLEDs (1 _targPreset ]
 "117
-[e :U 1439 ]
-[; ;hardware.c: 117: else
-[; ;hardware.c: 118: {
+}
+[; ;hardware.c: 117: }
+[e $U 1441  ]
 "118
-{
-[; ;hardware.c: 119: updatePresetLEDs(0);
-"119
-[e ( _updatePresetLEDs (1 -> 0 `i ]
-"120
-}
 [e :U 1440 ]
-[; ;hardware.c: 120: }
-[; ;hardware.c: 121: pFlash ^= 1;
+[; ;hardware.c: 118: else
+[; ;hardware.c: 119: {
+"119
+{
+[; ;hardware.c: 120: updatePresetLEDs(0);
+"120
+[e ( _updatePresetLEDs (1 -> 0 `i ]
 "121
-[e =^ _pFlash -> 1 `i ]
-[; ;hardware.c: 122: pFlashCount = 0;
-"122
-[e = _pFlashCount -> 0 `i ]
-"123
-}
-[e :U 1438 ]
-"124
-}
-[e :U 1437 ]
-[; ;hardware.c: 123: }
-[; ;hardware.c: 124: }
-[; ;hardware.c: 125: if ((armA + armB + armC) > 0)
-"125
-[e $ ! > + + _armA _armB _armC -> 0 `i 1441  ]
-[; ;hardware.c: 126: {
-"126
-{
-[; ;hardware.c: 127: armFlashCount++;
-"127
-[e ++ _armFlashCount -> 1 `i ]
-[; ;hardware.c: 128: if (armFlashCount > 500)
-"128
-[e $ ! > _armFlashCount -> 500 `i 1442  ]
-[; ;hardware.c: 129: {
-"129
-{
-[; ;hardware.c: 130: armFlashCount = 0;
-"130
-[e = _armFlashCount -> 0 `i ]
-[; ;hardware.c: 131: if (armFlashToggle)
-"131
-[e $ ! != _armFlashToggle -> 0 `i 1443  ]
-[; ;hardware.c: 132: {
-"132
-{
-[; ;hardware.c: 133: updateLineLEDs(intA, intB, intC);
-"133
-[e ( _updateLineLEDs (3 , , _intA _intB _intC ]
-"134
-}
-[; ;hardware.c: 134: }
-[e $U 1444  ]
-"135
-[e :U 1443 ]
-[; ;hardware.c: 135: else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
-[e ( _updateLineLEDs (3 , , * -> ! != _armA -> 0 `i `i _intA * -> ! != _armB -> 0 `i `i _intB * -> ! != _armC -> 0 `i `i _intC ]
-[e :U 1444 ]
-[; ;hardware.c: 136: armFlashToggle ^= 1;
-"136
-[e =^ _armFlashToggle -> 1 `i ]
-"137
-}
-[e :U 1442 ]
-"138
 }
 [e :U 1441 ]
-[; ;hardware.c: 137: }
+[; ;hardware.c: 121: }
+[; ;hardware.c: 122: pFlash ^= 1;
+"122
+[e =^ _pFlash -> 1 `i ]
+[; ;hardware.c: 123: pFlashCount = 0;
+"123
+[e = _pFlashCount -> 0 `i ]
+"124
+}
+[e :U 1439 ]
+"125
+}
+[e :U 1438 ]
+[; ;hardware.c: 124: }
+[; ;hardware.c: 125: }
+[; ;hardware.c: 126: if ((armA + armB + armC) > 0)
+"126
+[e $ ! > + + _armA _armB _armC -> 0 `i 1442  ]
+[; ;hardware.c: 127: {
+"127
+{
+[; ;hardware.c: 128: armFlashCount++;
+"128
+[e ++ _armFlashCount -> 1 `i ]
+[; ;hardware.c: 129: if (armFlashCount > 500)
+"129
+[e $ ! > _armFlashCount -> 500 `i 1443  ]
+[; ;hardware.c: 130: {
+"130
+{
+[; ;hardware.c: 131: armFlashCount = 0;
+"131
+[e = _armFlashCount -> 0 `i ]
+[; ;hardware.c: 132: if (armFlashToggle)
+"132
+[e $ ! != _armFlashToggle -> 0 `i 1444  ]
+[; ;hardware.c: 133: {
+"133
+{
+[; ;hardware.c: 134: updateLineLEDs(intA, intB, intC);
+"134
+[e ( _updateLineLEDs (3 , , _intA _intB _intC ]
+"135
+}
+[; ;hardware.c: 135: }
+[e $U 1445  ]
+"136
+[e :U 1444 ]
+[; ;hardware.c: 136: else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
+[e ( _updateLineLEDs (3 , , * -> ! != _armA -> 0 `i `i _intA * -> ! != _armB -> 0 `i `i _intB * -> ! != _armC -> 0 `i `i _intC ]
+[e :U 1445 ]
+[; ;hardware.c: 137: armFlashToggle ^= 1;
+"137
+[e =^ _armFlashToggle -> 1 `i ]
+"138
+}
+[e :U 1443 ]
+"139
+}
+[e :U 1442 ]
 [; ;hardware.c: 138: }
 [; ;hardware.c: 139: }
-"139
-[e :UE 1436 ]
+[; ;hardware.c: 140: }
+"140
+[e :UE 1437 ]
 }
-"141
-[v _checkSwitches `(v ~T0 @X0 1 ef ]
 "142
+[v _checkSwitches `(v ~T0 @X0 1 ef ]
+"143
 {
-[; ;hardware.c: 141: void checkSwitches(void)
-[; ;hardware.c: 142: {
+[; ;hardware.c: 142: void checkSwitches(void)
+[; ;hardware.c: 143: {
 [e :U _checkSwitches ]
 [f ]
-"143
+"144
 [v _flag `uc ~T0 @X0 1 a ]
-[; ;hardware.c: 143: char flag = 0;
+[; ;hardware.c: 144: char flag = 0;
 [e = _flag -> -> 0 `i `uc ]
-[; ;hardware.c: 145: if(IOCF1)
-"145
-[e $ ! _IOCF1 1446  ]
-[; ;hardware.c: 146: {
+[; ;hardware.c: 146: if(IOCF1)
 "146
-{
-[; ;hardware.c: 147: switch4 = 1;
+[e $ ! _IOCF1 1447  ]
+[; ;hardware.c: 147: {
 "147
-[e = _switch4 -> 1 `i ]
-[; ;hardware.c: 148: flag = 1;
-"148
-[e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 149: IOCFbits.IOCF1 = 0;
-"149
-[e = . . _IOCFbits 0 1 -> -> 0 `i `uc ]
-"150
-}
-[e :U 1446 ]
-[; ;hardware.c: 150: }
-[; ;hardware.c: 152: if (IOCF2)
-"152
-[e $ ! _IOCF2 1447  ]
-[; ;hardware.c: 153: {
-"153
 {
-[; ;hardware.c: 154: switch2 = 1;
-"154
-[e = _switch2 -> 1 `i ]
-[; ;hardware.c: 155: flag = 1;
-"155
+[; ;hardware.c: 148: switch4 = 1;
+"148
+[e = _switch4 -> 1 `i ]
+[; ;hardware.c: 149: flag = 1;
+"149
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 156: IOCFbits.IOCF2 = 0;
-"156
-[e = . . _IOCFbits 0 2 -> -> 0 `i `uc ]
-"157
+[; ;hardware.c: 150: IOCFbits.IOCF1 = 0;
+"150
+[e = . . _IOCFbits 0 1 -> -> 0 `i `uc ]
+"151
 }
 [e :U 1447 ]
-[; ;hardware.c: 157: }
-[; ;hardware.c: 159: if (IOCF3)
-"159
-[e $ ! _IOCF3 1448  ]
-[; ;hardware.c: 160: {
-"160
+[; ;hardware.c: 151: }
+[; ;hardware.c: 153: if (IOCF2)
+"153
+[e $ ! _IOCF2 1448  ]
+[; ;hardware.c: 154: {
+"154
 {
-[; ;hardware.c: 161: switch1 = 1;
-"161
-[e = _switch1 -> 1 `i ]
-[; ;hardware.c: 162: flag = 1;
-"162
+[; ;hardware.c: 155: switch2 = 1;
+"155
+[e = _switch2 -> 1 `i ]
+[; ;hardware.c: 156: flag = 1;
+"156
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 163: IOCFbits.IOCF3 = 0;
-"163
-[e = . . _IOCFbits 0 3 -> -> 0 `i `uc ]
-"164
+[; ;hardware.c: 157: IOCFbits.IOCF2 = 0;
+"157
+[e = . . _IOCFbits 0 2 -> -> 0 `i `uc ]
+"158
 }
 [e :U 1448 ]
-[; ;hardware.c: 164: }
-[; ;hardware.c: 166: if (IOCF4)
-"166
-[e $ ! _IOCF4 1449  ]
-[; ;hardware.c: 167: {
-"167
+[; ;hardware.c: 158: }
+[; ;hardware.c: 160: if (IOCF3)
+"160
+[e $ ! _IOCF3 1449  ]
+[; ;hardware.c: 161: {
+"161
 {
-[; ;hardware.c: 168: fsw1 = 1;
-"168
-[e = _fsw1 -> 1 `i ]
-[; ;hardware.c: 169: flag = 1;
-"169
+[; ;hardware.c: 162: switch1 = 1;
+"162
+[e = _switch1 -> 1 `i ]
+[; ;hardware.c: 163: flag = 1;
+"163
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 170: IOCFbits.IOCF4 = 0;
-"170
-[e = . . _IOCFbits 0 4 -> -> 0 `i `uc ]
-"171
+[; ;hardware.c: 164: IOCFbits.IOCF3 = 0;
+"164
+[e = . . _IOCFbits 0 3 -> -> 0 `i `uc ]
+"165
 }
 [e :U 1449 ]
-[; ;hardware.c: 171: }
-[; ;hardware.c: 173: if (IOCF5)
-"173
-[e $ ! _IOCF5 1450  ]
-[; ;hardware.c: 174: {
-"174
+[; ;hardware.c: 165: }
+[; ;hardware.c: 167: if (IOCF4)
+"167
+[e $ ! _IOCF4 1450  ]
+[; ;hardware.c: 168: {
+"168
 {
-[; ;hardware.c: 175: fsw2 = 1;
-"175
-[e = _fsw2 -> 1 `i ]
-[; ;hardware.c: 176: flag = 1;
-"176
+[; ;hardware.c: 169: fsw1 = 1;
+"169
+[e = _fsw1 -> 1 `i ]
+[; ;hardware.c: 170: flag = 1;
+"170
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 177: IOCFbits.IOCF5 = 0;
-"177
-[e = . . _IOCFbits 0 5 -> -> 0 `i `uc ]
-"178
+[; ;hardware.c: 171: IOCFbits.IOCF4 = 0;
+"171
+[e = . . _IOCFbits 0 4 -> -> 0 `i `uc ]
+"172
 }
 [e :U 1450 ]
-[; ;hardware.c: 178: }
-[; ;hardware.c: 180: if (IOCF6)
-"180
-[e $ ! _IOCF6 1451  ]
-[; ;hardware.c: 181: {
-"181
+[; ;hardware.c: 172: }
+[; ;hardware.c: 174: if (IOCF5)
+"174
+[e $ ! _IOCF5 1451  ]
+[; ;hardware.c: 175: {
+"175
 {
-[; ;hardware.c: 182: switch3 = 1;
-"182
-[e = _switch3 -> 1 `i ]
-[; ;hardware.c: 183: flag = 1;
-"183
+[; ;hardware.c: 176: fsw2 = 1;
+"176
+[e = _fsw2 -> 1 `i ]
+[; ;hardware.c: 177: flag = 1;
+"177
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 184: IOCFbits.IOCF6 = 0;
-"184
-[e = . . _IOCFbits 0 6 -> -> 0 `i `uc ]
-"185
+[; ;hardware.c: 178: IOCFbits.IOCF5 = 0;
+"178
+[e = . . _IOCFbits 0 5 -> -> 0 `i `uc ]
+"179
 }
 [e :U 1451 ]
-[; ;hardware.c: 185: }
-[; ;hardware.c: 187: if (IOCF7)
-"187
-[e $ ! _IOCF7 1452  ]
-[; ;hardware.c: 188: {
-"188
+[; ;hardware.c: 179: }
+[; ;hardware.c: 181: if (IOCF6)
+"181
+[e $ ! _IOCF6 1452  ]
+[; ;hardware.c: 182: {
+"182
 {
-[; ;hardware.c: 189: switch5 = 1;
-"189
-[e = _switch5 -> 1 `i ]
-[; ;hardware.c: 190: flag = 1;
-"190
+[; ;hardware.c: 183: switch3 = 1;
+"183
+[e = _switch3 -> 1 `i ]
+[; ;hardware.c: 184: flag = 1;
+"184
 [e = _flag -> -> 1 `i `uc ]
-[; ;hardware.c: 191: IOCFbits.IOCF7 = 0;
-"191
-[e = . . _IOCFbits 0 7 -> -> 0 `i `uc ]
-"192
+[; ;hardware.c: 185: IOCFbits.IOCF6 = 0;
+"185
+[e = . . _IOCFbits 0 6 -> -> 0 `i `uc ]
+"186
 }
 [e :U 1452 ]
-[; ;hardware.c: 192: }
-[; ;hardware.c: 194: if (flag)
-"194
-[e $ ! != -> _flag `i -> -> -> 0 `i `uc `i 1453  ]
-[; ;hardware.c: 195: {
-"195
+[; ;hardware.c: 186: }
+[; ;hardware.c: 188: if (IOCF7)
+"188
+[e $ ! _IOCF7 1453  ]
+[; ;hardware.c: 189: {
+"189
 {
-[; ;hardware.c: 196: T0CONbits.TMR0ON = 0x1;
-"196
-[e = . . _T0CONbits 0 4 -> -> 1 `i `uc ]
-"197
+[; ;hardware.c: 190: switch5 = 1;
+"190
+[e = _switch5 -> 1 `i ]
+[; ;hardware.c: 191: flag = 1;
+"191
+[e = _flag -> -> 1 `i `uc ]
+[; ;hardware.c: 192: IOCFbits.IOCF7 = 0;
+"192
+[e = . . _IOCFbits 0 7 -> -> 0 `i `uc ]
+"193
 }
 [e :U 1453 ]
-[; ;hardware.c: 197: }
-[; ;hardware.c: 198: }
-"198
-[e :UE 1445 ]
-}
-"200
-[v _serviceSwitches `(v ~T0 @X0 1 ef ]
-"201
+[; ;hardware.c: 193: }
+[; ;hardware.c: 195: if (flag)
+"195
+[e $ ! != -> _flag `i -> -> -> 0 `i `uc `i 1454  ]
+[; ;hardware.c: 196: {
+"196
 {
-[; ;hardware.c: 200: void serviceSwitches(void)
-[; ;hardware.c: 201: {
+[; ;hardware.c: 197: T0CONbits.TMR0ON = 0x1;
+"197
+[e = . . _T0CONbits 0 4 -> -> 1 `i `uc ]
+"198
+}
+[e :U 1454 ]
+[; ;hardware.c: 198: }
+[; ;hardware.c: 199: }
+"199
+[e :UE 1446 ]
+}
+"201
+[v _serviceSwitches `(v ~T0 @X0 1 ef ]
+"202
+{
+[; ;hardware.c: 201: void serviceSwitches(void)
+[; ;hardware.c: 202: {
 [e :U _serviceSwitches ]
 [f ]
-[; ;hardware.c: 202: if (fsw1)
-"202
-[e $ ! != _fsw1 -> 0 `i 1455  ]
-[; ;hardware.c: 203: {
+[; ;hardware.c: 203: if (fsw1)
 "203
-{
-[; ;hardware.c: 204: fsw1 = 0;
+[e $ ! != _fsw1 -> 0 `i 1456  ]
+[; ;hardware.c: 204: {
 "204
-[e = _fsw1 -> 0 `i ]
-[; ;hardware.c: 205: if (!RD4)
+{
+[; ;hardware.c: 205: fsw1 = 0;
 "205
-[e $ ! ! _RD4 1456  ]
-[; ;hardware.c: 206: {
+[e = _fsw1 -> 0 `i ]
+[; ;hardware.c: 206: if (!RD4)
 "206
-{
-[; ;hardware.c: 207: bypass ^= 1;
+[e $ ! ! _RD4 1457  ]
+[; ;hardware.c: 207: {
 "207
-[e =^ _bypass -> 1 `i ]
-[; ;hardware.c: 208: if (bypMode)
+{
+[; ;hardware.c: 208: bypass ^= 1;
 "208
-[e $ ! != _bypMode -> 0 `i 1457  ]
-[; ;hardware.c: 209: {
+[e =^ _bypass -> 1 `i ]
+[; ;hardware.c: 209: if (bypMode)
 "209
-{
-[; ;hardware.c: 210: LATD3 = !bypass;
+[e $ ! != _bypMode -> 0 `i 1458  ]
+[; ;hardware.c: 210: {
 "210
-[e = _LATD3 ! != _bypass -> 0 `i ]
-[; ;hardware.c: 211: LATB5 = bypass;
+{
+[; ;hardware.c: 211: LATD3 = !bypass;
 "211
-[e = _LATB5 -> _bypass `b ]
+[e = _LATD3 ! != _bypass -> 0 `i ]
+[; ;hardware.c: 212: LATB5 = bypass;
 "212
-}
-[; ;hardware.c: 212: }
-[e $U 1458  ]
-"213
-[e :U 1457 ]
-[; ;hardware.c: 213: else
-[; ;hardware.c: 214: {
-"214
-{
-[; ;hardware.c: 215: LATD3 = 0;
-"215
-[e = _LATD3 -> -> 0 `i `b ]
-[; ;hardware.c: 216: LATB5 = bypass;
-"216
 [e = _LATB5 -> _bypass `b ]
-"217
+"213
 }
+[; ;hardware.c: 213: }
+[e $U 1459  ]
+"214
 [e :U 1458 ]
-[; ;hardware.c: 217: }
-[; ;hardware.c: 218: LATD2 = bypass;
+[; ;hardware.c: 214: else
+[; ;hardware.c: 215: {
+"215
+{
+[; ;hardware.c: 216: LATD3 = 0;
+"216
+[e = _LATD3 -> -> 0 `i `b ]
+[; ;hardware.c: 217: LATB5 = bypass;
+"217
+[e = _LATB5 -> _bypass `b ]
 "218
-[e = _LATD2 -> _bypass `b ]
-"219
-}
-[e :U 1456 ]
-"220
-}
-[e :U 1455 ]
-[; ;hardware.c: 219: }
-[; ;hardware.c: 220: }
-[; ;hardware.c: 222: if (fsw2)
-"222
-[e $ ! != _fsw2 -> 0 `i 1459  ]
-[; ;hardware.c: 223: {
-"223
-{
-[; ;hardware.c: 224: fsw2 = 0;
-"224
-[e = _fsw2 -> 0 `i ]
-[; ;hardware.c: 225: if (RE3)
-"225
-[e $ ! _RE3 1460  ]
-[; ;hardware.c: 226: {
-"226
-{
-[; ;hardware.c: 227: processTaps();
-"227
-[e ( _processTaps ..  ]
-"228
-}
-[e :U 1460 ]
-"229
 }
 [e :U 1459 ]
-[; ;hardware.c: 228: }
-[; ;hardware.c: 229: }
-[; ;hardware.c: 231: if (switch1)
-"231
-[e $ ! != _switch1 -> 0 `i 1461  ]
-[; ;hardware.c: 232: {
-"232
-{
-[; ;hardware.c: 233: switch1 = 0;
-"233
-[e = _switch1 -> 0 `i ]
-[; ;hardware.c: 234: if (!RG1)
-"234
-[e $ ! ! _RG1 1462  ]
-[; ;hardware.c: 235: {
-"235
-{
-[; ;hardware.c: 236: if (!shift)
-"236
-[e $ ! ! != _shift -> 0 `i 1463  ]
-[; ;hardware.c: 237: {
-"237
-{
-[; ;hardware.c: 238: intA++;
-"238
-[e ++ _intA -> 1 `i ]
-[; ;hardware.c: 239: if (intA > 3)
-"239
-[e $ ! > _intA -> 3 `i 1464  ]
-[; ;hardware.c: 240: {
-"240
-{
-[; ;hardware.c: 241: intA = 0;
-"241
-[e = _intA -> 0 `i ]
-"242
+[; ;hardware.c: 218: }
+[; ;hardware.c: 219: LATD2 = bypass;
+"219
+[e = _LATD2 -> _bypass `b ]
+"220
 }
-[e :U 1464 ]
-"243
+[e :U 1457 ]
+"221
 }
-[; ;hardware.c: 242: }
-[; ;hardware.c: 243: }
-[e $U 1465  ]
-"244
-[e :U 1463 ]
-[; ;hardware.c: 244: else
-[; ;hardware.c: 245: {
-"245
+[e :U 1456 ]
+[; ;hardware.c: 220: }
+[; ;hardware.c: 221: }
+[; ;hardware.c: 223: if (fsw2)
+"223
+[e $ ! != _fsw2 -> 0 `i 1460  ]
+[; ;hardware.c: 224: {
+"224
 {
-[; ;hardware.c: 246: armA ^= 1;
-"246
-[e =^ _armA -> 1 `i ]
-[; ;hardware.c: 247: shiftAction = 1;
-"247
-[e = _shiftAction -> 1 `i ]
-"248
-}
-[e :U 1465 ]
-"249
-}
-[e :U 1462 ]
-"250
+[; ;hardware.c: 225: fsw2 = 0;
+"225
+[e = _fsw2 -> 0 `i ]
+[; ;hardware.c: 226: if (!RE3)
+"226
+[e $ ! ! _RE3 1461  ]
+[; ;hardware.c: 227: {
+"227
+{
+[; ;hardware.c: 228: processTaps();
+"228
+[e ( _processTaps ..  ]
+"229
 }
 [e :U 1461 ]
-[; ;hardware.c: 248: }
-[; ;hardware.c: 249: }
-[; ;hardware.c: 250: }
-[; ;hardware.c: 252: if (switch2)
-"252
-[e $ ! != _switch2 -> 0 `i 1466  ]
-[; ;hardware.c: 253: {
-"253
-{
-[; ;hardware.c: 254: switch2 = 0;
-"254
-[e = _switch2 -> 0 `i ]
-[; ;hardware.c: 255: if (!RG2)
-"255
-[e $ ! ! _RG2 1467  ]
-[; ;hardware.c: 256: {
-"256
-{
-[; ;hardware.c: 257: if (!shift)
-"257
-[e $ ! ! != _shift -> 0 `i 1468  ]
-[; ;hardware.c: 258: {
-"258
-{
-[; ;hardware.c: 259: intB++;
-"259
-[e ++ _intB -> 1 `i ]
-[; ;hardware.c: 260: if (intB > 3)
-"260
-[e $ ! > _intB -> 3 `i 1469  ]
-[; ;hardware.c: 261: {
-"261
-{
-[; ;hardware.c: 262: intB = 0;
-"262
-[e = _intB -> 0 `i ]
-"263
+"230
 }
-[e :U 1469 ]
-"264
-}
-[; ;hardware.c: 263: }
-[; ;hardware.c: 264: }
-[e $U 1470  ]
-"265
-[e :U 1468 ]
-[; ;hardware.c: 265: else
-[; ;hardware.c: 266: {
-"266
+[e :U 1460 ]
+[; ;hardware.c: 229: }
+[; ;hardware.c: 230: }
+[; ;hardware.c: 232: if (switch1)
+"232
+[e $ ! != _switch1 -> 0 `i 1462  ]
+[; ;hardware.c: 233: {
+"233
 {
-[; ;hardware.c: 267: armB ^= 1;
-"267
-[e =^ _armB -> 1 `i ]
-[; ;hardware.c: 268: shiftAction = 1;
-"268
+[; ;hardware.c: 234: switch1 = 0;
+"234
+[e = _switch1 -> 0 `i ]
+[; ;hardware.c: 235: if (!RG1)
+"235
+[e $ ! ! _RG1 1463  ]
+[; ;hardware.c: 236: {
+"236
+{
+[; ;hardware.c: 237: if (!shift)
+"237
+[e $ ! ! != _shift -> 0 `i 1464  ]
+[; ;hardware.c: 238: {
+"238
+{
+[; ;hardware.c: 239: intA++;
+"239
+[e ++ _intA -> 1 `i ]
+[; ;hardware.c: 240: if (intA > 3)
+"240
+[e $ ! > _intA -> 3 `i 1465  ]
+[; ;hardware.c: 241: {
+"241
+{
+[; ;hardware.c: 242: intA = 0;
+"242
+[e = _intA -> 0 `i ]
+"243
+}
+[e :U 1465 ]
+"244
+}
+[; ;hardware.c: 243: }
+[; ;hardware.c: 244: }
+[e $U 1466  ]
+"245
+[e :U 1464 ]
+[; ;hardware.c: 245: else
+[; ;hardware.c: 246: {
+"246
+{
+[; ;hardware.c: 247: armA ^= 1;
+"247
+[e =^ _armA -> 1 `i ]
+[; ;hardware.c: 248: shiftAction = 1;
+"248
 [e = _shiftAction -> 1 `i ]
-"269
-}
-[e :U 1470 ]
-"270
-}
-[e :U 1467 ]
-"271
+"249
 }
 [e :U 1466 ]
-[; ;hardware.c: 269: }
-[; ;hardware.c: 270: }
-[; ;hardware.c: 271: }
-[; ;hardware.c: 273: if (switch3)
-"273
-[e $ ! != _switch3 -> 0 `i 1471  ]
-[; ;hardware.c: 274: {
-"274
-{
-[; ;hardware.c: 275: switch3 = 0;
-"275
-[e = _switch3 -> 0 `i ]
-[; ;hardware.c: 276: if (!RE6)
-"276
-[e $ ! ! _RE6 1472  ]
-[; ;hardware.c: 277: {
-"277
-{
-[; ;hardware.c: 278: if (!shift)
-"278
-[e $ ! ! != _shift -> 0 `i 1473  ]
-[; ;hardware.c: 279: {
-"279
-{
-[; ;hardware.c: 280: intC++;
-"280
-[e ++ _intC -> 1 `i ]
-[; ;hardware.c: 281: if (intC > 3)
-"281
-[e $ ! > _intC -> 3 `i 1474  ]
-[; ;hardware.c: 282: {
-"282
-{
-[; ;hardware.c: 283: intC = 0;
-"283
-[e = _intC -> 0 `i ]
-"284
+"250
 }
-[e :U 1474 ]
-"285
+[e :U 1463 ]
+"251
 }
-[; ;hardware.c: 284: }
-[; ;hardware.c: 285: }
-[e $U 1475  ]
-"286
-[e :U 1473 ]
-[; ;hardware.c: 286: else
-[; ;hardware.c: 287: {
-"287
+[e :U 1462 ]
+[; ;hardware.c: 249: }
+[; ;hardware.c: 250: }
+[; ;hardware.c: 251: }
+[; ;hardware.c: 253: if (switch2)
+"253
+[e $ ! != _switch2 -> 0 `i 1467  ]
+[; ;hardware.c: 254: {
+"254
 {
-[; ;hardware.c: 288: armC ^= 1;
-"288
-[e =^ _armC -> 1 `i ]
-[; ;hardware.c: 289: shiftAction = 1;
-"289
+[; ;hardware.c: 255: switch2 = 0;
+"255
+[e = _switch2 -> 0 `i ]
+[; ;hardware.c: 256: if (!RG2)
+"256
+[e $ ! ! _RG2 1468  ]
+[; ;hardware.c: 257: {
+"257
+{
+[; ;hardware.c: 258: if (!shift)
+"258
+[e $ ! ! != _shift -> 0 `i 1469  ]
+[; ;hardware.c: 259: {
+"259
+{
+[; ;hardware.c: 260: intB++;
+"260
+[e ++ _intB -> 1 `i ]
+[; ;hardware.c: 261: if (intB > 3)
+"261
+[e $ ! > _intB -> 3 `i 1470  ]
+[; ;hardware.c: 262: {
+"262
+{
+[; ;hardware.c: 263: intB = 0;
+"263
+[e = _intB -> 0 `i ]
+"264
+}
+[e :U 1470 ]
+"265
+}
+[; ;hardware.c: 264: }
+[; ;hardware.c: 265: }
+[e $U 1471  ]
+"266
+[e :U 1469 ]
+[; ;hardware.c: 266: else
+[; ;hardware.c: 267: {
+"267
+{
+[; ;hardware.c: 268: armB ^= 1;
+"268
+[e =^ _armB -> 1 `i ]
+[; ;hardware.c: 269: shiftAction = 1;
+"269
 [e = _shiftAction -> 1 `i ]
-"290
-}
-[e :U 1475 ]
-"291
-}
-[e :U 1472 ]
-"292
+"270
 }
 [e :U 1471 ]
-[; ;hardware.c: 290: }
-[; ;hardware.c: 291: }
-[; ;hardware.c: 292: }
-[; ;hardware.c: 297: updateLineLEDs(intA, intB, intC);
-"297
-[e ( _updateLineLEDs (3 , , _intA _intB _intC ]
-[; ;hardware.c: 299: if (switch4)
-"299
-[e $ ! != _switch4 -> 0 `i 1476  ]
-[; ;hardware.c: 300: {
-"300
-{
-[; ;hardware.c: 301: switch4 = 0;
-"301
-[e = _switch4 -> 0 `i ]
-[; ;hardware.c: 302: if (!RD1)
-"302
-[e $ ! ! _RD1 1477  ]
-[; ;hardware.c: 303: {
-"303
-{
-[; ;hardware.c: 304: if (!shift)
-"304
-[e $ ! ! != _shift -> 0 `i 1478  ]
-[; ;hardware.c: 305: {
-"305
-{
-[; ;hardware.c: 306: preset++;
-"306
-[e ++ _preset -> 1 `i ]
-[; ;hardware.c: 307: if (preset >= 6)
-"307
-[e $ ! >= _preset -> 6 `i 1479  ]
-[; ;hardware.c: 308: {
-"308
-{
-[; ;hardware.c: 309: preset = 0;
-"309
-[e = _preset -> 0 `i ]
-"310
+"271
 }
-[e :U 1479 ]
-[; ;hardware.c: 310: }
-[; ;hardware.c: 311: updatePresetLEDs(preset);
-"311
-[e ( _updatePresetLEDs (1 _preset ]
-"312
+[e :U 1468 ]
+"272
 }
-[; ;hardware.c: 312: }
-[e $U 1480  ]
-"313
-[e :U 1478 ]
-[; ;hardware.c: 313: else
-[; ;hardware.c: 314: {
-"314
+[e :U 1467 ]
+[; ;hardware.c: 270: }
+[; ;hardware.c: 271: }
+[; ;hardware.c: 272: }
+[; ;hardware.c: 274: if (switch3)
+"274
+[e $ ! != _switch3 -> 0 `i 1472  ]
+[; ;hardware.c: 275: {
+"275
 {
-[; ;hardware.c: 315: if (!presetPend)
-"315
-[e $ ! ! != _presetPend -> 0 `i 1481  ]
-[; ;hardware.c: 316: {
-"316
+[; ;hardware.c: 276: switch3 = 0;
+"276
+[e = _switch3 -> 0 `i ]
+[; ;hardware.c: 277: if (!RE6)
+"277
+[e $ ! ! _RE6 1473  ]
+[; ;hardware.c: 278: {
+"278
 {
-[; ;hardware.c: 318: targPreset = preset;
-"318
-[e = _targPreset _preset ]
-[; ;hardware.c: 319: if (!targPreset)
-"319
-[e $ ! ! != _targPreset -> 0 `i 1482  ]
-[; ;hardware.c: 320: {
-"320
+[; ;hardware.c: 279: if (!shift)
+"279
+[e $ ! ! != _shift -> 0 `i 1474  ]
+[; ;hardware.c: 280: {
+"280
 {
-[; ;hardware.c: 321: targPreset = 1;
-"321
-[e = _targPreset -> 1 `i ]
-"322
-}
-[e :U 1482 ]
-[; ;hardware.c: 322: }
-[; ;hardware.c: 323: presetPend = 1;
-"323
-[e = _presetPend -> 1 `i ]
-[; ;hardware.c: 324: if (targPreset > 1)
-"324
-[e $ ! > _targPreset -> 1 `i 1483  ]
-[; ;hardware.c: 325: {
-"325
+[; ;hardware.c: 281: intC++;
+"281
+[e ++ _intC -> 1 `i ]
+[; ;hardware.c: 282: if (intC > 3)
+"282
+[e $ ! > _intC -> 3 `i 1475  ]
+[; ;hardware.c: 283: {
+"283
 {
-[; ;hardware.c: 326: targPreset = 1;
-"326
-[e = _targPreset -> 1 `i ]
-"327
+[; ;hardware.c: 284: intC = 0;
+"284
+[e = _intC -> 0 `i ]
+"285
 }
-[e :U 1483 ]
-"328
+[e :U 1475 ]
+"286
 }
-[; ;hardware.c: 327: }
-[; ;hardware.c: 328: }
-[e $U 1484  ]
-"329
-[e :U 1481 ]
-[; ;hardware.c: 329: else
-[; ;hardware.c: 330: {
-"330
+[; ;hardware.c: 285: }
+[; ;hardware.c: 286: }
+[e $U 1476  ]
+"287
+[e :U 1474 ]
+[; ;hardware.c: 287: else
+[; ;hardware.c: 288: {
+"288
 {
-[; ;hardware.c: 331: targPreset++;
-"331
-[e ++ _targPreset -> 1 `i ]
-[; ;hardware.c: 332: if (targPreset > 5)
-"332
-[e $ ! > _targPreset -> 5 `i 1485  ]
-[; ;hardware.c: 333: {
-"333
-{
-[; ;hardware.c: 334: targPreset = 1;
-"334
-[e = _targPreset -> 1 `i ]
-"335
-}
-[e :U 1485 ]
-"336
-}
-[e :U 1484 ]
-"337
-}
-[e :U 1480 ]
-"338
-}
-[e :U 1477 ]
-"339
+[; ;hardware.c: 289: armC ^= 1;
+"289
+[e =^ _armC -> 1 `i ]
+[; ;hardware.c: 290: shiftAction = 1;
+"290
+[e = _shiftAction -> 1 `i ]
+"291
 }
 [e :U 1476 ]
-[; ;hardware.c: 335: }
+"292
+}
+[e :U 1473 ]
+"293
+}
+[e :U 1472 ]
+[; ;hardware.c: 291: }
+[; ;hardware.c: 292: }
+[; ;hardware.c: 293: }
+[; ;hardware.c: 298: updateLineLEDs(intA, intB, intC);
+"298
+[e ( _updateLineLEDs (3 , , _intA _intB _intC ]
+[; ;hardware.c: 300: if (switch4)
+"300
+[e $ ! != _switch4 -> 0 `i 1477  ]
+[; ;hardware.c: 301: {
+"301
+{
+[; ;hardware.c: 302: switch4 = 0;
+"302
+[e = _switch4 -> 0 `i ]
+[; ;hardware.c: 303: if (!RD1)
+"303
+[e $ ! ! _RD1 1478  ]
+[; ;hardware.c: 304: {
+"304
+{
+[; ;hardware.c: 305: if (!shift)
+"305
+[e $ ! ! != _shift -> 0 `i 1479  ]
+[; ;hardware.c: 306: {
+"306
+{
+[; ;hardware.c: 307: preset++;
+"307
+[e ++ _preset -> 1 `i ]
+[; ;hardware.c: 308: if (preset >= 6)
+"308
+[e $ ! >= _preset -> 6 `i 1480  ]
+[; ;hardware.c: 309: {
+"309
+{
+[; ;hardware.c: 310: preset = 0;
+"310
+[e = _preset -> 0 `i ]
+"311
+}
+[e :U 1480 ]
+[; ;hardware.c: 311: }
+[; ;hardware.c: 312: updatePresetLEDs(preset);
+"312
+[e ( _updatePresetLEDs (1 _preset ]
+"313
+}
+[; ;hardware.c: 313: }
+[e $U 1481  ]
+"314
+[e :U 1479 ]
+[; ;hardware.c: 314: else
+[; ;hardware.c: 315: {
+"315
+{
+[; ;hardware.c: 316: if (!presetPend)
+"316
+[e $ ! ! != _presetPend -> 0 `i 1482  ]
+[; ;hardware.c: 317: {
+"317
+{
+[; ;hardware.c: 319: targPreset = preset;
+"319
+[e = _targPreset _preset ]
+[; ;hardware.c: 320: if (!targPreset)
+"320
+[e $ ! ! != _targPreset -> 0 `i 1483  ]
+[; ;hardware.c: 321: {
+"321
+{
+[; ;hardware.c: 322: targPreset = 1;
+"322
+[e = _targPreset -> 1 `i ]
+"323
+}
+[e :U 1483 ]
+[; ;hardware.c: 323: }
+[; ;hardware.c: 324: presetPend = 1;
+"324
+[e = _presetPend -> 1 `i ]
+[; ;hardware.c: 325: if (targPreset > 1)
+"325
+[e $ ! > _targPreset -> 1 `i 1484  ]
+[; ;hardware.c: 326: {
+"326
+{
+[; ;hardware.c: 327: targPreset = 1;
+"327
+[e = _targPreset -> 1 `i ]
+"328
+}
+[e :U 1484 ]
+"329
+}
+[; ;hardware.c: 328: }
+[; ;hardware.c: 329: }
+[e $U 1485  ]
+"330
+[e :U 1482 ]
+[; ;hardware.c: 330: else
+[; ;hardware.c: 331: {
+"331
+{
+[; ;hardware.c: 332: targPreset++;
+"332
+[e ++ _targPreset -> 1 `i ]
+[; ;hardware.c: 333: if (targPreset > 5)
+"333
+[e $ ! > _targPreset -> 5 `i 1486  ]
+[; ;hardware.c: 334: {
+"334
+{
+[; ;hardware.c: 335: targPreset = 1;
+"335
+[e = _targPreset -> 1 `i ]
+"336
+}
+[e :U 1486 ]
+"337
+}
+[e :U 1485 ]
+"338
+}
+[e :U 1481 ]
+"339
+}
+[e :U 1478 ]
+"340
+}
+[e :U 1477 ]
 [; ;hardware.c: 336: }
 [; ;hardware.c: 337: }
 [; ;hardware.c: 338: }
 [; ;hardware.c: 339: }
-[; ;hardware.c: 341: if (switch5)
-"341
-[e $ ! != _switch5 -> 0 `i 1486  ]
-[; ;hardware.c: 342: {
+[; ;hardware.c: 340: }
+[; ;hardware.c: 342: if (switch5)
 "342
-{
-[; ;hardware.c: 343: switch5 = 0;
+[e $ ! != _switch5 -> 0 `i 1487  ]
+[; ;hardware.c: 343: {
 "343
-[e = _switch5 -> 0 `i ]
-[; ;hardware.c: 344: if (!shift)
+{
+[; ;hardware.c: 344: switch5 = 0;
 "344
-[e $ ! ! != _shift -> 0 `i 1487  ]
-[; ;hardware.c: 345: {
+[e = _switch5 -> 0 `i ]
+[; ;hardware.c: 345: if (!shift)
 "345
-{
-[; ;hardware.c: 346: if (!RG3)
+[e $ ! ! != _shift -> 0 `i 1488  ]
+[; ;hardware.c: 346: {
 "346
-[e $ ! ! _RG3 1488  ]
-[; ;hardware.c: 347: {
-"347
 {
-[; ;hardware.c: 348: shift = 1;
+[; ;hardware.c: 347: if (!RG3)
+"347
+[e $ ! ! _RG3 1489  ]
+[; ;hardware.c: 348: {
 "348
+{
+[; ;hardware.c: 349: shift = 1;
+"349
 [e = _shift -> 1 `i ]
-[; ;hardware.c: 350: IOCNbits.IOCN7 = 0x0;
-"350
-[e = . . _IOCNbits 0 7 -> -> 0 `i `uc ]
-[; ;hardware.c: 351: IOCPbits.IOCP7 = 0x1;
+[; ;hardware.c: 351: IOCNbits.IOCN7 = 0x0;
 "351
-[e = . . _IOCPbits 0 7 -> -> 1 `i `uc ]
+[e = . . _IOCNbits 0 7 -> -> 0 `i `uc ]
+[; ;hardware.c: 352: IOCPbits.IOCP7 = 0x1;
 "352
-}
-[e :U 1488 ]
+[e = . . _IOCPbits 0 7 -> -> 1 `i `uc ]
 "353
 }
-[; ;hardware.c: 352: }
-[; ;hardware.c: 353: }
-[e $U 1489  ]
+[e :U 1489 ]
 "354
-[e :U 1487 ]
-[; ;hardware.c: 354: else
-[; ;hardware.c: 355: {
+}
+[; ;hardware.c: 353: }
+[; ;hardware.c: 354: }
+[e $U 1490  ]
 "355
-{
-[; ;hardware.c: 356: if (RG3)
+[e :U 1488 ]
+[; ;hardware.c: 355: else
+[; ;hardware.c: 356: {
 "356
-[e $ ! _RG3 1490  ]
-[; ;hardware.c: 357: {
+{
+[; ;hardware.c: 357: if (RG3)
 "357
-{
-[; ;hardware.c: 358: shift = 0;
+[e $ ! _RG3 1491  ]
+[; ;hardware.c: 358: {
 "358
+{
+[; ;hardware.c: 359: shift = 0;
+"359
 [e = _shift -> 0 `i ]
-[; ;hardware.c: 360: IOCNbits.IOCN7 = 0x1;
-"360
-[e = . . _IOCNbits 0 7 -> -> 1 `i `uc ]
-[; ;hardware.c: 361: IOCPbits.IOCP7 = 0x0;
+[; ;hardware.c: 361: IOCNbits.IOCN7 = 0x1;
 "361
+[e = . . _IOCNbits 0 7 -> -> 1 `i `uc ]
+[; ;hardware.c: 362: IOCPbits.IOCP7 = 0x0;
+"362
 [e = . . _IOCPbits 0 7 -> -> 0 `i `uc ]
-[; ;hardware.c: 363: if (!shiftAction)
-"363
-[e $ ! ! != _shiftAction -> 0 `i 1491  ]
-[; ;hardware.c: 364: {
+[; ;hardware.c: 364: if (!shiftAction)
 "364
-{
-[; ;hardware.c: 365: swX ^= 1;
+[e $ ! ! != _shiftAction -> 0 `i 1492  ]
+[; ;hardware.c: 365: {
 "365
-[e =^ _swX -> 1 `i ]
-[; ;hardware.c: 366: bypMode = swX;
+{
+[; ;hardware.c: 366: swX ^= 1;
 "366
-[e = _bypMode _swX ]
-[; ;hardware.c: 367: if (swX)
+[e =^ _swX -> 1 `i ]
+[; ;hardware.c: 367: bypMode = swX;
 "367
-[e $ ! != _swX -> 0 `i 1492  ]
-[; ;hardware.c: 368: {
+[e = _bypMode _swX ]
+[; ;hardware.c: 368: if (swX)
 "368
-{
-[; ;hardware.c: 369: LATE1 = 1;
+[e $ ! != _swX -> 0 `i 1493  ]
+[; ;hardware.c: 369: {
 "369
-[e = _LATE1 -> -> 1 `i `b ]
-[; ;hardware.c: 370: LATH1 = 0;
-"370
-[e = _LATH1 -> -> 0 `i `b ]
-"371
-}
-[; ;hardware.c: 371: }
-[e $U 1493  ]
-"372
-[e :U 1492 ]
-[; ;hardware.c: 372: else
-[; ;hardware.c: 373: {
-"373
 {
-[; ;hardware.c: 374: LATE1 = 0;
-"374
-[e = _LATE1 -> -> 0 `i `b ]
-[; ;hardware.c: 375: LATH1 = 1;
-"375
-[e = _LATH1 -> -> 1 `i `b ]
-"376
+[; ;hardware.c: 370: LATE1 = 1;
+"370
+[e = _LATE1 -> -> 1 `i `b ]
+[; ;hardware.c: 371: LATH1 = 0;
+"371
+[e = _LATH1 -> -> 0 `i `b ]
+"372
 }
+[; ;hardware.c: 372: }
+[e $U 1494  ]
+"373
 [e :U 1493 ]
+[; ;hardware.c: 373: else
+[; ;hardware.c: 374: {
+"374
+{
+[; ;hardware.c: 375: LATE1 = 0;
+"375
+[e = _LATE1 -> -> 0 `i `b ]
+[; ;hardware.c: 376: LATH1 = 1;
+"376
+[e = _LATH1 -> -> 1 `i `b ]
 "377
 }
-[; ;hardware.c: 376: }
-[; ;hardware.c: 377: }
-[e $U 1494  ]
-"378
-[e :U 1491 ]
-[; ;hardware.c: 378: else
-[; ;hardware.c: 379: {
-"379
-{
-[; ;hardware.c: 380: presetPend = 0;
-"380
-[e = _presetPend -> 0 `i ]
-[; ;hardware.c: 381: shiftAction = 0;
-"381
-[e = _shiftAction -> 0 `i ]
-[; ;hardware.c: 382: preset = targPreset;
-"382
-[e = _preset _targPreset ]
-[; ;hardware.c: 383: pFlash = 0;
-"383
-[e = _pFlash -> 0 `i ]
-[; ;hardware.c: 384: pFlashCount = 0;
-"384
-[e = _pFlashCount -> 0 `i ]
-[; ;hardware.c: 385: savePend = 1;
-"385
-[e = _savePend -> 1 `i ]
-[; ;hardware.c: 386: updatePresetLEDs(preset);
-"386
-[e ( _updatePresetLEDs (1 _preset ]
-"387
-}
 [e :U 1494 ]
+"378
+}
+[; ;hardware.c: 377: }
+[; ;hardware.c: 378: }
+[e $U 1495  ]
+"379
+[e :U 1492 ]
+[; ;hardware.c: 379: else
+[; ;hardware.c: 380: {
+"380
+{
+[; ;hardware.c: 381: presetPend = 0;
+"381
+[e = _presetPend -> 0 `i ]
+[; ;hardware.c: 382: shiftAction = 0;
+"382
+[e = _shiftAction -> 0 `i ]
+[; ;hardware.c: 383: preset = targPreset;
+"383
+[e = _preset _targPreset ]
+[; ;hardware.c: 384: pFlash = 0;
+"384
+[e = _pFlash -> 0 `i ]
+[; ;hardware.c: 385: pFlashCount = 0;
+"385
+[e = _pFlashCount -> 0 `i ]
+[; ;hardware.c: 386: savePend = 1;
+"386
+[e = _savePend -> 1 `i ]
+[; ;hardware.c: 387: updatePresetLEDs(preset);
+"387
+[e ( _updatePresetLEDs (1 _preset ]
 "388
 }
-[e :U 1490 ]
+[e :U 1495 ]
 "389
 }
-[e :U 1489 ]
+[e :U 1491 ]
 "390
 }
-[e :U 1486 ]
-[; ;hardware.c: 387: }
+[e :U 1490 ]
+"391
+}
+[e :U 1487 ]
 [; ;hardware.c: 388: }
 [; ;hardware.c: 389: }
 [; ;hardware.c: 390: }
 [; ;hardware.c: 391: }
-"391
-[e :UE 1454 ]
+[; ;hardware.c: 392: }
+"392
+[e :UE 1455 ]
 }
-"393
+"394
 [v _ADC_Read `(i ~T0 @X0 1 ef1`i ]
-"394
-{
-[; ;hardware.c: 393: int ADC_Read(int channel)
-[; ;hardware.c: 394: {
-[e :U _ADC_Read ]
-"393
-[v _channel `i ~T0 @X0 1 r1 ]
-"394
-[f ]
 "395
-[v _value `i ~T0 @X0 1 a ]
-[; ;hardware.c: 395: int value;
-[; ;hardware.c: 396: ADCHS0Lbits.CH0SA = channel;
+{
+[; ;hardware.c: 394: int ADC_Read(int channel)
+[; ;hardware.c: 395: {
+[e :U _ADC_Read ]
+"394
+[v _channel `i ~T0 @X0 1 r1 ]
+"395
+[f ]
 "396
-[e = . . _ADCHS0Lbits 0 0 -> _channel `uc ]
-[; ;hardware.c: 397: _delay((unsigned long)((100)*(32000000/4000000.0)));
+[v _value `i ~T0 @X0 1 a ]
+[; ;hardware.c: 396: int value;
+[; ;hardware.c: 397: ADCHS0Lbits.CH0SA = channel;
 "397
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;hardware.c: 398: ADCON1Hbits.ADON = 1;
+[e = . . _ADCHS0Lbits 0 0 -> _channel `uc ]
+[; ;hardware.c: 398: _delay((unsigned long)((100)*(32000000/4000000.0)));
 "398
-[e = . . _ADCON1Hbits 0 3 -> -> 1 `i `uc ]
-[; ;hardware.c: 399: ADCON1Lbits.SAMP = 1;
-"399
-[e = . . _ADCON1Lbits 0 1 -> -> 1 `i `uc ]
-[; ;hardware.c: 400: _delay((unsigned long)((100)*(32000000/4000000.0)));
-"400
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
-[; ;hardware.c: 401: ADCON1Lbits.SAMP = 0;
+[; ;hardware.c: 399: ADCON1Hbits.ADON = 1;
+"399
+[e = . . _ADCON1Hbits 0 3 -> -> 1 `i `uc ]
+[; ;hardware.c: 400: ADCON1Lbits.SAMP = 1;
+"400
+[e = . . _ADCON1Lbits 0 1 -> -> 1 `i `uc ]
+[; ;hardware.c: 401: _delay((unsigned long)((100)*(32000000/4000000.0)));
 "401
-[e = . . _ADCON1Lbits 0 1 -> -> 0 `i `uc ]
-[; ;hardware.c: 402: while (!ADCON1Lbits.DONE);
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;hardware.c: 402: ADCON1Lbits.SAMP = 0;
 "402
-[e $U 1496  ]
-[e :U 1497 ]
-[e :U 1496 ]
-[e $ ! != -> . . _ADCON1Lbits 0 0 `i -> -> -> 0 `i `Vuc `i 1497  ]
-[e :U 1498 ]
-[; ;hardware.c: 403: ADCON1Hbits.ADON = 0;
+[e = . . _ADCON1Lbits 0 1 -> -> 0 `i `uc ]
+[; ;hardware.c: 403: while (!ADCON1Lbits.DONE);
 "403
-[e = . . _ADCON1Hbits 0 3 -> -> 0 `i `uc ]
-[; ;hardware.c: 406: if (channel == 0)
-"406
-[e $ ! == _channel -> 0 `i 1499  ]
-[; ;hardware.c: 407: {
-"407
-{
-[; ;hardware.c: 408: value = ADCBUF0;
-"408
-[e = _value -> _ADCBUF0 `i ]
-"409
-}
-[; ;hardware.c: 409: }
-[e $U 1500  ]
-"410
+[e $U 1497  ]
+[e :U 1498 ]
+[e :U 1497 ]
+[e $ ! != -> . . _ADCON1Lbits 0 0 `i -> -> -> 0 `i `Vuc `i 1498  ]
 [e :U 1499 ]
-[; ;hardware.c: 410: else if (channel == 1)
-[e $ ! == _channel -> 1 `i 1501  ]
-[; ;hardware.c: 411: {
+[; ;hardware.c: 404: ADCON1Hbits.ADON = 0;
+"404
+[e = . . _ADCON1Hbits 0 3 -> -> 0 `i `uc ]
+[; ;hardware.c: 407: if (channel == 0)
+"407
+[e $ ! == _channel -> 0 `i 1500  ]
+[; ;hardware.c: 408: {
+"408
+{
+[; ;hardware.c: 409: value = ADCBUF0;
+"409
+[e = _value -> _ADCBUF0 `i ]
+"410
+}
+[; ;hardware.c: 410: }
+[e $U 1501  ]
 "411
-{
-[; ;hardware.c: 412: value = ADCBUF1;
-"412
-[e = _value -> _ADCBUF1 `i ]
-"413
-}
-[; ;hardware.c: 413: }
-[e $U 1502  ]
-"414
-[e :U 1501 ]
-[; ;hardware.c: 414: else if (channel == 2)
-[e $ ! == _channel -> 2 `i 1503  ]
-[; ;hardware.c: 415: {
-"415
-{
-[; ;hardware.c: 416: value = ADCBUF2;
-"416
-[e = _value -> _ADCBUF2 `i ]
-"417
-}
-[; ;hardware.c: 417: }
-[e $U 1504  ]
-"418
-[e :U 1503 ]
-[; ;hardware.c: 418: else if (channel == 3)
-[e $ ! == _channel -> 3 `i 1505  ]
-[; ;hardware.c: 419: {
-"419
-{
-[; ;hardware.c: 420: value = ADCBUF3;
-"420
-[e = _value -> _ADCBUF3 `i ]
-"421
-}
-[; ;hardware.c: 421: }
-[e $U 1506  ]
-"422
-[e :U 1505 ]
-[; ;hardware.c: 422: else if (channel == 4)
-[e $ ! == _channel -> 4 `i 1507  ]
-[; ;hardware.c: 423: {
-"423
-{
-[; ;hardware.c: 424: value = ADCBUF4;
-"424
-[e = _value -> _ADCBUF4 `i ]
-"425
-}
-[; ;hardware.c: 425: }
-[e $U 1508  ]
-"426
-[e :U 1507 ]
-[; ;hardware.c: 426: else if (channel == 5)
-[e $ ! == _channel -> 5 `i 1509  ]
-[; ;hardware.c: 427: {
-"427
-{
-[; ;hardware.c: 428: value = ADCBUF5;
-"428
-[e = _value -> _ADCBUF5 `i ]
-"429
-}
-[; ;hardware.c: 429: }
-[e $U 1510  ]
-"430
-[e :U 1509 ]
-[; ;hardware.c: 430: else if (channel == 6)
-[e $ ! == _channel -> 6 `i 1511  ]
-[; ;hardware.c: 431: {
-"431
-{
-[; ;hardware.c: 432: value = ADCBUF6;
-"432
-[e = _value -> _ADCBUF6 `i ]
-"433
-}
-[; ;hardware.c: 433: }
-[e $U 1512  ]
-"434
-[e :U 1511 ]
-[; ;hardware.c: 434: else if (channel == 14)
-[e $ ! == _channel -> 14 `i 1513  ]
-[; ;hardware.c: 435: {
-"435
-{
-[; ;hardware.c: 436: value = ADCBUF14;
-"436
-[e = _value -> _ADCBUF14 `i ]
-"437
-}
-[; ;hardware.c: 437: }
-[e $U 1514  ]
-"438
-[e :U 1513 ]
-[; ;hardware.c: 438: else if (channel == 8)
-[e $ ! == _channel -> 8 `i 1515  ]
-[; ;hardware.c: 439: {
-"439
-{
-[; ;hardware.c: 440: value = ADCBUF8;
-"440
-[e = _value -> _ADCBUF8 `i ]
-"441
-}
-[; ;hardware.c: 441: }
-[e $U 1516  ]
-"442
-[e :U 1515 ]
-[; ;hardware.c: 442: else if (channel == 9)
-[e $ ! == _channel -> 9 `i 1517  ]
-[; ;hardware.c: 443: {
-"443
-{
-[; ;hardware.c: 444: value = ADCBUF9;
-"444
-[e = _value -> _ADCBUF9 `i ]
-"445
-}
-[; ;hardware.c: 445: }
-[e $U 1518  ]
-"446
-[e :U 1517 ]
-[; ;hardware.c: 446: else value = 0;
-[e = _value -> 0 `i ]
-[e :U 1518 ]
-[e :U 1516 ]
-[e :U 1514 ]
-[e :U 1512 ]
-[e :U 1510 ]
-[e :U 1508 ]
-[e :U 1506 ]
-[e :U 1504 ]
-[e :U 1502 ]
 [e :U 1500 ]
-[; ;hardware.c: 447: return (value);
-"447
-[e ) _value ]
-[e $UE 1495  ]
-[; ;hardware.c: 448: }
-"448
-[e :UE 1495 ]
-}
-"450
-[v _startupSequence `(v ~T0 @X0 1 ef ]
-"451
+[; ;hardware.c: 411: else if (channel == 1)
+[e $ ! == _channel -> 1 `i 1502  ]
+[; ;hardware.c: 412: {
+"412
 {
-[; ;hardware.c: 450: void startupSequence(void)
-[; ;hardware.c: 451: {
+[; ;hardware.c: 413: value = ADCBUF1;
+"413
+[e = _value -> _ADCBUF1 `i ]
+"414
+}
+[; ;hardware.c: 414: }
+[e $U 1503  ]
+"415
+[e :U 1502 ]
+[; ;hardware.c: 415: else if (channel == 2)
+[e $ ! == _channel -> 2 `i 1504  ]
+[; ;hardware.c: 416: {
+"416
+{
+[; ;hardware.c: 417: value = ADCBUF2;
+"417
+[e = _value -> _ADCBUF2 `i ]
+"418
+}
+[; ;hardware.c: 418: }
+[e $U 1505  ]
+"419
+[e :U 1504 ]
+[; ;hardware.c: 419: else if (channel == 3)
+[e $ ! == _channel -> 3 `i 1506  ]
+[; ;hardware.c: 420: {
+"420
+{
+[; ;hardware.c: 421: value = ADCBUF3;
+"421
+[e = _value -> _ADCBUF3 `i ]
+"422
+}
+[; ;hardware.c: 422: }
+[e $U 1507  ]
+"423
+[e :U 1506 ]
+[; ;hardware.c: 423: else if (channel == 4)
+[e $ ! == _channel -> 4 `i 1508  ]
+[; ;hardware.c: 424: {
+"424
+{
+[; ;hardware.c: 425: value = ADCBUF4;
+"425
+[e = _value -> _ADCBUF4 `i ]
+"426
+}
+[; ;hardware.c: 426: }
+[e $U 1509  ]
+"427
+[e :U 1508 ]
+[; ;hardware.c: 427: else if (channel == 5)
+[e $ ! == _channel -> 5 `i 1510  ]
+[; ;hardware.c: 428: {
+"428
+{
+[; ;hardware.c: 429: value = ADCBUF5;
+"429
+[e = _value -> _ADCBUF5 `i ]
+"430
+}
+[; ;hardware.c: 430: }
+[e $U 1511  ]
+"431
+[e :U 1510 ]
+[; ;hardware.c: 431: else if (channel == 6)
+[e $ ! == _channel -> 6 `i 1512  ]
+[; ;hardware.c: 432: {
+"432
+{
+[; ;hardware.c: 433: value = ADCBUF6;
+"433
+[e = _value -> _ADCBUF6 `i ]
+"434
+}
+[; ;hardware.c: 434: }
+[e $U 1513  ]
+"435
+[e :U 1512 ]
+[; ;hardware.c: 435: else if (channel == 14)
+[e $ ! == _channel -> 14 `i 1514  ]
+[; ;hardware.c: 436: {
+"436
+{
+[; ;hardware.c: 437: value = ADCBUF14;
+"437
+[e = _value -> _ADCBUF14 `i ]
+"438
+}
+[; ;hardware.c: 438: }
+[e $U 1515  ]
+"439
+[e :U 1514 ]
+[; ;hardware.c: 439: else if (channel == 8)
+[e $ ! == _channel -> 8 `i 1516  ]
+[; ;hardware.c: 440: {
+"440
+{
+[; ;hardware.c: 441: value = ADCBUF8;
+"441
+[e = _value -> _ADCBUF8 `i ]
+"442
+}
+[; ;hardware.c: 442: }
+[e $U 1517  ]
+"443
+[e :U 1516 ]
+[; ;hardware.c: 443: else if (channel == 9)
+[e $ ! == _channel -> 9 `i 1518  ]
+[; ;hardware.c: 444: {
+"444
+{
+[; ;hardware.c: 445: value = ADCBUF9;
+"445
+[e = _value -> _ADCBUF9 `i ]
+"446
+}
+[; ;hardware.c: 446: }
+[e $U 1519  ]
+"447
+[e :U 1518 ]
+[; ;hardware.c: 447: else value = 0;
+[e = _value -> 0 `i ]
+[e :U 1519 ]
+[e :U 1517 ]
+[e :U 1515 ]
+[e :U 1513 ]
+[e :U 1511 ]
+[e :U 1509 ]
+[e :U 1507 ]
+[e :U 1505 ]
+[e :U 1503 ]
+[e :U 1501 ]
+[; ;hardware.c: 448: return (value);
+"448
+[e ) _value ]
+[e $UE 1496  ]
+[; ;hardware.c: 449: }
+"449
+[e :UE 1496 ]
+}
+"451
+[v _startupSequence `(v ~T0 @X0 1 ef ]
+"452
+{
+[; ;hardware.c: 451: void startupSequence(void)
+[; ;hardware.c: 452: {
 [e :U _startupSequence ]
 [f ]
-[; ;hardware.c: 455: LATD0 = 1;
-"455
-[e = _LATD0 -> -> 1 `i `b ]
-[; ;hardware.c: 456: _delay((unsigned long)((75)*(32000000/4000.0)));
+[; ;hardware.c: 456: LATD0 = 1;
 "456
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 457: LATE7 = 1;
+[e = _LATD0 -> -> 1 `i `b ]
+[; ;hardware.c: 457: _delay((unsigned long)((75)*(32000000/4000.0)));
 "457
-[e = _LATE7 -> -> 1 `i `b ]
-[; ;hardware.c: 458: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 458: LATE7 = 1;
 "458
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 459: LATE5 = 1;
+[e = _LATE7 -> -> 1 `i `b ]
+[; ;hardware.c: 459: _delay((unsigned long)((75)*(32000000/4000.0)));
 "459
-[e = _LATE5 -> -> 1 `i `b ]
-[; ;hardware.c: 460: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 460: LATE5 = 1;
 "460
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 461: LATE4 = 1;
+[e = _LATE5 -> -> 1 `i `b ]
+[; ;hardware.c: 461: _delay((unsigned long)((75)*(32000000/4000.0)));
 "461
-[e = _LATE4 -> -> 1 `i `b ]
-[; ;hardware.c: 462: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 462: LATE4 = 1;
 "462
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 463: LATH2 = 1;
+[e = _LATE4 -> -> 1 `i `b ]
+[; ;hardware.c: 463: _delay((unsigned long)((75)*(32000000/4000.0)));
 "463
-[e = _LATH2 -> -> 1 `i `b ]
-[; ;hardware.c: 464: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 464: LATH2 = 1;
 "464
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 465: LATH2 = 0;
+[e = _LATH2 -> -> 1 `i `b ]
+[; ;hardware.c: 465: _delay((unsigned long)((75)*(32000000/4000.0)));
 "465
-[e = _LATH2 -> -> 0 `i `b ]
-[; ;hardware.c: 466: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 466: LATH2 = 0;
 "466
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 467: LATE4 = 0;
+[e = _LATH2 -> -> 0 `i `b ]
+[; ;hardware.c: 467: _delay((unsigned long)((75)*(32000000/4000.0)));
 "467
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 468: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 468: LATE4 = 0;
 "468
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 469: LATE5 = 0;
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 469: _delay((unsigned long)((75)*(32000000/4000.0)));
 "469
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 470: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 470: LATE5 = 0;
 "470
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 471: LATE7 = 0;
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 471: _delay((unsigned long)((75)*(32000000/4000.0)));
 "471
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 472: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 472: LATE7 = 0;
 "472
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 473: LATD0 = 0;
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 473: _delay((unsigned long)((75)*(32000000/4000.0)));
 "473
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 474: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 474: LATD0 = 0;
 "474
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 475: _delay((unsigned long)((75)*(32000000/4000.0)));
+"475
 [e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 477: LATH7 = 1;
-"477
-[e = _LATH7 -> -> 1 `i `b ]
-[; ;hardware.c: 478: _delay((unsigned long)((75)*(32000000/4000.0)));
+[; ;hardware.c: 478: LATH7 = 1;
 "478
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 479: LATF2 = 1;
+[e = _LATH7 -> -> 1 `i `b ]
+[; ;hardware.c: 479: _delay((unsigned long)((75)*(32000000/4000.0)));
 "479
-[e = _LATF2 -> -> 1 `i `b ]
-[; ;hardware.c: 480: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 480: LATF2 = 1;
 "480
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 481: LATF5 = 1;
+[e = _LATF2 -> -> 1 `i `b ]
+[; ;hardware.c: 481: _delay((unsigned long)((75)*(32000000/4000.0)));
 "481
-[e = _LATF5 -> -> 1 `i `b ]
-[; ;hardware.c: 482: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 482: LATF5 = 1;
 "482
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 483: LATF6 = 1;
+[e = _LATF5 -> -> 1 `i `b ]
+[; ;hardware.c: 483: _delay((unsigned long)((75)*(32000000/4000.0)));
 "483
-[e = _LATF6 -> -> 1 `i `b ]
-[; ;hardware.c: 484: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 484: LATF6 = 1;
 "484
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 485: LATG4 = 1;
+[e = _LATF6 -> -> 1 `i `b ]
+[; ;hardware.c: 485: _delay((unsigned long)((75)*(32000000/4000.0)));
 "485
-[e = _LATG4 -> -> 1 `i `b ]
-[; ;hardware.c: 486: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 486: LATG4 = 1;
 "486
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 487: LATH0 = 1;
+[e = _LATG4 -> -> 1 `i `b ]
+[; ;hardware.c: 487: _delay((unsigned long)((75)*(32000000/4000.0)));
 "487
-[e = _LATH0 -> -> 1 `i `b ]
-[; ;hardware.c: 488: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 488: LATH0 = 1;
 "488
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 489: LATH7 = 0;
+[e = _LATH0 -> -> 1 `i `b ]
+[; ;hardware.c: 489: _delay((unsigned long)((75)*(32000000/4000.0)));
 "489
-[e = _LATH7 -> -> 0 `i `b ]
-[; ;hardware.c: 490: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 490: LATH7 = 0;
 "490
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 491: LATF2 = 0;
+[e = _LATH7 -> -> 0 `i `b ]
+[; ;hardware.c: 491: _delay((unsigned long)((75)*(32000000/4000.0)));
 "491
-[e = _LATF2 -> -> 0 `i `b ]
-[; ;hardware.c: 492: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 492: LATF2 = 0;
 "492
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 493: LATF5 = 0;
+[e = _LATF2 -> -> 0 `i `b ]
+[; ;hardware.c: 493: _delay((unsigned long)((75)*(32000000/4000.0)));
 "493
-[e = _LATF5 -> -> 0 `i `b ]
-[; ;hardware.c: 494: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 494: LATF5 = 0;
 "494
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 495: LATF6 = 0;
+[e = _LATF5 -> -> 0 `i `b ]
+[; ;hardware.c: 495: _delay((unsigned long)((75)*(32000000/4000.0)));
 "495
-[e = _LATF6 -> -> 0 `i `b ]
-[; ;hardware.c: 496: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 496: LATF6 = 0;
 "496
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 497: LATG4 = 0;
+[e = _LATF6 -> -> 0 `i `b ]
+[; ;hardware.c: 497: _delay((unsigned long)((75)*(32000000/4000.0)));
 "497
-[e = _LATG4 -> -> 0 `i `b ]
-[; ;hardware.c: 498: _delay((unsigned long)((75)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 498: LATG4 = 0;
 "498
-[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 499: LATH0 = 0;
+[e = _LATG4 -> -> 0 `i `b ]
+[; ;hardware.c: 499: _delay((unsigned long)((75)*(32000000/4000.0)));
 "499
-[e = _LATH0 -> -> 0 `i `b ]
-[; ;hardware.c: 500: _delay((unsigned long)((75)*(32000000/4000.0)));
-"500
 [e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-[; ;hardware.c: 501: }
+[; ;hardware.c: 500: LATH0 = 0;
+"500
+[e = _LATH0 -> -> 0 `i `b ]
+[; ;hardware.c: 501: _delay((unsigned long)((75)*(32000000/4000.0)));
 "501
-[e :UE 1519 ]
-}
-"503
-[v _readInterval `(v ~T0 @X0 1 ef1`i ]
-"504
-{
-[; ;hardware.c: 503: void readInterval(int select)
-[; ;hardware.c: 504: {
-[e :U _readInterval ]
-"503
-[v _select `i ~T0 @X0 1 r1 ]
-"504
-[f ]
-"505
-[v _bitA `i ~T0 @X0 1 a ]
-[; ;hardware.c: 505: int bitA = 0;
-[e = _bitA -> 0 `i ]
-"506
-[v _bitB `i ~T0 @X0 1 a ]
-[; ;hardware.c: 506: int bitB = 0;
-[e = _bitB -> 0 `i ]
-"507
-[v _bitC `i ~T0 @X0 1 a ]
-[; ;hardware.c: 507: int bitC = 0;
-[e = _bitC -> 0 `i ]
-[; ;hardware.c: 509: if (select == 0)
-"509
-[e $ ! == _select -> 0 `i 1521  ]
-[; ;hardware.c: 510: {
-"510
-{
-[; ;hardware.c: 511: bitA = RC7;
-"511
-[e = _bitA -> _RC7 `i ]
-[; ;hardware.c: 512: bitB = RJ4;
-"512
-[e = _bitB -> _RJ4 `i ]
-[; ;hardware.c: 513: bitC = RJ5;
-"513
-[e = _bitC -> _RJ5 `i ]
-"514
-}
-[; ;hardware.c: 514: }
-[e $U 1522  ]
-"515
-[e :U 1521 ]
-[; ;hardware.c: 515: else if (select == 1)
-[e $ ! == _select -> 1 `i 1523  ]
-[; ;hardware.c: 516: {
-"516
-{
-[; ;hardware.c: 517: bitA = RC1;
-"517
-[e = _bitA -> _RC1 `i ]
-[; ;hardware.c: 518: bitB = RC0;
-"518
-[e = _bitB -> _RC0 `i ]
-[; ;hardware.c: 519: bitC = RC6;
-"519
-[e = _bitC -> _RC6 `i ]
-"520
-}
-[; ;hardware.c: 520: }
-[e $U 1524  ]
-"521
-[e :U 1523 ]
-[; ;hardware.c: 521: else
-[; ;hardware.c: 522: {
-"522
-{
-[; ;hardware.c: 523: bitA = RF3;
-"523
-[e = _bitA -> _RF3 `i ]
-[; ;hardware.c: 524: bitB = RH5;
-"524
-[e = _bitB -> _RH5 `i ]
-[; ;hardware.c: 525: bitC = RH4;
-"525
-[e = _bitC -> _RH4 `i ]
-"526
-}
-[e :U 1524 ]
-[e :U 1522 ]
-[; ;hardware.c: 526: }
-[; ;hardware.c: 527: LATD0 = bitA;
-"527
-[e = _LATD0 -> _bitA `b ]
-[; ;hardware.c: 528: LATE7 = bitB;
-"528
-[e = _LATE7 -> _bitB `b ]
-[; ;hardware.c: 529: LATE5 = bitC;
-"529
-[e = _LATE5 -> _bitC `b ]
-[; ;hardware.c: 530: }
-"530
+[e ( __delay (1 -> * -> -> 75 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+[; ;hardware.c: 502: }
+"502
 [e :UE 1520 ]
 }
-"532
-[v _updateLineLEDs `(v ~T0 @X0 1 ef3`i`i`i ]
-"533
+"504
+[v _readInterval `(v ~T0 @X0 1 ef1`i ]
+"505
 {
-[; ;hardware.c: 532: void updateLineLEDs(int lineA, int lineB, int lineC)
-[; ;hardware.c: 533: {
+[; ;hardware.c: 504: void readInterval(int select)
+[; ;hardware.c: 505: {
+[e :U _readInterval ]
+"504
+[v _select `i ~T0 @X0 1 r1 ]
+"505
+[f ]
+"506
+[v _bitA `i ~T0 @X0 1 a ]
+[; ;hardware.c: 506: int bitA = 0;
+[e = _bitA -> 0 `i ]
+"507
+[v _bitB `i ~T0 @X0 1 a ]
+[; ;hardware.c: 507: int bitB = 0;
+[e = _bitB -> 0 `i ]
+"508
+[v _bitC `i ~T0 @X0 1 a ]
+[; ;hardware.c: 508: int bitC = 0;
+[e = _bitC -> 0 `i ]
+[; ;hardware.c: 510: if (select == 0)
+"510
+[e $ ! == _select -> 0 `i 1522  ]
+[; ;hardware.c: 511: {
+"511
+{
+[; ;hardware.c: 512: bitA = RC7;
+"512
+[e = _bitA -> _RC7 `i ]
+[; ;hardware.c: 513: bitB = RJ4;
+"513
+[e = _bitB -> _RJ4 `i ]
+[; ;hardware.c: 514: bitC = RJ5;
+"514
+[e = _bitC -> _RJ5 `i ]
+"515
+}
+[; ;hardware.c: 515: }
+[e $U 1523  ]
+"516
+[e :U 1522 ]
+[; ;hardware.c: 516: else if (select == 1)
+[e $ ! == _select -> 1 `i 1524  ]
+[; ;hardware.c: 517: {
+"517
+{
+[; ;hardware.c: 518: bitA = RC1;
+"518
+[e = _bitA -> _RC1 `i ]
+[; ;hardware.c: 519: bitB = RC0;
+"519
+[e = _bitB -> _RC0 `i ]
+[; ;hardware.c: 520: bitC = RC6;
+"520
+[e = _bitC -> _RC6 `i ]
+"521
+}
+[; ;hardware.c: 521: }
+[e $U 1525  ]
+"522
+[e :U 1524 ]
+[; ;hardware.c: 522: else
+[; ;hardware.c: 523: {
+"523
+{
+[; ;hardware.c: 524: bitA = RF3;
+"524
+[e = _bitA -> _RF3 `i ]
+[; ;hardware.c: 525: bitB = RH5;
+"525
+[e = _bitB -> _RH5 `i ]
+[; ;hardware.c: 526: bitC = RH4;
+"526
+[e = _bitC -> _RH4 `i ]
+"527
+}
+[e :U 1525 ]
+[e :U 1523 ]
+[; ;hardware.c: 527: }
+[; ;hardware.c: 528: LATD0 = bitA;
+"528
+[e = _LATD0 -> _bitA `b ]
+[; ;hardware.c: 529: LATE7 = bitB;
+"529
+[e = _LATE7 -> _bitB `b ]
+[; ;hardware.c: 530: LATE5 = bitC;
+"530
+[e = _LATE5 -> _bitC `b ]
+[; ;hardware.c: 531: }
+"531
+[e :UE 1521 ]
+}
+"533
+[v _updateLineLEDs `(v ~T0 @X0 1 ef3`i`i`i ]
+"534
+{
+[; ;hardware.c: 533: void updateLineLEDs(int lineA, int lineB, int lineC)
+[; ;hardware.c: 534: {
 [e :U _updateLineLEDs ]
-"532
+"533
 [v _lineA `i ~T0 @X0 1 r1 ]
 [v _lineB `i ~T0 @X0 1 r2 ]
 [v _lineC `i ~T0 @X0 1 r3 ]
-"533
-[f ]
-[; ;hardware.c: 534: if (lineA == 1)
 "534
-[e $ ! == _lineA -> 1 `i 1526  ]
-[; ;hardware.c: 535: {
+[f ]
+[; ;hardware.c: 535: if (lineA == 1)
 "535
-{
-[; ;hardware.c: 536: LATH7 = 1;
+[e $ ! == _lineA -> 1 `i 1527  ]
+[; ;hardware.c: 536: {
 "536
-[e = _LATH7 -> -> 1 `i `b ]
-[; ;hardware.c: 537: LATF2 = 0;
+{
+[; ;hardware.c: 537: LATH7 = 1;
 "537
-[e = _LATF2 -> -> 0 `i `b ]
-"538
-}
-[; ;hardware.c: 538: }
-[e $U 1527  ]
-"539
-[e :U 1526 ]
-[; ;hardware.c: 539: else if (lineA == 2)
-[e $ ! == _lineA -> 2 `i 1528  ]
-[; ;hardware.c: 540: {
-"540
-{
-[; ;hardware.c: 541: LATH7 = 0;
-"541
-[e = _LATH7 -> -> 0 `i `b ]
-[; ;hardware.c: 542: LATF2 = 1;
-"542
-[e = _LATF2 -> -> 1 `i `b ]
-"543
-}
-[; ;hardware.c: 543: }
-[e $U 1529  ]
-"544
-[e :U 1528 ]
-[; ;hardware.c: 544: else if (lineA == 3)
-[e $ ! == _lineA -> 3 `i 1530  ]
-[; ;hardware.c: 545: {
-"545
-{
-[; ;hardware.c: 546: LATH7 = 1;
-"546
 [e = _LATH7 -> -> 1 `i `b ]
-[; ;hardware.c: 547: LATF2 = 1;
-"547
-[e = _LATF2 -> -> 1 `i `b ]
-"548
-}
-[; ;hardware.c: 548: }
-[e $U 1531  ]
-"549
-[e :U 1530 ]
-[; ;hardware.c: 549: else
-[; ;hardware.c: 550: {
-"550
-{
-[; ;hardware.c: 551: LATH7 = 0;
-"551
-[e = _LATH7 -> -> 0 `i `b ]
-[; ;hardware.c: 552: LATF2 = 0;
-"552
+[; ;hardware.c: 538: LATF2 = 0;
+"538
 [e = _LATF2 -> -> 0 `i `b ]
-"553
+"539
 }
-[e :U 1531 ]
-[e :U 1529 ]
+[; ;hardware.c: 539: }
+[e $U 1528  ]
+"540
 [e :U 1527 ]
-[; ;hardware.c: 553: }
-[; ;hardware.c: 555: if (lineB == 1)
-"555
-[e $ ! == _lineB -> 1 `i 1532  ]
-[; ;hardware.c: 556: {
-"556
+[; ;hardware.c: 540: else if (lineA == 2)
+[e $ ! == _lineA -> 2 `i 1529  ]
+[; ;hardware.c: 541: {
+"541
 {
-[; ;hardware.c: 557: LATF5 = 1;
-"557
-[e = _LATF5 -> -> 1 `i `b ]
-[; ;hardware.c: 558: LATF6 = 0;
-"558
-[e = _LATF6 -> -> 0 `i `b ]
-"559
+[; ;hardware.c: 542: LATH7 = 0;
+"542
+[e = _LATH7 -> -> 0 `i `b ]
+[; ;hardware.c: 543: LATF2 = 1;
+"543
+[e = _LATF2 -> -> 1 `i `b ]
+"544
 }
-[; ;hardware.c: 559: }
-[e $U 1533  ]
-"560
+[; ;hardware.c: 544: }
+[e $U 1530  ]
+"545
+[e :U 1529 ]
+[; ;hardware.c: 545: else if (lineA == 3)
+[e $ ! == _lineA -> 3 `i 1531  ]
+[; ;hardware.c: 546: {
+"546
+{
+[; ;hardware.c: 547: LATH7 = 1;
+"547
+[e = _LATH7 -> -> 1 `i `b ]
+[; ;hardware.c: 548: LATF2 = 1;
+"548
+[e = _LATF2 -> -> 1 `i `b ]
+"549
+}
+[; ;hardware.c: 549: }
+[e $U 1532  ]
+"550
+[e :U 1531 ]
+[; ;hardware.c: 550: else
+[; ;hardware.c: 551: {
+"551
+{
+[; ;hardware.c: 552: LATH7 = 0;
+"552
+[e = _LATH7 -> -> 0 `i `b ]
+[; ;hardware.c: 553: LATF2 = 0;
+"553
+[e = _LATF2 -> -> 0 `i `b ]
+"554
+}
 [e :U 1532 ]
-[; ;hardware.c: 560: else if (lineB == 2)
-[e $ ! == _lineB -> 2 `i 1534  ]
-[; ;hardware.c: 561: {
-"561
+[e :U 1530 ]
+[e :U 1528 ]
+[; ;hardware.c: 554: }
+[; ;hardware.c: 556: if (lineB == 1)
+"556
+[e $ ! == _lineB -> 1 `i 1533  ]
+[; ;hardware.c: 557: {
+"557
 {
-[; ;hardware.c: 562: LATF5 = 0;
-"562
-[e = _LATF5 -> -> 0 `i `b ]
-[; ;hardware.c: 563: LATF6 = 1;
-"563
-[e = _LATF6 -> -> 1 `i `b ]
-"564
-}
-[; ;hardware.c: 564: }
-[e $U 1535  ]
-"565
-[e :U 1534 ]
-[; ;hardware.c: 565: else if (lineB == 3)
-[e $ ! == _lineB -> 3 `i 1536  ]
-[; ;hardware.c: 566: {
-"566
-{
-[; ;hardware.c: 567: LATF5 = 1;
-"567
+[; ;hardware.c: 558: LATF5 = 1;
+"558
 [e = _LATF5 -> -> 1 `i `b ]
-[; ;hardware.c: 568: LATF6 = 1;
-"568
-[e = _LATF6 -> -> 1 `i `b ]
-"569
-}
-[; ;hardware.c: 569: }
-[e $U 1537  ]
-"570
-[e :U 1536 ]
-[; ;hardware.c: 570: else
-[; ;hardware.c: 571: {
-"571
-{
-[; ;hardware.c: 572: LATF5 = 0;
-"572
-[e = _LATF5 -> -> 0 `i `b ]
-[; ;hardware.c: 573: LATF6 = 0;
-"573
+[; ;hardware.c: 559: LATF6 = 0;
+"559
 [e = _LATF6 -> -> 0 `i `b ]
-"574
+"560
 }
-[e :U 1537 ]
-[e :U 1535 ]
+[; ;hardware.c: 560: }
+[e $U 1534  ]
+"561
 [e :U 1533 ]
-[; ;hardware.c: 574: }
-[; ;hardware.c: 576: if (lineC == 1)
-"576
-[e $ ! == _lineC -> 1 `i 1538  ]
-[; ;hardware.c: 577: {
-"577
+[; ;hardware.c: 561: else if (lineB == 2)
+[e $ ! == _lineB -> 2 `i 1535  ]
+[; ;hardware.c: 562: {
+"562
 {
-[; ;hardware.c: 578: LATG4 = 1;
-"578
-[e = _LATG4 -> -> 1 `i `b ]
-[; ;hardware.c: 579: LATH0 = 0;
-"579
-[e = _LATH0 -> -> 0 `i `b ]
-"580
+[; ;hardware.c: 563: LATF5 = 0;
+"563
+[e = _LATF5 -> -> 0 `i `b ]
+[; ;hardware.c: 564: LATF6 = 1;
+"564
+[e = _LATF6 -> -> 1 `i `b ]
+"565
 }
-[; ;hardware.c: 580: }
-[e $U 1539  ]
-"581
+[; ;hardware.c: 565: }
+[e $U 1536  ]
+"566
+[e :U 1535 ]
+[; ;hardware.c: 566: else if (lineB == 3)
+[e $ ! == _lineB -> 3 `i 1537  ]
+[; ;hardware.c: 567: {
+"567
+{
+[; ;hardware.c: 568: LATF5 = 1;
+"568
+[e = _LATF5 -> -> 1 `i `b ]
+[; ;hardware.c: 569: LATF6 = 1;
+"569
+[e = _LATF6 -> -> 1 `i `b ]
+"570
+}
+[; ;hardware.c: 570: }
+[e $U 1538  ]
+"571
+[e :U 1537 ]
+[; ;hardware.c: 571: else
+[; ;hardware.c: 572: {
+"572
+{
+[; ;hardware.c: 573: LATF5 = 0;
+"573
+[e = _LATF5 -> -> 0 `i `b ]
+[; ;hardware.c: 574: LATF6 = 0;
+"574
+[e = _LATF6 -> -> 0 `i `b ]
+"575
+}
 [e :U 1538 ]
-[; ;hardware.c: 581: else if (lineC == 2)
-[e $ ! == _lineC -> 2 `i 1540  ]
-[; ;hardware.c: 582: {
-"582
+[e :U 1536 ]
+[e :U 1534 ]
+[; ;hardware.c: 575: }
+[; ;hardware.c: 577: if (lineC == 1)
+"577
+[e $ ! == _lineC -> 1 `i 1539  ]
+[; ;hardware.c: 578: {
+"578
 {
-[; ;hardware.c: 583: LATG4 = 0;
-"583
-[e = _LATG4 -> -> 0 `i `b ]
-[; ;hardware.c: 584: LATH0 = 1;
-"584
-[e = _LATH0 -> -> 1 `i `b ]
-"585
-}
-[; ;hardware.c: 585: }
-[e $U 1541  ]
-"586
-[e :U 1540 ]
-[; ;hardware.c: 586: else if (lineC == 3)
-[e $ ! == _lineC -> 3 `i 1542  ]
-[; ;hardware.c: 587: {
-"587
-{
-[; ;hardware.c: 588: LATG4 = 1;
-"588
+[; ;hardware.c: 579: LATG4 = 1;
+"579
 [e = _LATG4 -> -> 1 `i `b ]
-[; ;hardware.c: 589: LATH0 = 1;
-"589
-[e = _LATH0 -> -> 1 `i `b ]
-"590
-}
-[; ;hardware.c: 590: }
-[e $U 1543  ]
-"591
-[e :U 1542 ]
-[; ;hardware.c: 591: else
-[; ;hardware.c: 592: {
-"592
-{
-[; ;hardware.c: 593: LATG4 = 0;
-"593
-[e = _LATG4 -> -> 0 `i `b ]
-[; ;hardware.c: 594: LATH0 = 0;
-"594
+[; ;hardware.c: 580: LATH0 = 0;
+"580
 [e = _LATH0 -> -> 0 `i `b ]
-"595
+"581
 }
-[e :U 1543 ]
-[e :U 1541 ]
+[; ;hardware.c: 581: }
+[e $U 1540  ]
+"582
 [e :U 1539 ]
-[; ;hardware.c: 595: }
-[; ;hardware.c: 596: }
+[; ;hardware.c: 582: else if (lineC == 2)
+[e $ ! == _lineC -> 2 `i 1541  ]
+[; ;hardware.c: 583: {
+"583
+{
+[; ;hardware.c: 584: LATG4 = 0;
+"584
+[e = _LATG4 -> -> 0 `i `b ]
+[; ;hardware.c: 585: LATH0 = 1;
+"585
+[e = _LATH0 -> -> 1 `i `b ]
+"586
+}
+[; ;hardware.c: 586: }
+[e $U 1542  ]
+"587
+[e :U 1541 ]
+[; ;hardware.c: 587: else if (lineC == 3)
+[e $ ! == _lineC -> 3 `i 1543  ]
+[; ;hardware.c: 588: {
+"588
+{
+[; ;hardware.c: 589: LATG4 = 1;
+"589
+[e = _LATG4 -> -> 1 `i `b ]
+[; ;hardware.c: 590: LATH0 = 1;
+"590
+[e = _LATH0 -> -> 1 `i `b ]
+"591
+}
+[; ;hardware.c: 591: }
+[e $U 1544  ]
+"592
+[e :U 1543 ]
+[; ;hardware.c: 592: else
+[; ;hardware.c: 593: {
+"593
+{
+[; ;hardware.c: 594: LATG4 = 0;
+"594
+[e = _LATG4 -> -> 0 `i `b ]
+[; ;hardware.c: 595: LATH0 = 0;
+"595
+[e = _LATH0 -> -> 0 `i `b ]
 "596
-[e :UE 1525 ]
 }
-"598
+[e :U 1544 ]
+[e :U 1542 ]
+[e :U 1540 ]
+[; ;hardware.c: 596: }
+[; ;hardware.c: 597: }
+"597
+[e :UE 1526 ]
+}
+"599
 [v _updatePresetLEDs `(v ~T0 @X0 1 ef1`i ]
-"599
-{
-[; ;hardware.c: 598: void updatePresetLEDs(int psNum)
-[; ;hardware.c: 599: {
-[e :U _updatePresetLEDs ]
-"598
-[v _psNum `i ~T0 @X0 1 r1 ]
-"599
-[f ]
-[; ;hardware.c: 600: if (psNum == 1)
 "600
-[e $ ! == _psNum -> 1 `i 1545  ]
-[; ;hardware.c: 601: {
-"601
 {
-[; ;hardware.c: 602: LATD0 = 1;
-"602
-[e = _LATD0 -> -> 1 `i `b ]
-[; ;hardware.c: 603: LATE7 = 0;
-"603
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 604: LATE5 = 0;
-"604
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 605: LATE4 = 0;
-"605
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 606: LATH2 = 0;
-"606
-[e = _LATH2 -> -> 0 `i `b ]
-"607
-}
-[; ;hardware.c: 607: }
-[e $U 1546  ]
-"608
-[e :U 1545 ]
-[; ;hardware.c: 608: else if (psNum == 2)
-[e $ ! == _psNum -> 2 `i 1547  ]
-[; ;hardware.c: 609: {
-"609
-{
-[; ;hardware.c: 610: LATD0 = 0;
-"610
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 611: LATE7 = 1;
-"611
-[e = _LATE7 -> -> 1 `i `b ]
-[; ;hardware.c: 612: LATE5 = 0;
-"612
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 613: LATE4 = 0;
-"613
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 614: LATH2 = 0;
-"614
-[e = _LATH2 -> -> 0 `i `b ]
-"615
-}
-[; ;hardware.c: 615: }
-[e $U 1548  ]
-"616
-[e :U 1547 ]
-[; ;hardware.c: 616: else if (psNum == 3)
-[e $ ! == _psNum -> 3 `i 1549  ]
-[; ;hardware.c: 617: {
-"617
-{
-[; ;hardware.c: 618: LATD0 = 0;
-"618
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 619: LATE7 = 0;
-"619
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 620: LATE5 = 1;
-"620
-[e = _LATE5 -> -> 1 `i `b ]
-[; ;hardware.c: 621: LATE4 = 0;
-"621
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 622: LATH2 = 0;
-"622
-[e = _LATH2 -> -> 0 `i `b ]
-"623
-}
-[; ;hardware.c: 623: }
-[e $U 1550  ]
-"624
-[e :U 1549 ]
-[; ;hardware.c: 624: else if (psNum == 4)
-[e $ ! == _psNum -> 4 `i 1551  ]
-[; ;hardware.c: 625: {
-"625
-{
-[; ;hardware.c: 626: LATD0 = 0;
-"626
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 627: LATE7 = 0;
-"627
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 628: LATE5 = 0;
-"628
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 629: LATE4 = 1;
-"629
-[e = _LATE4 -> -> 1 `i `b ]
-[; ;hardware.c: 630: LATH2 = 0;
-"630
-[e = _LATH2 -> -> 0 `i `b ]
-"631
-}
-[; ;hardware.c: 631: }
-[e $U 1552  ]
-"632
-[e :U 1551 ]
-[; ;hardware.c: 632: else if (psNum == 5)
-[e $ ! == _psNum -> 5 `i 1553  ]
-[; ;hardware.c: 633: {
-"633
-{
-[; ;hardware.c: 634: LATD0 = 0;
-"634
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 635: LATE7 = 0;
-"635
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 636: LATE5 = 0;
-"636
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 637: LATE4 = 0;
-"637
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 638: LATH2 = 1;
-"638
-[e = _LATH2 -> -> 1 `i `b ]
-"639
-}
-[; ;hardware.c: 639: }
-[e $U 1554  ]
-"640
-[e :U 1553 ]
-[; ;hardware.c: 640: else
-[; ;hardware.c: 641: {
-"641
-{
-[; ;hardware.c: 642: LATD0 = 0;
-"642
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 643: LATE7 = 0;
-"643
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 644: LATE5 = 0;
-"644
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 645: LATE4 = 0;
-"645
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 646: LATH2 = 0;
-"646
-[e = _LATH2 -> -> 0 `i `b ]
-"647
-}
-[e :U 1554 ]
-[e :U 1552 ]
-[e :U 1550 ]
-[e :U 1548 ]
-[e :U 1546 ]
-[; ;hardware.c: 647: }
-[; ;hardware.c: 648: }
-"648
-[e :UE 1544 ]
-}
-"650
-[v _readToggle `(i ~T0 @X0 1 ef1`i ]
-"651
-{
-[; ;hardware.c: 650: int readToggle(int target)
-[; ;hardware.c: 651: {
-[e :U _readToggle ]
-"650
-[v _target `i ~T0 @X0 1 r1 ]
-"651
+[; ;hardware.c: 599: void updatePresetLEDs(int psNum)
+[; ;hardware.c: 600: {
+[e :U _updatePresetLEDs ]
+"599
+[v _psNum `i ~T0 @X0 1 r1 ]
+"600
 [f ]
+[; ;hardware.c: 601: if (psNum == 1)
+"601
+[e $ ! == _psNum -> 1 `i 1546  ]
+[; ;hardware.c: 602: {
+"602
+{
+[; ;hardware.c: 603: LATD0 = 1;
+"603
+[e = _LATD0 -> -> 1 `i `b ]
+[; ;hardware.c: 604: LATE7 = 0;
+"604
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 605: LATE5 = 0;
+"605
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 606: LATE4 = 0;
+"606
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 607: LATH2 = 0;
+"607
+[e = _LATH2 -> -> 0 `i `b ]
+"608
+}
+[; ;hardware.c: 608: }
+[e $U 1547  ]
+"609
+[e :U 1546 ]
+[; ;hardware.c: 609: else if (psNum == 2)
+[e $ ! == _psNum -> 2 `i 1548  ]
+[; ;hardware.c: 610: {
+"610
+{
+[; ;hardware.c: 611: LATD0 = 0;
+"611
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 612: LATE7 = 1;
+"612
+[e = _LATE7 -> -> 1 `i `b ]
+[; ;hardware.c: 613: LATE5 = 0;
+"613
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 614: LATE4 = 0;
+"614
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 615: LATH2 = 0;
+"615
+[e = _LATH2 -> -> 0 `i `b ]
+"616
+}
+[; ;hardware.c: 616: }
+[e $U 1549  ]
+"617
+[e :U 1548 ]
+[; ;hardware.c: 617: else if (psNum == 3)
+[e $ ! == _psNum -> 3 `i 1550  ]
+[; ;hardware.c: 618: {
+"618
+{
+[; ;hardware.c: 619: LATD0 = 0;
+"619
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 620: LATE7 = 0;
+"620
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 621: LATE5 = 1;
+"621
+[e = _LATE5 -> -> 1 `i `b ]
+[; ;hardware.c: 622: LATE4 = 0;
+"622
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 623: LATH2 = 0;
+"623
+[e = _LATH2 -> -> 0 `i `b ]
+"624
+}
+[; ;hardware.c: 624: }
+[e $U 1551  ]
+"625
+[e :U 1550 ]
+[; ;hardware.c: 625: else if (psNum == 4)
+[e $ ! == _psNum -> 4 `i 1552  ]
+[; ;hardware.c: 626: {
+"626
+{
+[; ;hardware.c: 627: LATD0 = 0;
+"627
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 628: LATE7 = 0;
+"628
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 629: LATE5 = 0;
+"629
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 630: LATE4 = 1;
+"630
+[e = _LATE4 -> -> 1 `i `b ]
+[; ;hardware.c: 631: LATH2 = 0;
+"631
+[e = _LATH2 -> -> 0 `i `b ]
+"632
+}
+[; ;hardware.c: 632: }
+[e $U 1553  ]
+"633
+[e :U 1552 ]
+[; ;hardware.c: 633: else if (psNum == 5)
+[e $ ! == _psNum -> 5 `i 1554  ]
+[; ;hardware.c: 634: {
+"634
+{
+[; ;hardware.c: 635: LATD0 = 0;
+"635
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 636: LATE7 = 0;
+"636
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 637: LATE5 = 0;
+"637
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 638: LATE4 = 0;
+"638
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 639: LATH2 = 1;
+"639
+[e = _LATH2 -> -> 1 `i `b ]
+"640
+}
+[; ;hardware.c: 640: }
+[e $U 1555  ]
+"641
+[e :U 1554 ]
+[; ;hardware.c: 641: else
+[; ;hardware.c: 642: {
+"642
+{
+[; ;hardware.c: 643: LATD0 = 0;
+"643
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 644: LATE7 = 0;
+"644
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 645: LATE5 = 0;
+"645
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 646: LATE4 = 0;
+"646
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 647: LATH2 = 0;
+"647
+[e = _LATH2 -> -> 0 `i `b ]
+"648
+}
+[e :U 1555 ]
+[e :U 1553 ]
+[e :U 1551 ]
+[e :U 1549 ]
+[e :U 1547 ]
+[; ;hardware.c: 648: }
+[; ;hardware.c: 649: }
+"649
+[e :UE 1545 ]
+}
+"651
+[v _readToggle `(i ~T0 @X0 1 ef1`i ]
 "652
-[v _temp `i ~T0 @X0 1 a ]
-[; ;hardware.c: 652: int temp = 0;
-[e = _temp -> 0 `i ]
+{
+[; ;hardware.c: 651: int readToggle(int target)
+[; ;hardware.c: 652: {
+[e :U _readToggle ]
+"651
+[v _target `i ~T0 @X0 1 r1 ]
+"652
+[f ]
 "653
+[v _temp `i ~T0 @X0 1 a ]
+[; ;hardware.c: 653: int temp = 0;
+[e = _temp -> 0 `i ]
+"654
 [v _result `i ~T0 @X0 1 a ]
-[; ;hardware.c: 653: int result = 0;
+[; ;hardware.c: 654: int result = 0;
 [e = _result -> 0 `i ]
-[; ;hardware.c: 655: if (target)
-"655
-[e $ ! != _target -> 0 `i 1556  ]
-[; ;hardware.c: 656: {
+[; ;hardware.c: 656: if (target)
 "656
-{
-[; ;hardware.c: 657: temp = RJ1;
+[e $ ! != _target -> 0 `i 1557  ]
+[; ;hardware.c: 657: {
 "657
-[e = _temp -> _RJ1 `i ]
-[; ;hardware.c: 658: result = RJ0;
-"658
-[e = _result -> _RJ0 `i ]
-[; ;hardware.c: 659: result = (RJ1<<1)|(RJ0);
-"659
-[e = _result | << -> _RJ1 `i -> 1 `i -> _RJ0 `i ]
-"660
-}
-[; ;hardware.c: 660: }
-[e $U 1557  ]
-"661
-[e :U 1556 ]
-[; ;hardware.c: 661: else result = RD7;
-[e = _result -> _RD7 `i ]
-[e :U 1557 ]
-[; ;hardware.c: 662: return result;
-"662
-[e ) _result ]
-[e $UE 1555  ]
-[; ;hardware.c: 663: }
-"663
-[e :UE 1555 ]
-}
-"665
-[v _killLEDs `(v ~T0 @X0 1 ef ]
-"666
 {
-[; ;hardware.c: 665: void killLEDs(void)
-[; ;hardware.c: 666: {
+[; ;hardware.c: 658: temp = RJ1;
+"658
+[e = _temp -> _RJ1 `i ]
+[; ;hardware.c: 659: result = RJ0;
+"659
+[e = _result -> _RJ0 `i ]
+[; ;hardware.c: 660: result = (RJ1<<1)|(RJ0);
+"660
+[e = _result | << -> _RJ1 `i -> 1 `i -> _RJ0 `i ]
+"661
+}
+[; ;hardware.c: 661: }
+[e $U 1558  ]
+"662
+[e :U 1557 ]
+[; ;hardware.c: 662: else result = RD7;
+[e = _result -> _RD7 `i ]
+[e :U 1558 ]
+[; ;hardware.c: 663: return result;
+"663
+[e ) _result ]
+[e $UE 1556  ]
+[; ;hardware.c: 664: }
+"664
+[e :UE 1556 ]
+}
+"666
+[v _killLEDs `(v ~T0 @X0 1 ef ]
+"667
+{
+[; ;hardware.c: 666: void killLEDs(void)
+[; ;hardware.c: 667: {
 [e :U _killLEDs ]
 [f ]
-[; ;hardware.c: 667: LATE0 = 0;
-"667
-[e = _LATE0 -> -> 0 `i `b ]
-[; ;hardware.c: 668: LATD2 = 0;
+[; ;hardware.c: 668: LATE0 = 0;
 "668
-[e = _LATD2 -> -> 0 `i `b ]
-[; ;hardware.c: 669: LATH7 = 0;
+[e = _LATE0 -> -> 0 `i `b ]
+[; ;hardware.c: 669: LATD2 = 0;
 "669
-[e = _LATH7 -> -> 0 `i `b ]
-[; ;hardware.c: 670: LATF2 = 0;
+[e = _LATD2 -> -> 0 `i `b ]
+[; ;hardware.c: 670: LATH7 = 0;
 "670
-[e = _LATF2 -> -> 0 `i `b ]
-[; ;hardware.c: 671: LATF5 = 0;
+[e = _LATH7 -> -> 0 `i `b ]
+[; ;hardware.c: 671: LATF2 = 0;
 "671
-[e = _LATF5 -> -> 0 `i `b ]
-[; ;hardware.c: 672: LATF6 = 0;
+[e = _LATF2 -> -> 0 `i `b ]
+[; ;hardware.c: 672: LATF5 = 0;
 "672
-[e = _LATF6 -> -> 0 `i `b ]
-[; ;hardware.c: 673: LATG4 = 0;
+[e = _LATF5 -> -> 0 `i `b ]
+[; ;hardware.c: 673: LATF6 = 0;
 "673
-[e = _LATG4 -> -> 0 `i `b ]
-[; ;hardware.c: 674: LATH0 = 0;
+[e = _LATF6 -> -> 0 `i `b ]
+[; ;hardware.c: 674: LATG4 = 0;
 "674
-[e = _LATH0 -> -> 0 `i `b ]
-[; ;hardware.c: 675: LATE1 = 0;
+[e = _LATG4 -> -> 0 `i `b ]
+[; ;hardware.c: 675: LATH0 = 0;
 "675
-[e = _LATE1 -> -> 0 `i `b ]
-[; ;hardware.c: 676: LATH1 = 0;
+[e = _LATH0 -> -> 0 `i `b ]
+[; ;hardware.c: 676: LATE1 = 0;
 "676
-[e = _LATH1 -> -> 0 `i `b ]
-[; ;hardware.c: 677: LATD0 = 0;
+[e = _LATE1 -> -> 0 `i `b ]
+[; ;hardware.c: 677: LATH1 = 0;
 "677
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;hardware.c: 678: LATE7 = 0;
+[e = _LATH1 -> -> 0 `i `b ]
+[; ;hardware.c: 678: LATD0 = 0;
 "678
-[e = _LATE7 -> -> 0 `i `b ]
-[; ;hardware.c: 679: LATE5 = 0;
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;hardware.c: 679: LATE7 = 0;
 "679
-[e = _LATE5 -> -> 0 `i `b ]
-[; ;hardware.c: 680: LATE4 = 0;
+[e = _LATE7 -> -> 0 `i `b ]
+[; ;hardware.c: 680: LATE5 = 0;
 "680
-[e = _LATE4 -> -> 0 `i `b ]
-[; ;hardware.c: 681: LATH2 = 0;
+[e = _LATE5 -> -> 0 `i `b ]
+[; ;hardware.c: 681: LATE4 = 0;
 "681
-[e = _LATH2 -> -> 0 `i `b ]
-[; ;hardware.c: 682: }
+[e = _LATE4 -> -> 0 `i `b ]
+[; ;hardware.c: 682: LATH2 = 0;
 "682
-[e :UE 1558 ]
+[e = _LATH2 -> -> 0 `i `b ]
+[; ;hardware.c: 683: }
+"683
+[e :UE 1559 ]
 }

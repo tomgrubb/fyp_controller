@@ -19,11 +19,11 @@ void maxTapCheck(void)
         tapTimeCount = 0;
         tap = 0;
     }
-    else if (tapTimeCount >= 1500)
+    else if (tapTimeCount >= 1276)
     {
         newTempo = 1;
         tap = 0;
-        currentTapTime = 1500;
+        currentTapTime = 1276;
     }
 }
 
@@ -67,40 +67,38 @@ void processTaps(void)
                 tap++;
             }
         }
+        masterTime.f = currentTapTime*1.024; // Tap Time in ms
         T2CONbits.TMR2ON = 1;       // Timer 1 is ON
     }
     tapTimeCount = 0;
 }
 
 void tapLED(void)
-{
-//    if (newTempo)
-//    {
-//        tapFlash = 1;
-//        tapDispCount = 0;
-//        newTempo = 0;
-//    }
-    
-    if(tapFlash)
+{   
+    if (masterTime.f == 0)
+    {
+        TapLED = 0;
+    }
+    else if(tapFlash)
+    {
+        tapDispCount++;
+        if (tapDispCount >= tapOnTime)
         {
-            tapDispCount++;
-            if (tapDispCount >= tapOnTime)
-            {
-                tapDispCount = 0;
-                TapLED = 0; // LED OFF
-                tapFlash = 0;
-            }              
-        }
-        else
+            tapDispCount = 0;
+            TapLED = 0; // LED OFF
+            tapFlash = 0;
+        }              
+    }
+    else
+    {
+        tapDispCount++;
+        if (tapDispCount >= (currentTapTime-tapOnTime))
         {
-            tapDispCount++;
-            if (tapDispCount >= (currentTapTime-tapOnTime))
-            {
-                tapDispCount = 0;
-                TapLED = 1; // LED ON
-                tapFlash = 1;
-            }
+            tapDispCount = 0;
+            TapLED = 1; // LED ON
+            tapFlash = 1;
         }
+    }
 }
 
 void flashLED(void)
@@ -122,20 +120,21 @@ void flashLED(void)
             pFlashCount = 0;
         }
     }
-    if ((armA + armB + armC) > 0)
-    {
-        armFlashCount++;
-        if (armFlashCount > 500)
-        {
-            armFlashCount = 0;
-            if (armFlashToggle)
-            {
-                updateLineLEDs(intA, intB, intC);
-            }
-            else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
-            armFlashToggle ^= 1;
-        }
-    }
+    
+//    if ((armA + armB + armC) > 0)
+//    {
+//        armFlashCount++;
+//        if (armFlashCount > 500)
+//        {
+//            armFlashCount = 0;
+//            if (armFlashToggle)
+//            {
+//                updateLineLEDs(intA, intB, intC);
+//            }
+//            else updateLineLEDs((!armA*intA), (!armB*intB), (!armC*intC));
+//            armFlashToggle ^= 1;
+//        }
+//    }
 }
 
 void checkSwitches(void)
@@ -199,6 +198,8 @@ void checkSwitches(void)
 
 void serviceSwitches(void)
 {   
+    int a, b, c;
+    
     if (fsw1)   // bypass foot switch
     {
         fsw1 = 0;
@@ -222,7 +223,7 @@ void serviceSwitches(void)
     if (fsw2)   // tap tempo foot switch
     {
         fsw2 = 0;
-        if (AltFSW)
+        if (!AltFSW)
         {
             processTaps();
         }         
@@ -238,7 +239,7 @@ void serviceSwitches(void)
                 intA++;
                 if (intA > 3)
                 {
-                    intA = 0;
+                    intA = 1;
                 }
             }
             else
@@ -259,7 +260,7 @@ void serviceSwitches(void)
                 intB++;
                 if (intB > 3)
                 {
-                    intB = 0;
+                    intB = 1;
                 }
             }
             else
@@ -280,7 +281,7 @@ void serviceSwitches(void)
                 intC++;
                 if (intC > 3)
                 {
-                    intC = 0;
+                    intC = 1;
                 }
             }
             else
@@ -291,10 +292,23 @@ void serviceSwitches(void)
         }
     }
     
-//    linesArmed = ((armA << 2) | (armB << 1) | (armC));
-//    parameter[13] = linesArmed;
+    if (armA)
+    {
+        a = 0;
+    }
+    else a = intA;
+    if (armB)
+    {
+        b = 0;
+    }
+    else b = intB;
+    if (armC)
+    {
+        c = 0;
+    }
+    else c = intC;
     
-    updateLineLEDs(intA, intB, intC);
+    updateLineLEDs(a, b, c);
     
     if (switch4)
     {

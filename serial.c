@@ -18,7 +18,7 @@
 int paramAddress[] =
 {
     0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-    0xB1, 0xB3, 0xB5, 0xB7, 0xBF 
+    0xB1, 0xB3, 0xB5, 0xB7, 0xB9, 0xBB, 0xBD, 0xBF
 };
 
 int presetAdd[] = 
@@ -264,11 +264,11 @@ void sendParam(void)
     
     dataTarget = SSP2BUF;       // read address from buffer
  
-    for (n = 0; n < 13; n++)
+    for (n = 0; n < 15; n++)
     {
         if (dataTarget == paramAddress[n])
         {
-            if (n == 12)
+            if (n == 15)
             {
                 dataPtr = setupComplete;
             }

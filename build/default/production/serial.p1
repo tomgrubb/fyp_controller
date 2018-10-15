@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"153 global.h
+[u S1420 `f 1 `uc -> # `f `ui ]
+[n S1420 float2bytes f b ]
 "29125 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [s S1270 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1270 . SSPM CKP SSPEN SSPOV WCOL ]
@@ -12987,155 +12990,168 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;global.h: 116: int armFlashToggle = 0;
 "119
-[v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 119: int parameter[12];
-"121
+[v _parameter `i ~T0 @X0 -> 15 `i e ]
+[; ;global.h: 119: int parameter[15];
+"120
+[v _presetRead `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 120: int presetRead[12];
+"122
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 121: int shift = 0;
-"122
+[; ;global.h: 122: int shift = 0;
+"123
 [v _armA `i ~T0 @X0 1 e ]
 [i _armA
 -> 0 `i
 ]
-[; ;global.h: 122: int armA = 0;
-"123
+[; ;global.h: 123: int armA = 0;
+"124
 [v _armB `i ~T0 @X0 1 e ]
 [i _armB
 -> 0 `i
 ]
-[; ;global.h: 123: int armB = 0;
-"124
+[; ;global.h: 124: int armB = 0;
+"125
 [v _armC `i ~T0 @X0 1 e ]
 [i _armC
 -> 0 `i
 ]
-[; ;global.h: 124: int armC = 0;
-"125
+[; ;global.h: 125: int armC = 0;
+"126
 [v _linesArmed `i ~T0 @X0 1 e ]
 [i _linesArmed
 -> 0 `i
 ]
-[; ;global.h: 125: int linesArmed = 0;
-"127
+[; ;global.h: 126: int linesArmed = 0;
+"128
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 127: int dataTarget = 0;
-"128
+[; ;global.h: 128: int dataTarget = 0;
+"129
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 128: int *dataPtr;
-"130
+[; ;global.h: 129: int *dataPtr;
+"131
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 130: int fbkA = 0;
-"131
+[; ;global.h: 131: int fbkA = 0;
+"132
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 131: int lvlA = 0;
-"132
+[; ;global.h: 132: int lvlA = 0;
+"133
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 132: int timeA = 0;
-"134
+[; ;global.h: 133: int timeA = 0;
+"135
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 134: int fbkB = 0;
-"135
+[; ;global.h: 135: int fbkB = 0;
+"136
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 135: int lvlB = 0;
-"136
+[; ;global.h: 136: int lvlB = 0;
+"137
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 136: int timeB = 0;
-"138
+[; ;global.h: 137: int timeB = 0;
+"139
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 138: int fbkC = 0;
-"139
+[; ;global.h: 139: int fbkC = 0;
+"140
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 139: int lvlC = 0;
-"140
+[; ;global.h: 140: int lvlC = 0;
+"141
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 140: int timeC = 0;
-"143
+[; ;global.h: 141: int timeC = 0;
+"144
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 143: int tapTimeCount = 0;
-"144
+[; ;global.h: 144: int tapTimeCount = 0;
+"145
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 144: int tapPrev = 0;
-"145
+[; ;global.h: 145: int tapPrev = 0;
+"146
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 145: long int tapAccum = 0;
-"146
+[; ;global.h: 146: long int tapAccum = 0;
+"147
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 146: int tap = 0;
-"147
+[; ;global.h: 147: int tap = 0;
+"148
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 147: int tapTime = 0;
-"148
+[; ;global.h: 148: int tapTime = 0;
+"149
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 148: int newTempo = 0;
-"149
+[; ;global.h: 149: int newTempo = 0;
+"150
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 149: int timeoutCount = 0;
-"151
+[; ;global.h: 150: int timeoutCount = 0;
+[; ;global.h: 153: typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+"155
+[v _masterTime `S1420 ~T0 @X0 1 e ]
+[; ;global.h: 155: f2b masterTime;
+"156
+[v _lock `i ~T0 @X0 1 e ]
+[i _lock
+-> 0 `i
+]
+[; ;global.h: 156: int lock = 0;
+"158
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 151: int setupComplete = 0;
-"152
+[; ;global.h: 158: int setupComplete = 0;
+"159
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 152: int sync = 0;
+[; ;global.h: 159: int sync = 0;
 "18 serial.c
 [v _paramAddress `i ~T0 @X0 -> 0 `x e ]
 [i _paramAddress
@@ -13154,6 +13170,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 179 `i
 -> 181 `i
 -> 183 `i
+-> 185 `i
+-> 187 `i
+-> 189 `i
 "22
 -> 191 `i
 ..
@@ -13161,7 +13180,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.c: 18: int paramAddress[] =
 [; ;serial.c: 19: {
 [; ;serial.c: 20: 0xA1, 0xA3, 0xA5, 0xA7, 0xA9, 0xAB, 0xAD, 0xAF,
-[; ;serial.c: 21: 0xB1, 0xB3, 0xB5, 0xB7, 0xBF
+[; ;serial.c: 21: 0xB1, 0xB3, 0xB5, 0xB7, 0xB9, 0xBB, 0xBD, 0xBF
 [; ;serial.c: 22: };
 "24
 [v _presetAdd `i ~T0 @X0 -> 0 `x e ]
@@ -13214,11 +13233,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
 [; ;serial.c: 41: while(SSP1CON2bits.SEN);
 "41
-[e $U 1421  ]
-[e :U 1422 ]
-[e :U 1421 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1422  ]
+[e $U 1422  ]
 [e :U 1423 ]
+[e :U 1422 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1423  ]
+[e :U 1424 ]
 [; ;serial.c: 42: PIR1bits.SSP1IF = 0x0;
 "42
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13227,18 +13246,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _wrDevAddr ]
 [; ;serial.c: 45: while (SSP1CON2bits.ACKSTAT);
 "45
-[e $U 1424  ]
-[e :U 1425 ]
-[e :U 1424 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1425  ]
+[e $U 1425  ]
 [e :U 1426 ]
+[e :U 1425 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1426  ]
+[e :U 1427 ]
 [; ;serial.c: 46: while(!PIR1bits.SSP1IF);
 "46
-[e $U 1427  ]
-[e :U 1428 ]
-[e :U 1427 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1428  ]
+[e $U 1428  ]
 [e :U 1429 ]
+[e :U 1428 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1429  ]
+[e :U 1430 ]
 [; ;serial.c: 47: PIR1bits.SSP1IF = 0x0;
 "47
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13247,18 +13266,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _memValue ]
 [; ;serial.c: 50: while (SSP1CON2bits.ACKSTAT);
 "50
-[e $U 1430  ]
-[e :U 1431 ]
-[e :U 1430 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1431  ]
+[e $U 1431  ]
 [e :U 1432 ]
+[e :U 1431 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1432  ]
+[e :U 1433 ]
 [; ;serial.c: 51: while(!PIR1bits.SSP1IF);
 "51
-[e $U 1433  ]
-[e :U 1434 ]
-[e :U 1433 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1434  ]
+[e $U 1434  ]
 [e :U 1435 ]
+[e :U 1434 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1435  ]
+[e :U 1436 ]
 [; ;serial.c: 52: PIR1bits.SSP1IF = 0x0;
 "52
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13270,28 +13289,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 57: while (SSP1CON2bits.ACKSTAT);
 "57
-[e $U 1436  ]
-[e :U 1437 ]
-[e :U 1436 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1437  ]
+[e $U 1437  ]
 [e :U 1438 ]
+[e :U 1437 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1438  ]
+[e :U 1439 ]
 [; ;serial.c: 58: while(!PIR1bits.SSP1IF);
 "58
-[e $U 1439  ]
-[e :U 1440 ]
-[e :U 1439 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1440  ]
+[e $U 1440  ]
 [e :U 1441 ]
+[e :U 1440 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1441  ]
+[e :U 1442 ]
 [; ;serial.c: 59: SSP1CON2bits.PEN = 0x1;
 "59
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 60: while(SSP1CON2bits.PEN);
 "60
-[e $U 1442  ]
-[e :U 1443 ]
-[e :U 1442 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1443  ]
+[e $U 1443  ]
 [e :U 1444 ]
+[e :U 1443 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1444  ]
+[e :U 1445 ]
 [; ;serial.c: 62: PIR1bits.SSP1IF = 0x0;
 "62
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13300,7 +13319,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 64: }
 "64
-[e :UE 1420 ]
+[e :UE 1421 ]
 }
 "66
 [v _I2C1_Page_Write_EEPROM `(v ~T0 @X0 1 ef3`i`**i`i ]
@@ -13338,11 +13357,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
 [; ;serial.c: 76: while(SSP1CON2bits.SEN);
 "76
-[e $U 1446  ]
-[e :U 1447 ]
-[e :U 1446 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1447  ]
+[e $U 1447  ]
 [e :U 1448 ]
+[e :U 1447 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1448  ]
+[e :U 1449 ]
 [; ;serial.c: 77: PIR1bits.SSP1IF = 0x0;
 "77
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13351,18 +13370,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _wrDevAddr ]
 [; ;serial.c: 80: while (SSP1CON2bits.ACKSTAT);
 "80
-[e $U 1449  ]
-[e :U 1450 ]
-[e :U 1449 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1450  ]
+[e $U 1450  ]
 [e :U 1451 ]
+[e :U 1450 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1451  ]
+[e :U 1452 ]
 [; ;serial.c: 81: while(!PIR1bits.SSP1IF);
 "81
-[e $U 1452  ]
-[e :U 1453 ]
-[e :U 1452 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1453  ]
+[e $U 1453  ]
 [e :U 1454 ]
+[e :U 1453 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1454  ]
+[e :U 1455 ]
 [; ;serial.c: 82: PIR1bits.SSP1IF = 0x0;
 "82
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13373,25 +13392,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 "85
 {
 [e = _n -> 0 `i ]
-[e $U 1458  ]
+[e $U 1459  ]
 "86
-[e :U 1455 ]
+[e :U 1456 ]
 [; ;serial.c: 86: {
 {
 [; ;serial.c: 87: while (SSP1CON2bits.ACKSTAT);
 "87
-[e $U 1459  ]
-[e :U 1460 ]
-[e :U 1459 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1460  ]
+[e $U 1460  ]
 [e :U 1461 ]
+[e :U 1460 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1461  ]
+[e :U 1462 ]
 [; ;serial.c: 88: while(!PIR1bits.SSP1IF);
 "88
-[e $U 1462  ]
-[e :U 1463 ]
-[e :U 1462 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1463  ]
+[e $U 1463  ]
 [e :U 1464 ]
+[e :U 1463 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1464  ]
+[e :U 1465 ]
 [; ;serial.c: 89: PIR1bits.SSP1IF = 0x0;
 "89
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13402,36 +13421,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "85
 [e ++ _n -> 1 `i ]
-[e :U 1458 ]
-[e $ < _n _bytes 1455  ]
-[e :U 1456 ]
+[e :U 1459 ]
+[e $ < _n _bytes 1456  ]
+[e :U 1457 ]
 "91
 }
 [; ;serial.c: 91: }
 [; ;serial.c: 93: while (SSP1CON2bits.ACKSTAT);
 "93
-[e $U 1465  ]
-[e :U 1466 ]
-[e :U 1465 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1466  ]
+[e $U 1466  ]
 [e :U 1467 ]
+[e :U 1466 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1467  ]
+[e :U 1468 ]
 [; ;serial.c: 94: while(!PIR1bits.SSP1IF);
 "94
-[e $U 1468  ]
-[e :U 1469 ]
-[e :U 1468 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1469  ]
+[e $U 1469  ]
 [e :U 1470 ]
+[e :U 1469 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1470  ]
+[e :U 1471 ]
 [; ;serial.c: 95: SSP1CON2bits.PEN = 0x1;
 "95
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 96: while(SSP1CON2bits.PEN);
 "96
-[e $U 1471  ]
-[e :U 1472 ]
-[e :U 1471 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1472  ]
+[e $U 1472  ]
 [e :U 1473 ]
+[e :U 1472 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1473  ]
+[e :U 1474 ]
 [; ;serial.c: 98: PIR1bits.SSP1IF = 0x0;
 "98
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13440,7 +13459,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 100: }
 "100
-[e :UE 1445 ]
+[e :UE 1446 ]
 }
 "102
 [v _I2C1_Block_Read_EERPOM `(v ~T0 @X0 1 ef3`i`**i`i ]
@@ -13482,18 +13501,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
 [; ;serial.c: 113: while(SSP1CON2bits.SEN);
 "113
-[e $U 1475  ]
-[e :U 1476 ]
-[e :U 1475 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1476  ]
+[e $U 1476  ]
 [e :U 1477 ]
+[e :U 1476 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1477  ]
+[e :U 1478 ]
 [; ;serial.c: 114: while(!PIR1bits.SSP1IF);
 "114
-[e $U 1478  ]
-[e :U 1479 ]
-[e :U 1478 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1479  ]
+[e $U 1479  ]
 [e :U 1480 ]
+[e :U 1479 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1480  ]
+[e :U 1481 ]
 [; ;serial.c: 115: PIR1bits.SSP1IF = 0x0;
 "115
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13502,15 +13521,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _dummyWrite ]
 [; ;serial.c: 118: if(SSP1CON2bits.ACKSTAT);
 "118
-[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1481  ]
-[e :U 1481 ]
+[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1482  ]
+[e :U 1482 ]
 [; ;serial.c: 119: while(!PIR1bits.SSP1IF);
 "119
-[e $U 1482  ]
-[e :U 1483 ]
-[e :U 1482 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1483  ]
+[e $U 1483  ]
 [e :U 1484 ]
+[e :U 1483 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1484  ]
+[e :U 1485 ]
 [; ;serial.c: 120: PIR1bits.SSP1IF = 0x0;
 "120
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13519,18 +13538,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _memValue ]
 [; ;serial.c: 123: while(SSP1CON2bits.ACKSTAT);
 "123
-[e $U 1485  ]
-[e :U 1486 ]
-[e :U 1485 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1486  ]
+[e $U 1486  ]
 [e :U 1487 ]
+[e :U 1486 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1487  ]
+[e :U 1488 ]
 [; ;serial.c: 124: while(!PIR1bits.SSP1IF);
 "124
-[e $U 1488  ]
-[e :U 1489 ]
-[e :U 1488 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1489  ]
+[e $U 1489  ]
 [e :U 1490 ]
+[e :U 1489 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1490  ]
+[e :U 1491 ]
 [; ;serial.c: 125: PIR1bits.SSP1IF = 0x0;
 "125
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13539,18 +13558,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
 [; ;serial.c: 128: while(SSP1CON2bits.RSEN);
 "128
-[e $U 1491  ]
-[e :U 1492 ]
-[e :U 1491 ]
-[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1492  ]
+[e $U 1492  ]
 [e :U 1493 ]
+[e :U 1492 ]
+[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1493  ]
+[e :U 1494 ]
 [; ;serial.c: 129: while(!PIR1bits.SSP1IF);
 "129
-[e $U 1494  ]
-[e :U 1495 ]
-[e :U 1494 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1495  ]
+[e $U 1495  ]
 [e :U 1496 ]
+[e :U 1495 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1496  ]
+[e :U 1497 ]
 [; ;serial.c: 130: PIR1bits.SSP1IF = 0x0;
 "130
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13559,18 +13578,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _rdAddr ]
 [; ;serial.c: 133: while(SSP1CON2bits.ACKSTAT);
 "133
-[e $U 1497  ]
-[e :U 1498 ]
-[e :U 1497 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1498  ]
+[e $U 1498  ]
 [e :U 1499 ]
+[e :U 1498 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1499  ]
+[e :U 1500 ]
 [; ;serial.c: 134: while(!PIR1bits.SSP1IF);
 "134
-[e $U 1500  ]
-[e :U 1501 ]
-[e :U 1500 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1501  ]
+[e $U 1501  ]
 [e :U 1502 ]
+[e :U 1501 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1502  ]
+[e :U 1503 ]
 [; ;serial.c: 135: PIR1bits.SSP1IF = 0x0;
 "135
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13579,18 +13598,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
 [; ;serial.c: 139: while(!SSP1STATbits.BF);
 "139
-[e $U 1503  ]
-[e :U 1504 ]
-[e :U 1503 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1504  ]
+[e $U 1504  ]
 [e :U 1505 ]
+[e :U 1504 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1505  ]
+[e :U 1506 ]
 [; ;serial.c: 140: while (!PIR1bits.SSP1IF);
 "140
-[e $U 1506  ]
-[e :U 1507 ]
-[e :U 1506 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1507  ]
+[e $U 1507  ]
 [e :U 1508 ]
+[e :U 1507 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1508  ]
+[e :U 1509 ]
 [; ;serial.c: 141: data[n] = SSP1BUF;
 "141
 [e = *U + _data * -> _n `x -> -> # *U _data `i `x -> _SSP1BUF `*i ]
@@ -13598,9 +13617,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "143
 {
 [e = _n -> 1 `i ]
-[e $U 1512  ]
+[e $U 1513  ]
 "144
-[e :U 1509 ]
+[e :U 1510 ]
 [; ;serial.c: 144: {
 {
 [; ;serial.c: 145: SSP1CON2bits.ACKDT = 0x0;
@@ -13611,11 +13630,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
 [; ;serial.c: 147: while(SSP1CON2bits.ACKEN);
 "147
-[e $U 1513  ]
-[e :U 1514 ]
-[e :U 1513 ]
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1514  ]
+[e $U 1514  ]
 [e :U 1515 ]
+[e :U 1514 ]
+[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1515  ]
+[e :U 1516 ]
 [; ;serial.c: 148: PIR1bits.SSP1IF = 0x0;
 "148
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13624,18 +13643,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
 [; ;serial.c: 151: while(!SSP1STATbits.BF);
 "151
-[e $U 1516  ]
-[e :U 1517 ]
-[e :U 1516 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1517  ]
+[e $U 1517  ]
 [e :U 1518 ]
+[e :U 1517 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1518  ]
+[e :U 1519 ]
 [; ;serial.c: 152: while (!PIR1bits.SSP1IF);
 "152
-[e $U 1519  ]
-[e :U 1520 ]
-[e :U 1519 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1520  ]
+[e $U 1520  ]
 [e :U 1521 ]
+[e :U 1520 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1521  ]
+[e :U 1522 ]
 [; ;serial.c: 153: data[n] = SSP1BUF;
 "153
 [e = *U + _data * -> _n `x -> -> # *U _data `i `x -> _SSP1BUF `*i ]
@@ -13643,9 +13662,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "143
 [e ++ _n -> 1 `i ]
-[e :U 1512 ]
-[e $ < _n _bytes 1509  ]
-[e :U 1510 ]
+[e :U 1513 ]
+[e $ < _n _bytes 1510  ]
+[e :U 1511 ]
 "154
 }
 [; ;serial.c: 154: }
@@ -13657,11 +13676,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
 [; ;serial.c: 159: while(SSP1CON2bits.ACKEN);
 "159
-[e $U 1522  ]
-[e :U 1523 ]
-[e :U 1522 ]
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1523  ]
+[e $U 1523  ]
 [e :U 1524 ]
+[e :U 1523 ]
+[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1524  ]
+[e :U 1525 ]
 [; ;serial.c: 160: PIR1bits.SSP1IF = 0x0;
 "160
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13670,11 +13689,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 162: while(SSP1CON2bits.PEN);
 "162
-[e $U 1525  ]
-[e :U 1526 ]
-[e :U 1525 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1526  ]
+[e $U 1526  ]
 [e :U 1527 ]
+[e :U 1526 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1527  ]
+[e :U 1528 ]
 [; ;serial.c: 165: PIR1bits.SSP1IF = 0x0;
 "165
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13683,7 +13702,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 167: }
 "167
-[e :UE 1474 ]
+[e :UE 1475 ]
 }
 "169
 [v _presetCtrl `(v ~T0 @X0 1 ef1`i ]
@@ -13711,7 +13730,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _I2C1_Write_EEPROM (2 , -> -> 64 `i `uc _updateValue ]
 [; ;serial.c: 177: }
 "177
-[e :UE 1528 ]
+[e :UE 1529 ]
 }
 "179
 [v _I2C1_Read_EEPROM `(uc ~T0 @X0 1 ef2`uc`uc ]
@@ -13748,18 +13767,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
 [; ;serial.c: 189: while(SSP1CON2bits.SEN);
 "189
-[e $U 1530  ]
-[e :U 1531 ]
-[e :U 1530 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1531  ]
+[e $U 1531  ]
 [e :U 1532 ]
+[e :U 1531 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1532  ]
+[e :U 1533 ]
 [; ;serial.c: 190: while(!PIR1bits.SSP1IF);
 "190
-[e $U 1533  ]
-[e :U 1534 ]
-[e :U 1533 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1534  ]
+[e $U 1534  ]
 [e :U 1535 ]
+[e :U 1534 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1535  ]
+[e :U 1536 ]
 [; ;serial.c: 191: PIR1bits.SSP1IF = 0x0;
 "191
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13768,15 +13787,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _dummyWrite ]
 [; ;serial.c: 194: if(SSP1CON2bits.ACKSTAT);
 "194
-[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1536  ]
-[e :U 1536 ]
+[e $ ! != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1537  ]
+[e :U 1537 ]
 [; ;serial.c: 195: while(!PIR1bits.SSP1IF);
 "195
-[e $U 1537  ]
-[e :U 1538 ]
-[e :U 1537 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1538  ]
+[e $U 1538  ]
 [e :U 1539 ]
+[e :U 1538 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1539  ]
+[e :U 1540 ]
 [; ;serial.c: 196: PIR1bits.SSP1IF = 0x0;
 "196
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13785,18 +13804,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _memValue ]
 [; ;serial.c: 199: while(SSP1CON2bits.ACKSTAT);
 "199
-[e $U 1540  ]
-[e :U 1541 ]
-[e :U 1540 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1541  ]
+[e $U 1541  ]
 [e :U 1542 ]
+[e :U 1541 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1542  ]
+[e :U 1543 ]
 [; ;serial.c: 200: while(!PIR1bits.SSP1IF);
 "200
-[e $U 1543  ]
-[e :U 1544 ]
-[e :U 1543 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1544  ]
+[e $U 1544  ]
 [e :U 1545 ]
+[e :U 1544 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1545  ]
+[e :U 1546 ]
 [; ;serial.c: 201: PIR1bits.SSP1IF = 0x0;
 "201
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13805,18 +13824,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
 [; ;serial.c: 204: while(SSP1CON2bits.RSEN);
 "204
-[e $U 1546  ]
-[e :U 1547 ]
-[e :U 1546 ]
-[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1547  ]
+[e $U 1547  ]
 [e :U 1548 ]
+[e :U 1547 ]
+[e $ != -> . . _SSP1CON2bits 0 1 `i -> -> -> 0 `i `Vuc `i 1548  ]
+[e :U 1549 ]
 [; ;serial.c: 205: while(!PIR1bits.SSP1IF);
 "205
-[e $U 1549  ]
-[e :U 1550 ]
-[e :U 1549 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1550  ]
+[e $U 1550  ]
 [e :U 1551 ]
+[e :U 1550 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1551  ]
+[e :U 1552 ]
 [; ;serial.c: 206: PIR1bits.SSP1IF = 0x0;
 "206
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13825,18 +13844,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _rdAddr ]
 [; ;serial.c: 209: while(SSP1CON2bits.ACKSTAT);
 "209
-[e $U 1552  ]
-[e :U 1553 ]
-[e :U 1552 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1553  ]
+[e $U 1553  ]
 [e :U 1554 ]
+[e :U 1553 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1554  ]
+[e :U 1555 ]
 [; ;serial.c: 210: while(!PIR1bits.SSP1IF);
 "210
-[e $U 1555  ]
-[e :U 1556 ]
-[e :U 1555 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1556  ]
+[e $U 1556  ]
 [e :U 1557 ]
+[e :U 1556 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1557  ]
+[e :U 1558 ]
 [; ;serial.c: 211: PIR1bits.SSP1IF = 0x0;
 "211
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13845,18 +13864,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
 [; ;serial.c: 215: while(!SSP1STATbits.BF);
 "215
-[e $U 1558  ]
-[e :U 1559 ]
-[e :U 1558 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1559  ]
+[e $U 1559  ]
 [e :U 1560 ]
+[e :U 1559 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 1560  ]
+[e :U 1561 ]
 [; ;serial.c: 216: while (!PIR1bits.SSP1IF);
 "216
-[e $U 1561  ]
-[e :U 1562 ]
-[e :U 1561 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1562  ]
+[e $U 1562  ]
 [e :U 1563 ]
+[e :U 1562 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1563  ]
+[e :U 1564 ]
 [; ;serial.c: 218: value = SSP1BUF;
 "218
 [e = _value _SSP1BUF ]
@@ -13868,11 +13887,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
 [; ;serial.c: 223: while(SSP1CON2bits.ACKEN);
 "223
-[e $U 1564  ]
-[e :U 1565 ]
-[e :U 1564 ]
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1565  ]
+[e $U 1565  ]
 [e :U 1566 ]
+[e :U 1565 ]
+[e $ != -> . . _SSP1CON2bits 0 4 `i -> -> -> 0 `i `Vuc `i 1566  ]
+[e :U 1567 ]
 [; ;serial.c: 224: PIR1bits.SSP1IF = 0x0;
 "224
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13881,11 +13900,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 226: while(SSP1CON2bits.PEN);
 "226
-[e $U 1567  ]
-[e :U 1568 ]
-[e :U 1567 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1568  ]
+[e $U 1568  ]
 [e :U 1569 ]
+[e :U 1568 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1569  ]
+[e :U 1570 ]
 [; ;serial.c: 229: PIR1bits.SSP1IF = 0x0;
 "229
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13895,10 +13914,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.c: 232: return value;
 "232
 [e ) _value ]
-[e $UE 1529  ]
+[e $UE 1530  ]
 [; ;serial.c: 233: }
 "233
-[e :UE 1529 ]
+[e :UE 1530 ]
 }
 "235
 [v _I2C1_Write_DigiPot `(v ~T0 @X0 1 ef1`uc ]
@@ -13926,11 +13945,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
 [; ;serial.c: 243: while(SSP1CON2bits.SEN);
 "243
-[e $U 1571  ]
-[e :U 1572 ]
-[e :U 1571 ]
-[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1572  ]
+[e $U 1572  ]
 [e :U 1573 ]
+[e :U 1572 ]
+[e $ != -> . . _SSP1CON2bits 0 0 `i -> -> -> 0 `i `Vuc `i 1573  ]
+[e :U 1574 ]
 [; ;serial.c: 244: PIR1bits.SSP1IF = 0x0;
 "244
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13939,18 +13958,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _wrCommand ]
 [; ;serial.c: 247: while (SSP1CON2bits.ACKSTAT);
 "247
-[e $U 1574  ]
-[e :U 1575 ]
-[e :U 1574 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1575  ]
+[e $U 1575  ]
 [e :U 1576 ]
+[e :U 1575 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1576  ]
+[e :U 1577 ]
 [; ;serial.c: 248: while(!PIR1bits.SSP1IF);
 "248
-[e $U 1577  ]
-[e :U 1578 ]
-[e :U 1577 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1578  ]
+[e $U 1578  ]
 [e :U 1579 ]
+[e :U 1578 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1579  ]
+[e :U 1580 ]
 [; ;serial.c: 249: PIR1bits.SSP1IF = 0x0;
 "249
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13959,28 +13978,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _value ]
 [; ;serial.c: 252: while (SSP1CON2bits.ACKSTAT);
 "252
-[e $U 1580  ]
-[e :U 1581 ]
-[e :U 1580 ]
-[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1581  ]
+[e $U 1581  ]
 [e :U 1582 ]
+[e :U 1581 ]
+[e $ != -> . . _SSP1CON2bits 0 6 `i -> -> -> 0 `i `Vuc `i 1582  ]
+[e :U 1583 ]
 [; ;serial.c: 253: while(!PIR1bits.SSP1IF);
 "253
-[e $U 1583  ]
-[e :U 1584 ]
-[e :U 1583 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1584  ]
+[e $U 1584  ]
 [e :U 1585 ]
+[e :U 1584 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1585  ]
+[e :U 1586 ]
 [; ;serial.c: 254: SSP1CON2bits.PEN = 0x1;
 "254
 [e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 255: while(SSP1CON2bits.PEN);
 "255
-[e $U 1586  ]
-[e :U 1587 ]
-[e :U 1586 ]
-[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1587  ]
+[e $U 1587  ]
 [e :U 1588 ]
+[e :U 1587 ]
+[e $ != -> . . _SSP1CON2bits 0 2 `i -> -> -> 0 `i `Vuc `i 1588  ]
+[e :U 1589 ]
 [; ;serial.c: 257: PIR1bits.SSP1IF = 0x0;
 "257
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
@@ -13989,7 +14008,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;serial.c: 259: }
 "259
-[e :UE 1570 ]
+[e :UE 1571 ]
 }
 "261
 [v _sendParam `(v ~T0 @X0 1 ef ]
@@ -14006,25 +14025,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.c: 265: dataTarget = SSP2BUF;
 "265
 [e = _dataTarget -> _SSP2BUF `i ]
-[; ;serial.c: 267: for (n = 0; n < 13; n++)
+[; ;serial.c: 267: for (n = 0; n < 15; n++)
 "267
 {
 [e = _n -> 0 `i ]
-[e $ < _n -> 13 `i 1590  ]
-[e $U 1591  ]
+[e $ < _n -> 15 `i 1591  ]
+[e $U 1592  ]
 "268
-[e :U 1590 ]
+[e :U 1591 ]
 [; ;serial.c: 268: {
 {
 [; ;serial.c: 269: if (dataTarget == paramAddress[n])
 "269
-[e $ ! == _dataTarget *U + &U _paramAddress * -> -> _n `ui `ux -> -> # *U &U _paramAddress `ui `ux 1593  ]
+[e $ ! == _dataTarget *U + &U _paramAddress * -> -> _n `ui `ux -> -> # *U &U _paramAddress `ui `ux 1594  ]
 [; ;serial.c: 270: {
 "270
 {
-[; ;serial.c: 271: if (n == 12)
+[; ;serial.c: 271: if (n == 15)
 "271
-[e $ ! == _n -> 12 `i 1594  ]
+[e $ ! == _n -> 15 `i 1595  ]
 [; ;serial.c: 272: {
 "272
 {
@@ -14034,24 +14053,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 "274
 }
 [; ;serial.c: 274: }
-[e $U 1595  ]
+[e $U 1596  ]
 "275
-[e :U 1594 ]
+[e :U 1595 ]
 [; ;serial.c: 275: else dataPtr = parameter[n];
 [e = _dataPtr -> *U + &U _parameter * -> -> _n `ui `ux -> -> # *U &U _parameter `ui `ux `*i ]
-[e :U 1595 ]
+[e :U 1596 ]
 [; ;serial.c: 276: break;
 "276
-[e $U 1591  ]
+[e $U 1592  ]
 "277
 }
-[e :U 1593 ]
+[e :U 1594 ]
 "278
 }
 "267
 [e ++ _n -> 1 `i ]
-[e $ < _n -> 13 `i 1590  ]
-[e :U 1591 ]
+[e $ < _n -> 15 `i 1591  ]
+[e :U 1592 ]
 "278
 }
 [; ;serial.c: 277: }
@@ -14067,5 +14086,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIR2bits 0 6 -> -> 0 `i `uc ]
 [; ;serial.c: 283: }
 "283
-[e :UE 1589 ]
+[e :UE 1590 ]
 }

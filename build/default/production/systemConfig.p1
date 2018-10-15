@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"153 global.h
+[u S1420 `f 1 `uc -> # `f `ui ]
+[n S1420 float2bytes f b ]
 "30477 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
 [s S1341 :3 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1341 . T0PS PSA T0CS T08BIT TMR0ON ]
@@ -13451,155 +13454,168 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;global.h: 116: int armFlashToggle = 0;
 "119
-[v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 119: int parameter[12];
-"121
+[v _parameter `i ~T0 @X0 -> 15 `i e ]
+[; ;global.h: 119: int parameter[15];
+"120
+[v _presetRead `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 120: int presetRead[12];
+"122
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 121: int shift = 0;
-"122
+[; ;global.h: 122: int shift = 0;
+"123
 [v _armA `i ~T0 @X0 1 e ]
 [i _armA
 -> 0 `i
 ]
-[; ;global.h: 122: int armA = 0;
-"123
+[; ;global.h: 123: int armA = 0;
+"124
 [v _armB `i ~T0 @X0 1 e ]
 [i _armB
 -> 0 `i
 ]
-[; ;global.h: 123: int armB = 0;
-"124
+[; ;global.h: 124: int armB = 0;
+"125
 [v _armC `i ~T0 @X0 1 e ]
 [i _armC
 -> 0 `i
 ]
-[; ;global.h: 124: int armC = 0;
-"125
+[; ;global.h: 125: int armC = 0;
+"126
 [v _linesArmed `i ~T0 @X0 1 e ]
 [i _linesArmed
 -> 0 `i
 ]
-[; ;global.h: 125: int linesArmed = 0;
-"127
+[; ;global.h: 126: int linesArmed = 0;
+"128
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 127: int dataTarget = 0;
-"128
+[; ;global.h: 128: int dataTarget = 0;
+"129
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 128: int *dataPtr;
-"130
+[; ;global.h: 129: int *dataPtr;
+"131
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 130: int fbkA = 0;
-"131
+[; ;global.h: 131: int fbkA = 0;
+"132
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 131: int lvlA = 0;
-"132
+[; ;global.h: 132: int lvlA = 0;
+"133
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 132: int timeA = 0;
-"134
+[; ;global.h: 133: int timeA = 0;
+"135
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 134: int fbkB = 0;
-"135
+[; ;global.h: 135: int fbkB = 0;
+"136
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 135: int lvlB = 0;
-"136
+[; ;global.h: 136: int lvlB = 0;
+"137
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 136: int timeB = 0;
-"138
+[; ;global.h: 137: int timeB = 0;
+"139
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 138: int fbkC = 0;
-"139
+[; ;global.h: 139: int fbkC = 0;
+"140
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 139: int lvlC = 0;
-"140
+[; ;global.h: 140: int lvlC = 0;
+"141
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 140: int timeC = 0;
-"143
+[; ;global.h: 141: int timeC = 0;
+"144
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 143: int tapTimeCount = 0;
-"144
+[; ;global.h: 144: int tapTimeCount = 0;
+"145
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 144: int tapPrev = 0;
-"145
+[; ;global.h: 145: int tapPrev = 0;
+"146
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 145: long int tapAccum = 0;
-"146
+[; ;global.h: 146: long int tapAccum = 0;
+"147
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 146: int tap = 0;
-"147
+[; ;global.h: 147: int tap = 0;
+"148
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 147: int tapTime = 0;
-"148
+[; ;global.h: 148: int tapTime = 0;
+"149
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 148: int newTempo = 0;
-"149
+[; ;global.h: 149: int newTempo = 0;
+"150
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 149: int timeoutCount = 0;
-"151
+[; ;global.h: 150: int timeoutCount = 0;
+[; ;global.h: 153: typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+"155
+[v _masterTime `S1420 ~T0 @X0 1 e ]
+[; ;global.h: 155: f2b masterTime;
+"156
+[v _lock `i ~T0 @X0 1 e ]
+[i _lock
+-> 0 `i
+]
+[; ;global.h: 156: int lock = 0;
+"158
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 151: int setupComplete = 0;
-"152
+[; ;global.h: 158: int setupComplete = 0;
+"159
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 152: int sync = 0;
+[; ;global.h: 159: int sync = 0;
 "16 systemConfig.c
 [v _setupTMR0 `(v ~T0 @X0 1 ef ]
 "17
@@ -13625,7 +13641,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T0CONbits 0 0 -> -> 6 `i `uc ]
 [; ;systemConfig.c: 23: }
 "23
-[e :UE 1420 ]
+[e :UE 1421 ]
 }
 "25
 [v _setupTMR1 `(v ~T0 @X0 1 ef ]
@@ -13649,7 +13665,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T1CONbits 1 1 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 31: }
 "31
-[e :UE 1421 ]
+[e :UE 1422 ]
 }
 "34
 [v _setupTMR2 `(v ~T0 @X0 1 ef ]
@@ -13670,7 +13686,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T2CONbits 0 2 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 40: }
 "40
-[e :UE 1422 ]
+[e :UE 1423 ]
 }
 "43
 [v _setupTMR4 `(v ~T0 @X0 1 ef ]
@@ -13691,7 +13707,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T4CONbits 0 2 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 49: }
 "49
-[e :UE 1423 ]
+[e :UE 1424 ]
 }
 "52
 [v _clockSwitch `(v ~T0 @X0 1 ef ]
@@ -13715,21 +13731,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 59: while(OSCCONbits.COSC != 0x1);
 "59
-[e $U 1425  ]
-[e :U 1426 ]
-[e :U 1425 ]
-[e $ != -> . . _OSCCONbits 0 2 `i -> 1 `i 1426  ]
+[e $U 1426  ]
 [e :U 1427 ]
+[e :U 1426 ]
+[e $ != -> . . _OSCCONbits 0 2 `i -> 1 `i 1427  ]
+[e :U 1428 ]
 [; ;systemConfig.c: 60: while (!OSCCON2bits.LOCK);
 "60
-[e $U 1428  ]
-[e :U 1429 ]
-[e :U 1428 ]
-[e $ ! != -> . . _OSCCON2bits 0 5 `i -> -> -> 0 `i `Vuc `i 1429  ]
+[e $U 1429  ]
 [e :U 1430 ]
+[e :U 1429 ]
+[e $ ! != -> . . _OSCCON2bits 0 5 `i -> -> -> 0 `i `Vuc `i 1430  ]
+[e :U 1431 ]
 [; ;systemConfig.c: 61: }
 "61
-[e :UE 1424 ]
+[e :UE 1425 ]
 }
 "63
 [v _setupPWM `(v ~T0 @X0 1 ef ]
@@ -13768,7 +13784,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR2ON -> -> 1 `i `b ]
 [; ;systemConfig.c: 74: }
 "74
-[e :UE 1431 ]
+[e :UE 1432 ]
 }
 "76
 [v _setupI2C1 `(v ~T0 @X0 1 ef ]
@@ -13801,7 +13817,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 90: }
 "90
-[e :UE 1432 ]
+[e :UE 1433 ]
 }
 "92
 [v _setupI2C2 `(v ~T0 @X0 1 ef ]
@@ -13852,7 +13868,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _SSP2CON1bits 0 2 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 114: }
 "114
-[e :UE 1433 ]
+[e :UE 1434 ]
 }
 "116
 [v _setupADC `(v ~T0 @X0 1 ef ]
@@ -13975,7 +13991,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 162: }
 "162
-[e :UE 1434 ]
+[e :UE 1435 ]
 }
 "164
 [v _mapPeripheralPins `(v ~T0 @X0 1 ef ]
@@ -14014,7 +14030,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _OSCCON -> | -> _OSCCON `i -> 64 `i `uc ]
 [; ;systemConfig.c: 176: }
 "176
-[e :UE 1435 ]
+[e :UE 1436 ]
 }
 "178
 [v _disableLCD `(v ~T0 @X0 1 ef ]
@@ -14056,7 +14072,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LCDSE7 -> -> 0 `i `uc ]
 [; ;systemConfig.c: 191: }
 "191
-[e :UE 1436 ]
+[e :UE 1437 ]
 }
 "193
 [v _interfaceInit `(v ~T0 @X0 1 ef ]
@@ -14248,7 +14264,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _TRISDbits 0 7 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 289: }
 "289
-[e :UE 1437 ]
+[e :UE 1438 ]
 }
 "291
 [v _interruptInit `(v ~T0 @X0 1 ef ]
@@ -14308,7 +14324,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 [; ;systemConfig.c: 312: }
 "312
-[e :UE 1438 ]
+[e :UE 1439 ]
 }
 "314
 [v _defaultLED `(v ~T0 @X0 1 ef ]
@@ -14353,7 +14369,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATH2 -> -> 1 `i `b ]
 [; ;systemConfig.c: 327: }
 "327
-[e :UE 1439 ]
+[e :UE 1440 ]
 }
 "329
 [v _bypassSetup `(v ~T0 @X0 1 ef ]
@@ -14380,7 +14396,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATD2 -> -> 0 `i `b ]
 [; ;systemConfig.c: 336: }
 "336
-[e :UE 1440 ]
+[e :UE 1441 ]
 }
 "338
 [v _systemInit `(v ~T0 @X0 1 ef ]
@@ -14443,5 +14459,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _interruptInit ..  ]
 [; ;systemConfig.c: 362: }
 "362
-[e :UE 1441 ]
+[e :UE 1442 ]
 }

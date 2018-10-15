@@ -116,7 +116,8 @@ int armFlash = 0;
 int armFlashToggle = 0;
 
 // Parameter variables
-int parameter[12]; 
+int parameter[15]; 
+int presetRead[12];
 
 int shift = 0;
 int armA = 0;
@@ -147,6 +148,12 @@ int tap = 0;
 int tapTime = 0;
 int newTempo = 0;
 int timeoutCount = 0;
+
+// Global Time for Tempo Division (Lock Mode)
+typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+
+f2b masterTime;
+int lock = 0;
 
 int setupComplete = 0;
 int sync = 0;

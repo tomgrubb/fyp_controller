@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"153 global.h
+[u S1420 `f 1 `uc -> # `f `ui ]
+[n S1420 float2bytes f b ]
 [t ~ __interrupt . k ]
 [t T6 __interrupt high_priority  ]
 "36450 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
@@ -66,7 +69,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T0CONbits `VS1340 ~T0 @X0 0 e@4053 ]
 "70 global.h
 [v _serviceSwitches `(v ~T0 @X0 0 ef ]
-"58
+"34562 /Applications/microchip/xc8/v1.43/include/pic18f85j94.h
+[v _RD7 `Vb ~T0 @X0 0 e@31775 ]
+"58 global.h
 [v _ADC_Read `(i ~T0 @X0 0 ef1`i ]
 "63
 [v _I2C1_Block_Read_EERPOM `(v ~T0 @X0 0 ef3`i`**i`i ]
@@ -12954,155 +12959,168 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;global.h: 116: int armFlashToggle = 0;
 "119
-[v _parameter `i ~T0 @X0 -> 12 `i e ]
-[; ;global.h: 119: int parameter[12];
-"121
+[v _parameter `i ~T0 @X0 -> 15 `i e ]
+[; ;global.h: 119: int parameter[15];
+"120
+[v _presetRead `i ~T0 @X0 -> 12 `i e ]
+[; ;global.h: 120: int presetRead[12];
+"122
 [v _shift `i ~T0 @X0 1 e ]
 [i _shift
 -> 0 `i
 ]
-[; ;global.h: 121: int shift = 0;
-"122
+[; ;global.h: 122: int shift = 0;
+"123
 [v _armA `i ~T0 @X0 1 e ]
 [i _armA
 -> 0 `i
 ]
-[; ;global.h: 122: int armA = 0;
-"123
+[; ;global.h: 123: int armA = 0;
+"124
 [v _armB `i ~T0 @X0 1 e ]
 [i _armB
 -> 0 `i
 ]
-[; ;global.h: 123: int armB = 0;
-"124
+[; ;global.h: 124: int armB = 0;
+"125
 [v _armC `i ~T0 @X0 1 e ]
 [i _armC
 -> 0 `i
 ]
-[; ;global.h: 124: int armC = 0;
-"125
+[; ;global.h: 125: int armC = 0;
+"126
 [v _linesArmed `i ~T0 @X0 1 e ]
 [i _linesArmed
 -> 0 `i
 ]
-[; ;global.h: 125: int linesArmed = 0;
-"127
+[; ;global.h: 126: int linesArmed = 0;
+"128
 [v _dataTarget `i ~T0 @X0 1 e ]
 [i _dataTarget
 -> 0 `i
 ]
-[; ;global.h: 127: int dataTarget = 0;
-"128
+[; ;global.h: 128: int dataTarget = 0;
+"129
 [v _dataPtr `*i ~T0 @X0 1 e ]
-[; ;global.h: 128: int *dataPtr;
-"130
+[; ;global.h: 129: int *dataPtr;
+"131
 [v _fbkA `i ~T0 @X0 1 e ]
 [i _fbkA
 -> 0 `i
 ]
-[; ;global.h: 130: int fbkA = 0;
-"131
+[; ;global.h: 131: int fbkA = 0;
+"132
 [v _lvlA `i ~T0 @X0 1 e ]
 [i _lvlA
 -> 0 `i
 ]
-[; ;global.h: 131: int lvlA = 0;
-"132
+[; ;global.h: 132: int lvlA = 0;
+"133
 [v _timeA `i ~T0 @X0 1 e ]
 [i _timeA
 -> 0 `i
 ]
-[; ;global.h: 132: int timeA = 0;
-"134
+[; ;global.h: 133: int timeA = 0;
+"135
 [v _fbkB `i ~T0 @X0 1 e ]
 [i _fbkB
 -> 0 `i
 ]
-[; ;global.h: 134: int fbkB = 0;
-"135
+[; ;global.h: 135: int fbkB = 0;
+"136
 [v _lvlB `i ~T0 @X0 1 e ]
 [i _lvlB
 -> 0 `i
 ]
-[; ;global.h: 135: int lvlB = 0;
-"136
+[; ;global.h: 136: int lvlB = 0;
+"137
 [v _timeB `i ~T0 @X0 1 e ]
 [i _timeB
 -> 0 `i
 ]
-[; ;global.h: 136: int timeB = 0;
-"138
+[; ;global.h: 137: int timeB = 0;
+"139
 [v _fbkC `i ~T0 @X0 1 e ]
 [i _fbkC
 -> 0 `i
 ]
-[; ;global.h: 138: int fbkC = 0;
-"139
+[; ;global.h: 139: int fbkC = 0;
+"140
 [v _lvlC `i ~T0 @X0 1 e ]
 [i _lvlC
 -> 0 `i
 ]
-[; ;global.h: 139: int lvlC = 0;
-"140
+[; ;global.h: 140: int lvlC = 0;
+"141
 [v _timeC `i ~T0 @X0 1 e ]
 [i _timeC
 -> 0 `i
 ]
-[; ;global.h: 140: int timeC = 0;
-"143
+[; ;global.h: 141: int timeC = 0;
+"144
 [v _tapTimeCount `i ~T0 @X0 1 e ]
 [i _tapTimeCount
 -> 0 `i
 ]
-[; ;global.h: 143: int tapTimeCount = 0;
-"144
+[; ;global.h: 144: int tapTimeCount = 0;
+"145
 [v _tapPrev `i ~T0 @X0 1 e ]
 [i _tapPrev
 -> 0 `i
 ]
-[; ;global.h: 144: int tapPrev = 0;
-"145
+[; ;global.h: 145: int tapPrev = 0;
+"146
 [v _tapAccum `l ~T0 @X0 1 e ]
 [i _tapAccum
 -> -> 0 `i `l
 ]
-[; ;global.h: 145: long int tapAccum = 0;
-"146
+[; ;global.h: 146: long int tapAccum = 0;
+"147
 [v _tap `i ~T0 @X0 1 e ]
 [i _tap
 -> 0 `i
 ]
-[; ;global.h: 146: int tap = 0;
-"147
+[; ;global.h: 147: int tap = 0;
+"148
 [v _tapTime `i ~T0 @X0 1 e ]
 [i _tapTime
 -> 0 `i
 ]
-[; ;global.h: 147: int tapTime = 0;
-"148
+[; ;global.h: 148: int tapTime = 0;
+"149
 [v _newTempo `i ~T0 @X0 1 e ]
 [i _newTempo
 -> 0 `i
 ]
-[; ;global.h: 148: int newTempo = 0;
-"149
+[; ;global.h: 149: int newTempo = 0;
+"150
 [v _timeoutCount `i ~T0 @X0 1 e ]
 [i _timeoutCount
 -> 0 `i
 ]
-[; ;global.h: 149: int timeoutCount = 0;
-"151
+[; ;global.h: 150: int timeoutCount = 0;
+[; ;global.h: 153: typedef union float2bytes { float f; char b[sizeof(float)];} f2b;
+"155
+[v _masterTime `S1420 ~T0 @X0 1 e ]
+[; ;global.h: 155: f2b masterTime;
+"156
+[v _lock `i ~T0 @X0 1 e ]
+[i _lock
+-> 0 `i
+]
+[; ;global.h: 156: int lock = 0;
+"158
 [v _setupComplete `i ~T0 @X0 1 e ]
 [i _setupComplete
 -> 0 `i
 ]
-[; ;global.h: 151: int setupComplete = 0;
-"152
+[; ;global.h: 158: int setupComplete = 0;
+"159
 [v _sync `i ~T0 @X0 1 e ]
 [i _sync
 -> 0 `i
 ]
-[; ;global.h: 152: int sync = 0;
+[; ;global.h: 159: int sync = 0;
 "4 factorySettings.h
 [v _presetParams `i ~T0 @X0 -> 0 `x e ]
 [i _presetParams
@@ -13131,9 +13149,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;factorySettings.h: 7: 0x00, 0x00, 0x00, 0x00,
 [; ;factorySettings.h: 8: 0x00, 0x00, 0x00, 0x00
 [; ;factorySettings.h: 9: };
-[v F13882 `i ~T0 @X0 -> 12 `i t ]
+[v F13890 `i ~T0 @X0 -> 12 `i t ]
 "11
-[v _userParams `F13882 ~T0 @X0 -> 5 `i e ]
+[v _userParams `F13890 ~T0 @X0 -> 5 `i e ]
 [i _userParams
 :U ..
 :U ..
@@ -13266,7 +13284,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 130: if(SSP2IF)
 "130
-[e $ ! _SSP2IF 1421  ]
+[e $ ! _SSP2IF 1422  ]
 [; ;main.c: 131: {
 "131
 {
@@ -13278,11 +13296,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _sendParam ..  ]
 "134
 }
-[e :U 1421 ]
+[e :U 1422 ]
 [; ;main.c: 134: }
 [; ;main.c: 136: if (TMR4IF)
 "136
-[e $ ! _TMR4IF 1422  ]
+[e $ ! _TMR4IF 1423  ]
 [; ;main.c: 137: {
 "137
 {
@@ -13300,11 +13318,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
 "142
 }
-[e :U 1422 ]
+[e :U 1423 ]
 [; ;main.c: 142: }
 [; ;main.c: 144: if (TMR2IF)
 "144
-[e $ ! _TMR2IF 1423  ]
+[e $ ! _TMR2IF 1424  ]
 [; ;main.c: 145: {
 "145
 {
@@ -13316,7 +13334,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _tapTimeCount -> 1 `i ]
 [; ;main.c: 148: if (tapTimeCount >= 3000)
 "148
-[e $ ! >= _tapTimeCount -> 3000 `i 1424  ]
+[e $ ! >= _tapTimeCount -> 3000 `i 1425  ]
 [; ;main.c: 149: {
 "149
 {
@@ -13329,22 +13347,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "152
 }
 [; ;main.c: 152: }
-[e $U 1425  ]
+[e $U 1426  ]
 "153
-[e :U 1424 ]
+[e :U 1425 ]
 [; ;main.c: 153: else T2CONbits.TMR2ON = 1;
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-[e :U 1425 ]
+[e :U 1426 ]
 "154
 }
-[e :U 1423 ]
+[e :U 1424 ]
 [; ;main.c: 154: }
 [; ;main.c: 156: checkSwitches();
 "156
 [e ( _checkSwitches ..  ]
 [; ;main.c: 158: if (TMR0IF)
 "158
-[e $ ! _TMR0IF 1426  ]
+[e $ ! _TMR0IF 1427  ]
 [; ;main.c: 159: {
 "159
 {
@@ -13356,7 +13374,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _bounceCount -> 1 `i ]
 [; ;main.c: 162: if (bounceCount < 2)
 "162
-[e $ ! < _bounceCount -> 2 `i 1427  ]
+[e $ ! < _bounceCount -> 2 `i 1428  ]
 [; ;main.c: 163: {
 "163
 {
@@ -13366,9 +13384,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "165
 }
 [; ;main.c: 165: }
-[e $U 1428  ]
+[e $U 1429  ]
 "166
-[e :U 1427 ]
+[e :U 1428 ]
 [; ;main.c: 166: else
 [; ;main.c: 167: {
 "167
@@ -13384,15 +13402,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
 "171
 }
-[e :U 1428 ]
+[e :U 1429 ]
 "172
 }
-[e :U 1426 ]
+[e :U 1427 ]
 [; ;main.c: 171: }
 [; ;main.c: 172: }
 [; ;main.c: 173: }
 "173
-[e :UE 1420 ]
+[e :UE 1421 ]
 }
 "175
 [v _absVal `(i ~T0 @X0 1 ef1`i ]
@@ -13407,21 +13425,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 177: if (val < 0)
 "177
-[e $ ! < _val -> 0 `i 1430  ]
+[e $ ! < _val -> 0 `i 1431  ]
 [; ;main.c: 178: return -val;
 "178
 [e ) -U _val ]
-[e $UE 1429  ]
-[e $U 1431  ]
+[e $UE 1430  ]
+[e $U 1432  ]
 "179
-[e :U 1430 ]
+[e :U 1431 ]
 [; ;main.c: 179: else return val;
 [e ) _val ]
-[e $UE 1429  ]
-[e :U 1431 ]
+[e $UE 1430  ]
+[e :U 1432 ]
 [; ;main.c: 180: }
 "180
-[e :UE 1429 ]
+[e :UE 1430 ]
 }
 "182
 [v _readControls `(v ~T0 @X0 1 ef ]
@@ -13431,335 +13449,365 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 183: {
 [e :U _readControls ]
 [f ]
-[; ;main.c: 185: timeA = ADC_Read(14);
+[; ;main.c: 184: if (masterTime.f > 0)
+"184
+[e $ ! > . _masterTime 0 -> -> 0 `i `f 1434  ]
+[; ;main.c: 185: {
 "185
-[e = _timeA ( _ADC_Read (1 -> 14 `i ]
-[; ;main.c: 186: parameter[0] = timeA >> 8;
+{
+[; ;main.c: 186: lock = RD7;
 "186
-[e = *U + &U _parameter * -> -> -> 0 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeA -> 8 `i ]
-[; ;main.c: 187: parameter[1] = (timeA & 0xFF);
+[e = _lock -> _RD7 `i ]
 "187
-[e = *U + &U _parameter * -> -> -> 1 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeA -> 255 `i ]
-[; ;main.c: 189: fbkA = ADC_Read(4);
-"189
-[e = _fbkA ( _ADC_Read (1 -> 4 `i ]
-[; ;main.c: 190: parameter[2] = fbkA>>4;
-"190
-[e = *U + &U _parameter * -> -> -> 2 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkA -> 4 `i ]
-[; ;main.c: 192: lvlA = ADC_Read(3);
-"192
-[e = _lvlA ( _ADC_Read (1 -> 3 `i ]
-[; ;main.c: 193: parameter[3] = lvlA>>4;
-"193
-[e = *U + &U _parameter * -> -> -> 3 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlA -> 4 `i ]
-[; ;main.c: 196: timeB = ADC_Read(6);
-"196
-[e = _timeB ( _ADC_Read (1 -> 6 `i ]
-[; ;main.c: 197: parameter[4] = timeB >> 8;
-"197
-[e = *U + &U _parameter * -> -> -> 4 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeB -> 8 `i ]
-[; ;main.c: 198: parameter[5] = (timeB & 0xFF);
-"198
-[e = *U + &U _parameter * -> -> -> 5 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeB -> 255 `i ]
-[; ;main.c: 200: fbkB = ADC_Read(2);
-"200
-[e = _fbkB ( _ADC_Read (1 -> 2 `i ]
-[; ;main.c: 201: parameter[6] = fbkB>>4;
-"201
-[e = *U + &U _parameter * -> -> -> 6 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkB -> 4 `i ]
-[; ;main.c: 203: lvlB = ADC_Read(9);
-"203
-[e = _lvlB ( _ADC_Read (1 -> 9 `i ]
-[; ;main.c: 204: parameter[7] = lvlB>>4;
-"204
-[e = *U + &U _parameter * -> -> -> 7 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlB -> 4 `i ]
-[; ;main.c: 207: timeC = ADC_Read(1);
-"207
-[e = _timeC ( _ADC_Read (1 -> 1 `i ]
-[; ;main.c: 208: parameter[8] = timeC >> 8;
-"208
-[e = *U + &U _parameter * -> -> -> 8 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _timeC -> 8 `i ]
-[; ;main.c: 209: parameter[9] = (timeC & 0xFF);
-"209
-[e = *U + &U _parameter * -> -> -> 9 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeC -> 255 `i ]
-[; ;main.c: 211: fbkC = ADC_Read(5);
-"211
-[e = _fbkC ( _ADC_Read (1 -> 5 `i ]
-[; ;main.c: 212: parameter[10] = fbkC>>4;
-"212
-[e = *U + &U _parameter * -> -> -> 10 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkC -> 4 `i ]
-[; ;main.c: 214: lvlC = ADC_Read(0);
-"214
-[e = _lvlC ( _ADC_Read (1 -> 0 `i ]
-[; ;main.c: 215: parameter[11] = lvlC>>4;
-"215
-[e = *U + &U _parameter * -> -> -> 11 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlC -> 4 `i ]
-[; ;main.c: 216: }
-"216
-[e :UE 1432 ]
 }
-"218
-[v _updatePreset `(v ~T0 @X0 1 ef2`i`*i ]
-"219
-{
-[; ;main.c: 218: void updatePreset(int slot, int values[])
-[; ;main.c: 219: {
-[e :U _updatePreset ]
-"218
-[v _slot `i ~T0 @X0 1 r1 ]
-[v _values `*i ~T0 @X0 1 r2 ]
-"219
-[f ]
-"220
-[v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 220: int i;
-[; ;main.c: 222: for (i = 0; i < 12; i++)
-"222
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 12 `i 1434  ]
+[; ;main.c: 187: }
 [e $U 1435  ]
-"223
+"188
 [e :U 1434 ]
-[; ;main.c: 223: {
-{
-[; ;main.c: 224: userParams[slot][i] = values[i];
-"224
-[e = *U + &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux `ui `ux *U + _values * -> _i `x -> -> # *U _values `i `x ]
-"225
-}
-"222
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 12 `i 1434  ]
+[; ;main.c: 188: else lock = 0;
+[e = _lock -> 0 `i ]
 [e :U 1435 ]
+[; ;main.c: 191: timeA = ADC_Read(14);
+"191
+[e = _timeA ( _ADC_Read (1 -> 14 `i ]
+[; ;main.c: 192: parameter[0] = ((timeA >> 8) | (armA << 7) | (lock << 6));
+"192
+[e = *U + &U _parameter * -> -> -> 0 `i `ui `ux -> -> # *U &U _parameter `ui `ux | | >> _timeA -> 8 `i << _armA -> 7 `i << _lock -> 6 `i ]
+[; ;main.c: 193: parameter[1] = (timeA & 0xFF);
+"193
+[e = *U + &U _parameter * -> -> -> 1 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeA -> 255 `i ]
+[; ;main.c: 195: fbkA = ADC_Read(4);
+"195
+[e = _fbkA ( _ADC_Read (1 -> 4 `i ]
+[; ;main.c: 196: parameter[2] = fbkA>>4;
+"196
+[e = *U + &U _parameter * -> -> -> 2 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkA -> 4 `i ]
+[; ;main.c: 198: lvlA = ADC_Read(3);
+"198
+[e = _lvlA ( _ADC_Read (1 -> 3 `i ]
+[; ;main.c: 199: parameter[3] = lvlA>>4;
+"199
+[e = *U + &U _parameter * -> -> -> 3 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlA -> 4 `i ]
+[; ;main.c: 202: timeB = ADC_Read(6);
+"202
+[e = _timeB ( _ADC_Read (1 -> 6 `i ]
+[; ;main.c: 203: parameter[4] = ((timeB >> 8) | (armB << 7));
+"203
+[e = *U + &U _parameter * -> -> -> 4 `i `ui `ux -> -> # *U &U _parameter `ui `ux | >> _timeB -> 8 `i << _armB -> 7 `i ]
+[; ;main.c: 204: parameter[5] = (timeB & 0xFF);
+"204
+[e = *U + &U _parameter * -> -> -> 5 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeB -> 255 `i ]
+[; ;main.c: 206: fbkB = ADC_Read(2);
+"206
+[e = _fbkB ( _ADC_Read (1 -> 2 `i ]
+[; ;main.c: 207: parameter[6] = fbkB>>4;
+"207
+[e = *U + &U _parameter * -> -> -> 6 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkB -> 4 `i ]
+[; ;main.c: 209: lvlB = ADC_Read(9);
+"209
+[e = _lvlB ( _ADC_Read (1 -> 9 `i ]
+[; ;main.c: 210: parameter[7] = lvlB>>4;
+"210
+[e = *U + &U _parameter * -> -> -> 7 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlB -> 4 `i ]
+[; ;main.c: 213: timeC = ADC_Read(1);
+"213
+[e = _timeC ( _ADC_Read (1 -> 1 `i ]
+[; ;main.c: 214: parameter[8] = ((timeC >> 8) | (armC << 7));
+"214
+[e = *U + &U _parameter * -> -> -> 8 `i `ui `ux -> -> # *U &U _parameter `ui `ux | >> _timeC -> 8 `i << _armC -> 7 `i ]
+[; ;main.c: 215: parameter[9] = (timeC & 0xFF);
+"215
+[e = *U + &U _parameter * -> -> -> 9 `i `ui `ux -> -> # *U &U _parameter `ui `ux & _timeC -> 255 `i ]
+[; ;main.c: 217: fbkC = ADC_Read(5);
+"217
+[e = _fbkC ( _ADC_Read (1 -> 5 `i ]
+[; ;main.c: 218: parameter[10] = fbkC>>4;
+"218
+[e = *U + &U _parameter * -> -> -> 10 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _fbkC -> 4 `i ]
+[; ;main.c: 220: lvlC = ADC_Read(0);
+"220
+[e = _lvlC ( _ADC_Read (1 -> 0 `i ]
+[; ;main.c: 221: parameter[11] = lvlC>>4;
+"221
+[e = *U + &U _parameter * -> -> -> 11 `i `ui `ux -> -> # *U &U _parameter `ui `ux >> _lvlC -> 4 `i ]
+[; ;main.c: 224: parameter[12] = masterTime.b[0];
+"224
+[e = *U + &U _parameter * -> -> -> 12 `i `ui `ux -> -> # *U &U _parameter `ui `ux -> *U + &U . _masterTime 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _masterTime 1 `ui `ux `i ]
+[; ;main.c: 225: parameter[13] = masterTime.b[1];
 "225
-}
-[; ;main.c: 225: }
-[; ;main.c: 226: }
+[e = *U + &U _parameter * -> -> -> 13 `i `ui `ux -> -> # *U &U _parameter `ui `ux -> *U + &U . _masterTime 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _masterTime 1 `ui `ux `i ]
+[; ;main.c: 226: parameter[14] = masterTime.b[2];
 "226
+[e = *U + &U _parameter * -> -> -> 14 `i `ui `ux -> -> # *U &U _parameter `ui `ux -> *U + &U . _masterTime 1 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _masterTime 1 `ui `ux `i ]
+[; ;main.c: 227: }
+"227
 [e :UE 1433 ]
 }
-"228
-[v _updateParams `(v ~T0 @X0 1 ef1`i ]
 "229
-{
-[; ;main.c: 228: void updateParams(int slot)
-[; ;main.c: 229: {
-[e :U _updateParams ]
-"228
-[v _slot `i ~T0 @X0 1 r1 ]
-"229
-[f ]
+[v _updatePreset `(v ~T0 @X0 1 ef2`i`*i ]
 "230
-[v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 230: int i;
-[; ;main.c: 232: for (i = 0; i < 12; i++)
-"232
 {
-[e = _i -> 0 `i ]
-[e $ < _i -> 12 `i 1438  ]
-[e $U 1439  ]
-"233
-[e :U 1438 ]
-[; ;main.c: 233: {
-{
-[; ;main.c: 234: parameter[i] = userParams[slot][i];
-"234
-[e = *U + &U _parameter * -> -> _i `ui `ux -> -> # *U &U _parameter `ui `ux *U + &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux `ui `ux ]
-"235
-}
-"232
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 12 `i 1438  ]
-[e :U 1439 ]
-"235
-}
-[; ;main.c: 235: }
-[; ;main.c: 236: }
-"236
-[e :UE 1437 ]
-}
-"238
-[v _fetchPreset `(v ~T0 @X0 1 ef ]
-"239
-{
-[; ;main.c: 238: void fetchPreset(void)
-[; ;main.c: 239: {
-[e :U _fetchPreset ]
+[; ;main.c: 229: void updatePreset(int slot, int data[])
+[; ;main.c: 230: {
+[e :U _updatePreset ]
+"229
+[v _slot `i ~T0 @X0 1 r1 ]
+[v _data `*i ~T0 @X0 1 r2 ]
+"230
 [f ]
-"240
-[v _test `i ~T0 @X0 1 a ]
-[; ;main.c: 240: int test = 0;
-[e = _test -> 0 `i ]
-"241
+"231
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 241: int i = 0;
+"232
+[v _temp `i ~T0 @X0 1 a ]
+[; ;main.c: 231: int i;
+[; ;main.c: 232: int temp;
+[; ;main.c: 234: for (i = 0; i < 12; i++)
+"234
+{
 [e = _i -> 0 `i ]
+[e $ < _i -> 12 `i 1437  ]
+[e $U 1438  ]
+"235
+[e :U 1437 ]
+[; ;main.c: 235: {
+{
+[; ;main.c: 236: temp = data[i];
+"236
+[e = _temp *U + _data * -> _i `x -> -> # *U _data `i `x ]
+[; ;main.c: 237: userParams[slot][i] = temp;
+"237
+[e = *U + &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux `ui `ux _temp ]
+"238
+}
+"234
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 12 `i 1437  ]
+[e :U 1438 ]
+"238
+}
+[; ;main.c: 238: }
+[; ;main.c: 239: }
+"239
+[e :UE 1436 ]
+}
+"241
+[v _updateParams `(v ~T0 @X0 1 ef1`i ]
 "242
-[v _values `i ~T0 @X0 -> 12 `i a ]
-[; ;main.c: 242: int values[12];
-[; ;main.c: 244: for (i = 0; i < 5; i++)
-"244
+{
+[; ;main.c: 241: void updateParams(int slot)
+[; ;main.c: 242: {
+[e :U _updateParams ]
+"241
+[v _slot `i ~T0 @X0 1 r1 ]
+"242
+[f ]
+"243
+[v _i `i ~T0 @X0 1 a ]
+[; ;main.c: 243: int i;
+[; ;main.c: 245: for (i = 0; i < 12; i++)
+"245
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 1442  ]
-[e $U 1443  ]
-"245
-[e :U 1442 ]
-[; ;main.c: 245: {
-{
-[; ;main.c: 246: I2C1_Block_Read_EERPOM(i, values, 12);
+[e $ < _i -> 12 `i 1441  ]
+[e $U 1442  ]
 "246
-[e ( _I2C1_Block_Read_EERPOM (3 , , _i -> &U _values `**i -> 12 `i ]
-[; ;main.c: 247: updatePreset(i+1, values);
+[e :U 1441 ]
+[; ;main.c: 246: {
+{
+[; ;main.c: 247: parameter[i] = userParams[slot][i];
 "247
-[e ( _updatePreset (2 , + _i -> 1 `i &U _values ]
+[e = *U + &U _parameter * -> -> _i `ui `ux -> -> # *U &U _parameter `ui `ux *U + &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _userParams * -> -> _slot `ui `ux -> * -> # *U &U *U &U _userParams `ui -> -> 12 `i `ui `ux `ui `ux ]
 "248
 }
-"244
+"245
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 1442  ]
-[e :U 1443 ]
+[e $ < _i -> 12 `i 1441  ]
+[e :U 1442 ]
 "248
 }
 [; ;main.c: 248: }
 [; ;main.c: 249: }
 "249
-[e :UE 1441 ]
+[e :UE 1440 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
 "251
-[v _main `(v ~T0 @X0 1 ef ]
+[v _fetchPreset `(v ~T0 @X0 1 ef ]
 "252
 {
-[; ;main.c: 251: void main(void)
+[; ;main.c: 251: void fetchPreset(void)
 [; ;main.c: 252: {
+[e :U _fetchPreset ]
+[f ]
+"253
+[v _test `i ~T0 @X0 1 a ]
+[; ;main.c: 253: int test = 0;
+[e = _test -> 0 `i ]
+"254
+[v _i `i ~T0 @X0 1 a ]
+[; ;main.c: 254: int i = 0;
+[e = _i -> 0 `i ]
+[; ;main.c: 256: for (i = 0; i < 5; i++)
+"256
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 5 `i 1445  ]
+[e $U 1446  ]
+"257
+[e :U 1445 ]
+[; ;main.c: 257: {
+{
+[; ;main.c: 258: I2C1_Block_Read_EERPOM(i, presetRead, 12);
+"258
+[e ( _I2C1_Block_Read_EERPOM (3 , , _i -> &U _presetRead `**i -> 12 `i ]
+[; ;main.c: 259: updatePreset(i+1, presetRead);
+"259
+[e ( _updatePreset (2 , + _i -> 1 `i &U _presetRead ]
+"260
+}
+"256
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 5 `i 1445  ]
+[e :U 1446 ]
+"260
+}
+[; ;main.c: 260: }
+[; ;main.c: 261: }
+"261
+[e :UE 1444 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"263
+[v _main `(v ~T0 @X0 1 ef ]
+"264
+{
+[; ;main.c: 263: void main(void)
+[; ;main.c: 264: {
 [e :U _main ]
 [f ]
-"254
-[v _dryLevel `i ~T0 @X0 1 a ]
-[; ;main.c: 254: int dryLevel = 0;
-[e = _dryLevel -> 0 `i ]
-"255
-[v _prevDry `i ~T0 @X0 1 a ]
-[; ;main.c: 255: int prevDry = 0;
-[e = _prevDry -> 0 `i ]
-"256
-[v _diff `i ~T0 @X0 1 a ]
-[; ;main.c: 256: int diff = 0;
-[e = _diff -> 0 `i ]
-[; ;main.c: 258: systemInit();
-"258
-[e ( _systemInit ..  ]
-[; ;main.c: 260: fetchPreset();
-"260
-[e ( _fetchPreset ..  ]
-[; ;main.c: 262: T4CONbits.TMR4ON = 1;
-"262
-[e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 264: I2C1_Write_DigiPot(0);
-"264
-[e ( _I2C1_Write_DigiPot (1 -> -> 0 `i `uc ]
-[; ;main.c: 266: while(1)
 "266
-[e :U 1447 ]
-[; ;main.c: 267: {
+[v _dryLevel `i ~T0 @X0 1 a ]
+[; ;main.c: 266: int dryLevel = 0;
+[e = _dryLevel -> 0 `i ]
 "267
-{
-[; ;main.c: 268: if (savePend)
+[v _prevDry `i ~T0 @X0 1 a ]
+[; ;main.c: 267: int prevDry = 0;
+[e = _prevDry -> 0 `i ]
 "268
-[e $ ! != _savePend -> 0 `i 1449  ]
-[; ;main.c: 269: {
-"269
-{
-[; ;main.c: 270: I2C1_Page_Write_EEPROM((preset-1), parameter, 12);
+[v _diff `i ~T0 @X0 1 a ]
+[; ;main.c: 268: int diff = 0;
+[e = _diff -> 0 `i ]
+[; ;main.c: 270: systemInit();
 "270
-[e ( _I2C1_Page_Write_EEPROM (3 , , - _preset -> 1 `i -> &U _parameter `**i -> 12 `i ]
-[; ;main.c: 271: updatePreset(preset, parameter);
-"271
-[e ( _updatePreset (2 , _preset &U _parameter ]
-[; ;main.c: 272: savePend = 0;
+[e ( _systemInit ..  ]
+[; ;main.c: 272: fetchPreset();
 "272
-[e = _savePend -> 0 `i ]
-"273
-}
-[e :U 1449 ]
-[; ;main.c: 273: }
-[; ;main.c: 275: if (preset > 0)
-"275
-[e $ ! > _preset -> 0 `i 1450  ]
-[; ;main.c: 276: {
+[e ( _fetchPreset ..  ]
+[; ;main.c: 274: T4CONbits.TMR4ON = 1;
+"274
+[e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 276: I2C1_Write_DigiPot(0);
 "276
-{
-[; ;main.c: 277: updateParams(preset);
-"277
-[e ( _updateParams (1 _preset ]
+[e ( _I2C1_Write_DigiPot (1 -> -> 0 `i `uc ]
+[; ;main.c: 278: while(1)
 "278
-}
-[; ;main.c: 278: }
-[e $U 1451  ]
-"279
 [e :U 1450 ]
-[; ;main.c: 279: else
-[; ;main.c: 280: {
-"280
+[; ;main.c: 279: {
+"279
 {
-[; ;main.c: 281: readControls();
+[; ;main.c: 280: if (savePend)
+"280
+[e $ ! != _savePend -> 0 `i 1452  ]
+[; ;main.c: 281: {
 "281
-[e ( _readControls ..  ]
-[; ;main.c: 282: dryLevel = ADC_Read(8);
+{
+[; ;main.c: 282: I2C1_Page_Write_EEPROM((preset-1), parameter, 12);
 "282
-[e = _dryLevel ( _ADC_Read (1 -> 8 `i ]
-[; ;main.c: 283: dryLevel = dryLevel>>5;
+[e ( _I2C1_Page_Write_EEPROM (3 , , - _preset -> 1 `i -> &U _parameter `**i -> 12 `i ]
+[; ;main.c: 283: updatePreset(preset, parameter);
 "283
-[e = _dryLevel >> _dryLevel -> 5 `i ]
-[; ;main.c: 284: diff = dryLevel - prevDry;
+[e ( _updatePreset (2 , _preset &U _parameter ]
+[; ;main.c: 284: savePend = 0;
 "284
-[e = _diff - _dryLevel _prevDry ]
-[; ;main.c: 285: diff = absVal(diff);
+[e = _savePend -> 0 `i ]
 "285
-[e = _diff ( _absVal (1 _diff ]
-[; ;main.c: 287: if (diff >= 2)
+}
+[e :U 1452 ]
+[; ;main.c: 285: }
+[; ;main.c: 287: if (preset > 0)
 "287
-[e $ ! >= _diff -> 2 `i 1452  ]
+[e $ ! > _preset -> 0 `i 1453  ]
 [; ;main.c: 288: {
 "288
 {
-[; ;main.c: 289: I2C1_Write_DigiPot(dryLevel);
+[; ;main.c: 289: updateParams(preset);
 "289
-[e ( _I2C1_Write_DigiPot (1 -> _dryLevel `uc ]
-[; ;main.c: 290: prevDry = dryLevel;
+[e ( _updateParams (1 _preset ]
 "290
-[e = _prevDry _dryLevel ]
+}
+[; ;main.c: 290: }
+[e $U 1454  ]
 "291
-}
-[e :U 1452 ]
-"292
-}
-[e :U 1451 ]
-[; ;main.c: 291: }
-[; ;main.c: 292: }
-[; ;main.c: 295: if (!setupComplete)
-"295
-[e $ ! ! != _setupComplete -> 0 `i 1453  ]
-[; ;main.c: 296: {
-"296
-{
-[; ;main.c: 297: setupComplete = 1;
-"297
-[e = _setupComplete -> 1 `i ]
-"298
-}
 [e :U 1453 ]
+[; ;main.c: 291: else
+[; ;main.c: 292: {
+"292
+{
+[; ;main.c: 293: readControls();
+"293
+[e ( _readControls ..  ]
+[; ;main.c: 294: dryLevel = ADC_Read(8);
+"294
+[e = _dryLevel ( _ADC_Read (1 -> 8 `i ]
+[; ;main.c: 295: dryLevel = dryLevel>>5;
+"295
+[e = _dryLevel >> _dryLevel -> 5 `i ]
+[; ;main.c: 296: diff = dryLevel - prevDry;
+"296
+[e = _diff - _dryLevel _prevDry ]
+[; ;main.c: 297: diff = absVal(diff);
+"297
+[e = _diff ( _absVal (1 _diff ]
+[; ;main.c: 299: if (diff >= 2)
 "299
-}
-[e :U 1446 ]
-"266
-[e $U 1447  ]
-[e :U 1448 ]
-[; ;main.c: 298: }
-[; ;main.c: 299: }
-[; ;main.c: 300: }
+[e $ ! >= _diff -> 2 `i 1455  ]
+[; ;main.c: 300: {
 "300
-[e :UE 1445 ]
+{
+[; ;main.c: 301: I2C1_Write_DigiPot(dryLevel);
+"301
+[e ( _I2C1_Write_DigiPot (1 -> _dryLevel `uc ]
+[; ;main.c: 302: prevDry = dryLevel;
+"302
+[e = _prevDry _dryLevel ]
+"303
+}
+[e :U 1455 ]
+"304
+}
+[e :U 1454 ]
+[; ;main.c: 303: }
+[; ;main.c: 304: }
+[; ;main.c: 307: if (!setupComplete)
+"307
+[e $ ! ! != _setupComplete -> 0 `i 1456  ]
+[; ;main.c: 308: {
+"308
+{
+[; ;main.c: 309: setupComplete = 1;
+"309
+[e = _setupComplete -> 1 `i ]
+"310
+}
+[e :U 1456 ]
+"311
+}
+[e :U 1449 ]
+"278
+[e $U 1450  ]
+[e :U 1451 ]
+[; ;main.c: 310: }
+[; ;main.c: 311: }
+[; ;main.c: 312: }
+"312
+[e :UE 1448 ]
 }
